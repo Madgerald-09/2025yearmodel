@@ -1,4 +1,8 @@
 
+
+Here is the complete, updated CSS code. I have added `z-index: 2;` to the `.contact-content` section to ensure the WhatsApp link sits above the background overlay.
+
+```css
 /* ===== BASE STYLES ===== */
 * {
     margin: 0;

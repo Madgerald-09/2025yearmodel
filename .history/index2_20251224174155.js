@@ -20,9 +20,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const videoContainer3 = document.querySelector(".contact-video-container");
   const videoContainer5 = document.querySelector(".vid-five-video-container");
   
+  const dmButton = document.getElementById("dmButton");
+  const whatsappMessageButton = document.getElementById("whatsappMessageButton");
+  const schoolImageContainer = document.getElementById("schoolImageContainer");
   const thankYouSection = document.querySelector(".thank-you-section");
   const contactSection = document.querySelector(".contact-section");
   const vidFiveSection = document.querySelector(".vid-five-section");
+
+  // URLs - SIMPLIFIED AND WORKING
+  const INSTAGRAM_URL = "https://instagram.com/modelaward";
+  const WHATSAPP_URL = "https://wa.me/2347077027579";
 
   // Check if mobile device
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -171,45 +178,20 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Show notification
-  function showNotification(message) {
-    let notification = document.querySelector('.notification');
-    if (!notification) {
-      notification = document.createElement('div');
-      notification.className = 'notification';
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: rgba(93, 76, 58, 0.95);
-        color: #ffffff;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
-        opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.5s ease;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(212, 185, 150, 0.3);
-        max-width: 300px;
-        display: none;
-      `;
-      document.body.appendChild(notification);
-    }
-    
-    notification.innerHTML = `<p style="margin: 0; font-size: 0.9rem; font-weight: 500; line-height: 1.4;">${message}</p>`;
-    notification.style.display = 'block';
-    notification.style.opacity = '1';
-    notification.style.transform = 'translateX(0)';
-    
+  // Open Instagram DM - SIMPLE AND WORKING
+  function openInstagramDM() {
+    showNotification("Opening Instagram...");
     setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transform = 'translateX(100%)';
-      setTimeout(() => {
-        notification.style.display = 'none';
-      }, 500);
-    }, 3000);
+      window.open(INSTAGRAM_URL, '_blank');
+    }, 500);
+  }
+
+  // Open WhatsApp Message - SIMPLE AND WORKING
+  function openWhatsAppMessage() {
+    showNotification("Opening WhatsApp...");
+    setTimeout(() => {
+      window.open(WHATSAPP_URL, '_blank');
+    }, 500);
   }
 
   // Initialize sections with scroll detection
@@ -265,15 +247,69 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Show notification
+  function showNotification(message) {
+    let notification = document.querySelector('.notification');
+    if (!notification) {
+      notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(93, 76, 58, 0.95);
+        color: #ffffff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.5s ease;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(212, 185, 150, 0.3);
+        max-width: 300px;
+        display: none;
+      `;
+      document.body.appendChild(notification);
+    }
+    
+    notification.innerHTML = `<p style="margin: 0; font-size: 0.9rem; font-weight: 500; line-height: 1.4;">${message}</p>`;
+    notification.style.display = 'block';
+    notification.style.opacity = '1';
+    notification.style.transform = 'translateX(0)';
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 500);
+    }, 3000);
+  }
+
   // Initialize everything
   function initialize() {
-    console.log("Initializing services page...");
-    
     initVideos();
     initScrollAnimations();
 
-    // Instagram and WhatsApp buttons now work directly via HTML links
-    console.log("Buttons are now HTML links - they will work immediately when clicked");
+    // Instagram DM Button
+    if (dmButton) {
+      dmButton.addEventListener("click", openInstagramDM);
+      dmButton.addEventListener("touchend", function(e) {
+        e.preventDefault();
+        openInstagramDM();
+      }, { passive: false });
+    }
+
+    // WhatsApp Button - FIXED
+    if (whatsappMessageButton) {
+      whatsappMessageButton.addEventListener("click", openWhatsAppMessage);
+      whatsappMessageButton.addEventListener("touchend", function(e) {
+        e.preventDefault();
+        openWhatsAppMessage();
+      }, { passive: false });
+    }
   }
 
   // Start initialization
@@ -301,7 +337,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
-
-  // Log success
-  console.log("Services page loaded successfully!");
 });

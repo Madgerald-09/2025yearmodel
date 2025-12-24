@@ -20,9 +20,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const videoContainer3 = document.querySelector(".contact-video-container");
   const videoContainer5 = document.querySelector(".vid-five-video-container");
   
+  const dmButton = document.getElementById("dmButton");
+  const whatsappMessageButton = document.getElementById("whatsappMessageButton");
+  const schoolImageContainer = document.getElementById("schoolImageContainer");
   const thankYouSection = document.querySelector(".thank-you-section");
   const contactSection = document.querySelector(".contact-section");
   const vidFiveSection = document.querySelector(".vid-five-section");
+
+  // URLs - FIXED WHATSAPP URL
+  const INSTAGRAM_URL = "https://instagram.com/modelaward";
+  const WHATSAPP_URL = "https://wa.me/2347077027579?text=Hello%20Model%20Of%20The%20Year%20Award%20team!%20I%20have%20an%20inquiry.";
 
   // Check if mobile device
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -171,45 +178,36 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Show notification
-  function showNotification(message) {
-    let notification = document.querySelector('.notification');
-    if (!notification) {
-      notification = document.createElement('div');
-      notification.className = 'notification';
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: rgba(93, 76, 58, 0.95);
-        color: #ffffff;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
-        opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.5s ease;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(212, 185, 150, 0.3);
-        max-width: 300px;
-        display: none;
-      `;
-      document.body.appendChild(notification);
-    }
-    
-    notification.innerHTML = `<p style="margin: 0; font-size: 0.9rem; font-weight: 500; line-height: 1.4;">${message}</p>`;
-    notification.style.display = 'block';
-    notification.style.opacity = '1';
-    notification.style.transform = 'translateX(0)';
-    
+  // Open Instagram DM - FIXED
+  function openInstagramDM() {
+    showNotification("Opening Instagram...");
+    // Use setTimeout to ensure the notification shows
     setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transform = 'translateX(100%)';
-      setTimeout(() => {
-        notification.style.display = 'none';
-      }, 500);
-    }, 3000);
+      window.open(INSTAGRAM_URL, '_blank', 'noopener,noreferrer');
+    }, 300);
+  }
+
+  // Open WhatsApp Message - FIXED
+  function openWhatsAppMessage() {
+    showNotification("Opening WhatsApp...");
+    
+    // Create a more robust WhatsApp URL
+    const phoneNumber = "2347077027579";
+    const message = encodeURIComponent("Hello Model Of The Year Award team! I have an inquiry.");
+    
+    // Use the wa.me format which is more reliable
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    
+    // Open in new tab with safety features
+    setTimeout(() => {
+      const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      
+      // Fallback if popup is blocked
+      if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+        // Try direct navigation
+        window.location.href = whatsappUrl;
+      }
+    }, 300);
   }
 
   // Initialize sections with scroll detection
@@ -265,21 +263,101 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Show notification
+  function showNotification(message) {
+    let notification = document.querySelector('.notification');
+    if (!notification) {
+      notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(93, 76, 58, 0.95);
+        color: #ffffff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.5s ease;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(212, 185, 150, 0.3);
+        max-width: 300px;
+        display: none;
+      `;
+      document.body.appendChild(notification);
+    }
+    
+    notification.innerHTML = `<p style="margin: 0; font-size: 0.9rem; font-weight: 500; line-height: 1.4;">${message}</p>`;
+    notification.style.display = 'block';
+    notification.style.opacity = '1';
+    notification.style.transform = 'translateX(0)';
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 500);
+    }, 3000);
+  }
+
   // Initialize everything
   function initialize() {
-    console.log("Initializing services page...");
+    console.log("Initializing...");
+    
+    // Check if buttons exist
+    console.log("dmButton exists:", !!dmButton);
+    console.log("whatsappMessageButton exists:", !!whatsappMessageButton);
     
     initVideos();
     initScrollAnimations();
 
-    // Instagram and WhatsApp buttons now work directly via HTML links
-    console.log("Buttons are now HTML links - they will work immediately when clicked");
+    // Instagram DM Button - ADD DEBUG LOGS
+    if (dmButton) {
+      dmButton.addEventListener("click", function(e) {
+        console.log("Instagram button clicked");
+        e.preventDefault();
+        e.stopPropagation();
+        openInstagramDM();
+      });
+      
+      dmButton.addEventListener("touchend", function(e) {
+        console.log("Instagram button touched");
+        e.preventDefault();
+        e.stopPropagation();
+        openInstagramDM();
+      }, { passive: false });
+    }
+
+    // WhatsApp Button - ADD DEBUG LOGS AND FIX
+    if (whatsappMessageButton) {
+      console.log("WhatsApp button found, adding listeners");
+      
+      whatsappMessageButton.addEventListener("click", function(e) {
+        console.log("WhatsApp button clicked");
+        e.preventDefault();
+        e.stopPropagation();
+        openWhatsAppMessage();
+      });
+      
+      whatsappMessageButton.addEventListener("touchend", function(e) {
+        console.log("WhatsApp button touched");
+        e.preventDefault();
+        e.stopPropagation();
+        openWhatsAppMessage();
+      }, { passive: false });
+    } else {
+      console.error("WhatsApp button not found!");
+    }
   }
 
   // Start initialization
   initialize();
 
-  // Add enhanced hover effects for desktop
+  // Add enhanced hover effects for desktop - FIXED
   if (!isSmallScreen) {
     document.querySelectorAll('.service-item').forEach(item => {
       item.addEventListener('mouseenter', function () {
@@ -301,7 +379,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
-
-  // Log success
-  console.log("Services page loaded successfully!");
 });

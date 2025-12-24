@@ -1,4 +1,3 @@
-
 /* ===== BASE STYLES ===== */
 * {
     margin: 0;
@@ -101,7 +100,6 @@ body {
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
-    will-change: transform;
 }
 
 .video-container:hover {
@@ -322,24 +320,16 @@ video {
     margin-left: auto;
     margin-right: auto;
     will-change: transform;
-    text-decoration: none !important;
-    text-align: center;
 }
 
 .dm-button:hover {
     transform: translateY(-3px) !important;
     box-shadow: 0 12px 25px rgba(93, 76, 58, 0.4) !important;
     background: linear-gradient(135deg, #6d5a45, #b8a080) !important;
-    color: #ffffff !important;
 }
 
 .dm-button:active {
     transform: translateY(-1px) !important;
-}
-
-.dm-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(93, 76, 58, 0.3) !important;
 }
 
 .dm-info {
@@ -586,7 +576,6 @@ video {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     position: relative;
-    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -659,7 +648,7 @@ video {
     line-height: 1.3;
 }
 
-/* WhatsApp Message Section */
+/* WhatsApp Message Section - FIXED HOVER */
 .whatsapp-message-section {
     text-align: center;
     padding: 20px 15px;
@@ -696,24 +685,16 @@ video {
     margin-right: auto;
     position: relative;
     will-change: transform;
-    text-decoration: none !important;
-    text-align: center;
 }
 
 .whatsapp-message-button:hover {
     transform: translateY(-3px) !important;
     box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4) !important;
     background: linear-gradient(135deg, #1da851, #25D366) !important;
-    color: #ffffff !important;
 }
 
 .whatsapp-message-button:active {
     transform: translateY(-1px) !important;
-}
-
-.whatsapp-message-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.3) !important;
 }
 
 .whatsapp-message-info {
@@ -888,7 +869,7 @@ video {
     z-index: 1;
 }
 
-/* Back Button */
+/* Back Button - FIXED HOVER */
 .back-indicator {
     width: 100%;
     text-align: center;
@@ -1533,8 +1514,50 @@ video {
     }
 }
 
-/* Additional Fixes for Touch Devices */
-button, a {
+/* ===== ADDITIONAL FIXES ===== */
+
+/* Ensure hover states work consistently */
+button,
+a {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Fix for touch devices */
+@media (hover: hover) {
+    .dm-button:hover,
+    .whatsapp-message-button:hover,
+    .back-btn:hover,
+    .service-item:hover,
+    .video-container:hover,
+    .thank-you-video-container:hover,
+    .contact-video-container:hover,
+    .vid-five-video-container:hover,
+    .overlay-btn:hover {
+        transform: translateY(-3px) !important;
+    }
+}
+
+/* Fix for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+    .services-card,
+    .thank-you-content,
+    .contact-content,
+    .vid-five-content,
+    .back-btn {
+        background: rgba(42, 36, 31, 0.98);
+    }
+}
+
+/* Performance optimization */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure buttons are clickable on all devices */
+button {
     touch-action: manipulation;
 }
 

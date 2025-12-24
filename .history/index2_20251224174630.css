@@ -1,4 +1,3 @@
-
 /* ===== BASE STYLES ===== */
 * {
     margin: 0;
@@ -101,12 +100,11 @@ body {
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
-    will-change: transform;
 }
 
 .video-container:hover {
-    border-color: #d4b996 !important;
-    transform: translateY(-3px) !important;
+    border-color: #d4b996;
+    transform: translateY(-3px);
 }
 
 .video-placeholder {
@@ -193,13 +191,12 @@ video {
     gap: 8px;
     align-items: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease !important;
-    will-change: transform;
+    transition: all 0.3s ease;
 }
 
 .overlay-btn:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Services Content Side */
@@ -246,20 +243,19 @@ video {
     border-radius: 10px;
     text-align: center;
     border: 1px solid #5d4c3a;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s ease;
     animation: fadeIn 0.6s ease-out;
     min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     cursor: pointer;
-    will-change: transform;
 }
 
 .service-item:hover {
-    border-color: #d4b996 !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
-    transform: translateY(-3px) !important;
+    border-color: #d4b996;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
 }
 
 .service-item i {
@@ -270,8 +266,8 @@ video {
 }
 
 .service-item:hover i {
-    transform: scale(1.1) !important;
-    color: #ffffff !important;
+    transform: scale(1.1);
+    color: #ffffff;
 }
 
 .service-item h3 {
@@ -309,7 +305,7 @@ video {
     font-weight: 600;
     border-radius: 10px;
     letter-spacing: 1px;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s ease;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -321,25 +317,16 @@ video {
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
-    will-change: transform;
-    text-decoration: none !important;
-    text-align: center;
 }
 
 .dm-button:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 25px rgba(93, 76, 58, 0.4) !important;
-    background: linear-gradient(135deg, #6d5a45, #b8a080) !important;
-    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(93, 76, 58, 0.4);
+    background: linear-gradient(135deg, #6d5a45, #b8a080);
 }
 
 .dm-button:active {
-    transform: translateY(-1px) !important;
-}
-
-.dm-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(93, 76, 58, 0.3) !important;
+    transform: translateY(-1px);
 }
 
 .dm-info {
@@ -463,14 +450,13 @@ video {
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: all 0.3s ease !important;
-    will-change: transform;
+    transition: all 0.3s ease;
 }
 
 .thank-you-video-container:hover {
-    border-color: #d4b996 !important;
-    transform: translateY(-5px) !important;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
+    border-color: #d4b996;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .thank-you-text {
@@ -586,7 +572,6 @@ video {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     position: relative;
-    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -611,14 +596,13 @@ video {
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: all 0.3s ease !important;
-    will-change: transform;
+    transition: all 0.3s ease;
 }
 
 .contact-video-container:hover {
-    border-color: #d4b996 !important;
-    transform: translateY(-5px) !important;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
+    border-color: #d4b996;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .contact-text {
@@ -682,7 +666,7 @@ video {
     font-weight: 600;
     border-radius: 10px;
     letter-spacing: 1px;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s ease;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -695,25 +679,16 @@ video {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    will-change: transform;
-    text-decoration: none !important;
-    text-align: center;
 }
 
 .whatsapp-message-button:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4) !important;
-    background: linear-gradient(135deg, #1da851, #25D366) !important;
-    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+    background: linear-gradient(135deg, #1da851, #25D366);
 }
 
 .whatsapp-message-button:active {
-    transform: translateY(-1px) !important;
-}
-
-.whatsapp-message-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.3) !important;
+    transform: translateY(-1px);
 }
 
 .whatsapp-message-info {
@@ -786,14 +761,13 @@ video {
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: all 0.3s ease !important;
-    will-change: transform;
+    transition: all 0.3s ease;
 }
 
 .vid-five-video-container:hover {
-    border-color: #d4b996 !important;
-    transform: translateY(-5px) !important;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
+    border-color: #d4b996;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .vid-five-text {
@@ -908,7 +882,7 @@ video {
     border-radius: 10px;
     font-size: 1.1rem;
     font-weight: 600;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s ease;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(212, 185, 150, 0.2);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -916,17 +890,16 @@ video {
     max-width: 300px;
     margin: 0 auto;
     cursor: pointer;
-    will-change: transform;
 }
 
 .back-btn:hover {
-    background: #6d5a45 !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3) !important;
+    background: #6d5a45;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
 
 .back-btn:active {
-    transform: translateY(-1px) !important;
+    transform: translateY(-1px);
 }
 
 /* ===== MOBILE RESPONSIVE DESIGN ===== */
@@ -1224,8 +1197,8 @@ video {
     }
     
     .service-item:hover {
-        transform: translateY(-10px) !important;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
     
     .service-item i {
@@ -1300,7 +1273,7 @@ video {
     
     .dm-button:hover,
     .whatsapp-message-button:hover {
-        transform: translateY(-5px) !important;
+        transform: translateY(-5px);
     }
     
     .back-btn {
@@ -1310,7 +1283,7 @@ video {
     }
     
     .back-btn:hover {
-        transform: translateY(-5px) !important;
+        transform: translateY(-5px);
     }
 }
 
@@ -1530,17 +1503,5 @@ video {
     
     .school-image-container {
         min-height: 130px;
-    }
-}
-
-/* Additional Fixes for Touch Devices */
-button, a {
-    touch-action: manipulation;
-}
-
-/* Fix for iOS Safari */
-@supports (-webkit-touch-callout: none) {
-    .services-container {
-        min-height: -webkit-fill-available;
     }
 }
