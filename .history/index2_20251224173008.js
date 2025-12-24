@@ -26,10 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const thankYouSection = document.querySelector(".thank-you-section");
   const contactSection = document.querySelector(".contact-section");
   const vidFiveSection = document.querySelector(".vid-five-section");
+  const bmLink = document.querySelector(".bm-link");
 
-  // URLs - SIMPLIFIED AND WORKING
+  // URLs
   const INSTAGRAM_URL = "https://instagram.com/modelaward";
-  const WHATSAPP_URL = "https://wa.me/2347077027579";
+  const WHATSAPP_URL = "https://wa.me/2347077027579?text=Hello%20I'm%20interested%20in%20your%20services";
 
   // Check if mobile device
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -42,30 +43,63 @@ document.addEventListener("DOMContentLoaded", function () {
         element: video1, 
         placeholder: videoPlaceholder1, 
         overlayBtn: videoOverlayBtn1, 
-        container: videoContainer1
+        container: videoContainer1,
+        sources: [
+          { src: "videos/award-video1.mp4", type: "video/mp4" }, // FIXED: Added missing quote
+          { src: "videos/award-video1.webm", type: "video/webm" }
+        ]
       },
       { 
         element: video2, 
         placeholder: videoPlaceholder2, 
         overlayBtn: videoOverlayBtn2, 
-        container: videoContainer2
+        container: videoContainer2,
+        sources: [
+          { src: "videos/thank-you-video.mp4", type: "video/mp4" },
+          { src: "videos/thank-you-video.webm", type: "video/webm" }
+        ]
       },
       { 
         element: video3, 
         placeholder: videoPlaceholder3, 
         overlayBtn: videoOverlayBtn3, 
-        container: videoContainer3
+        container: videoContainer3,
+        sources: [] // Empty array for video 3
       },
       { 
         element: video5, 
         placeholder: videoPlaceholder5, 
         overlayBtn: videoOverlayBtn5, 
-        container: videoContainer5
+        container: videoContainer5,
+        sources: [
+          { src: "videos/video5.mp4", type: "video/mp4" },
+          { src: "videos/video5.webm", type: "video/webm" }
+        ]
       }
     ];
 
     videos.forEach((videoData, index) => {
       if (!videoData.element) return;
+
+      // Clear existing sources
+      videoData.element.innerHTML = "";
+
+      // Add sources if available
+      if (videoData.sources.length > 0) {
+        videoData.sources.forEach(source => {
+          if (source.src) {
+            const sourceElement = document.createElement("source");
+            sourceElement.src = source.src;
+            sourceElement.type = source.type;
+            videoData.element.appendChild(sourceElement);
+          }
+        });
+
+        // Add fallback text
+        const fallbackText = document.createElement("p");
+        fallbackText.textContent = "Your browser does not support the video element.";
+        videoData.element.appendChild(fallbackText);
+      }
 
       // Set video attributes
       videoData.element.playsInline = true;
@@ -178,20 +212,93 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Open Instagram DM - SIMPLE AND WORKING
-  function openInstagramDM() {
-    showNotification("Opening Instagram...");
-    setTimeout(() => {
-      window.open(INSTAGRAM_URL, '_blank');
-    }, 500);
+  // Load portfolio image
+  function loadPortfolioImage() {
+    if (!schoolImageContainer) return;
+    
+    const portfolioImages = [
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop", // Placeholder
+      "images/portfolio-showcase.jpg", // Fallback
+    ];
+
+    const placeholder = schoolImageContainer.querySelector('.placeholder-text');
+
+    // Try loading placeholder image
+    const img = new Image();
+    img.onload = function () {
+      schoolImageContainer.style.backgroundImage =
+        `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${portfolioImages[0]}')`;
+      schoolImageContainer.classList.add('loaded');
+      if (placeholder) placeholder.style.display = 'none';
+    };
+    img.onerror = function () {
+      if (placeholder) {
+        placeholder.textContent = 'PORTFOLIO IMAGES COMING SOON';
+        placeholder.style.color = 'rgba(212, 185, 150, 0.2)';
+        placeholder.style.fontSize = isSmallScreen ? '1rem' : '1.2rem';
+      }
+    };
+    img.src = portfolioImages[0];
   }
 
-  // Open WhatsApp Message - SIMPLE AND WORKING
+  // Open Instagram DM
+  function openInstagramDM() {
+    let instagramURL = INSTAGRAM_URL;
+
+    if (isMobile) {
+      instagramURL = "instagram://user?username=modelaward";
+    }
+
+    if (isMobile) {
+      window.location.href = instagramURL;
+      setTimeout(() => {
+        window.open(INSTAGRAM_URL, '_blank');
+      }, 500);
+    } else {
+      window.open(instagramURL, '_blank');
+    }
+  }
+
+  // Open WhatsApp Message
   function openWhatsAppMessage() {
-    showNotification("Opening WhatsApp...");
-    setTimeout(() => {
-      window.open(WHATSAPP_URL, '_blank');
-    }, 500);
+    let whatsappURL = WHATSAPP_URL;
+
+    if (isMobile) {
+      whatsappURL = "whatsapp://send?phone=2347077027579&text=Hello%20I'm%20interested%20in%20your%20services";
+    }
+
+    if (isMobile) {
+      window.location.href = whatsappURL;
+      setTimeout(() => {
+        window.open(WHATSAPP_URL, '_blank');
+      }, 500);
+    } else {
+      window.open(whatsappURL, '_blank');
+    }
+  }
+
+  // BM Link functionality
+  function setupBMLink() {
+    if (bmLink) {
+      bmLink.addEventListener('click', function () {
+        showNotification('BM link clicked! Add your functionality here.');
+        
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = 'scale(1)';
+        }, 200);
+      });
+      
+      if (isMobile) {
+        bmLink.addEventListener('touchstart', function() {
+          this.style.opacity = '0.8';
+        });
+        
+        bmLink.addEventListener('touchend', function() {
+          this.style.opacity = '1';
+        });
+      }
+    }
   }
 
   // Initialize sections with scroll detection
@@ -253,69 +360,100 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!notification) {
       notification = document.createElement('div');
       notification.className = 'notification';
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: rgba(93, 76, 58, 0.95);
-        color: #ffffff;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
-        opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.5s ease;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(212, 185, 150, 0.3);
-        max-width: 300px;
-        display: none;
-      `;
       document.body.appendChild(notification);
     }
     
-    notification.innerHTML = `<p style="margin: 0; font-size: 0.9rem; font-weight: 500; line-height: 1.4;">${message}</p>`;
+    notification.innerHTML = `<p>${message}</p>`;
     notification.style.display = 'block';
     notification.style.opacity = '1';
-    notification.style.transform = 'translateX(0)';
     
     setTimeout(() => {
       notification.style.opacity = '0';
-      notification.style.transform = 'translateX(100%)';
       setTimeout(() => {
         notification.style.display = 'none';
       }, 500);
     }, 3000);
   }
 
+  // Optimize for mobile
+  function optimizeForMobile() {
+    if (!isMobile) return;
+    
+    document.querySelectorAll('button, .bm-link, .back-btn').forEach(element => {
+      element.style.cursor = 'pointer';
+      element.style.minHeight = '44px';
+      element.style.minWidth = '44px';
+      element.style.display = 'flex';
+      element.style.alignItems = 'center';
+      element.style.justifyContent = 'center';
+    });
+    
+    document.querySelectorAll('.service-item').forEach(item => {
+      item.style.cursor = 'pointer';
+      item.style.minHeight = '120px';
+    });
+    
+    const style = document.createElement('style');
+    style.textContent = `
+      @media (max-width: 768px) {
+        button, .bm-link, .back-btn, .service-item {
+          -webkit-tap-highlight-color: rgba(212, 185, 150, 0.3);
+        }
+        
+        video {
+          touch-action: manipulation;
+        }
+        
+        .video-container, .thank-you-video-container, .contact-video-container, .vid-five-video-container {
+          touch-action: pan-y pinch-zoom;
+        }
+        
+        .vid-five-message p {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   // Initialize everything
   function initialize() {
     initVideos();
+    loadPortfolioImage();
     initScrollAnimations();
+    setupBMLink();
 
-    // Instagram DM Button
     if (dmButton) {
       dmButton.addEventListener("click", openInstagramDM);
-      dmButton.addEventListener("touchend", function(e) {
-        e.preventDefault();
-        openInstagramDM();
-      }, { passive: false });
+      if (isMobile) {
+        dmButton.addEventListener("touchend", (e) => {
+          e.preventDefault();
+          openInstagramDM();
+        }, { passive: false });
+      }
     }
 
-    // WhatsApp Button - FIXED
     if (whatsappMessageButton) {
       whatsappMessageButton.addEventListener("click", openWhatsAppMessage);
-      whatsappMessageButton.addEventListener("touchend", function(e) {
-        e.preventDefault();
-        openWhatsAppMessage();
-      }, { passive: false });
+      if (isMobile) {
+        whatsappMessageButton.addEventListener("touchend", (e) => {
+          e.preventDefault();
+          openWhatsAppMessage();
+        }, { passive: false });
+      }
     }
+
+    optimizeForMobile();
+    setInterval(loadPortfolioImage, 60000);
+    
+    // REMOVED: initTextAnimations(); - Function doesn't exist
   }
 
   // Start initialization
   initialize();
 
-  // Add enhanced hover effects for desktop
+  // Add hover effects only for desktop
   if (!isSmallScreen) {
     document.querySelectorAll('.service-item').forEach(item => {
       item.addEventListener('mouseenter', function () {
@@ -337,4 +475,28 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+  // Handle orientation change
+  window.addEventListener('orientationchange', function() {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  });
+  
+  // Prevent zoom on double tap for mobile
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', function(event) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
+  
+  // Prevent pull-to-refresh on mobile
+  document.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 });

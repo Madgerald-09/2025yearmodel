@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const secondsEl = document.getElementById("seconds");
     const notification = document.getElementById("notification");
     const imageSide = document.getElementById("imageSide");
+    const awardImage = document.getElementById("awardImage");
     const countdownTitle = document.getElementById("countdownTitle");
     const countdownNote = document.getElementById("countdownNote");
     const countdownItems = document.querySelectorAll('.countdown-item');
@@ -54,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update note with time left
         if (hours > 24) {
             const days = 2;
-            const hoursLeft = hours - 48;
             countdownNote.textContent = `${days} days until January 4th announcement`;
         } else if (hours > 0) {
             countdownNote.textContent = `${hours}h ${minutes}m until January 4th announcement`;
@@ -117,32 +117,82 @@ document.addEventListener("DOMContentLoaded", function () {
         }, duration);
     }
 
-    // Check background image
+    // Check and load image properly
     function checkBackgroundImage() {
-        const img = new Image();
-        img.onload = function() {
-            imageSide.style.backgroundImage = `linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('images/award-image1.png')`;
-            imageSide.classList.remove('fallback-bg');
-            
-            const fallbackText = imageSide.querySelector('.fallback-text');
-            if (fallbackText) {
-                fallbackText.remove();
-            }
-        };
+        if (!awardImage) return;
         
-        img.onerror = function() {
-            imageSide.classList.add('fallback-bg');
-            imageSide.style.backgroundImage = 'none';
-            
-            if (!imageSide.querySelector('.fallback-text')) {
-                const fallbackText = document.createElement('div');
-                fallbackText.className = 'fallback-text';
-                fallbackText.textContent = 'MODEL AWARD 2025';
-                imageSide.appendChild(fallbackText);
-            }
-        };
+        const imagePaths = [
+            'images/award-image1.png',
+            'images/first_pic.jpeg',
+            'images/model-award.jpg',
+            'images/award.jpg'
+        ];
         
-        img.src = 'images/award-image1.png';
+        let currentTry = 0;
+        
+        function tryNextImage() {
+            if (currentTry >= imagePaths.length) {
+                // All images failed, show fallback
+                imageSide.classList.add('fallback-bg');
+                awardImage.style.display = 'none';
+                
+                if (!imageSide.querySelector('.fallback-text')) {
+                    const fallbackText = document.createElement('div');
+                    fallbackText.className = 'fallback-text';
+                    fallbackText.innerHTML = `
+                        <h3>MODEL OF THE YEAR</h3>
+                        <p>AWARD 2025</p>
+                        <div class="fallback-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                    `;
+                    imageSide.querySelector('.image-area').appendChild(fallbackText);
+                }
+                return;
+            }
+            
+            const img = new Image();
+            img.onload = function() {
+                // Update the src of the awardImage
+                awardImage.src = imagePaths[currentTry];
+                awardImage.classList.add('loaded');
+                awardImage.style.display = 'block';
+                imageSide.classList.remove('fallback-bg');
+                
+                // Remove any existing fallback text
+                const fallbackText = imageSide.querySelector('.fallback-text');
+                if (fallbackText) {
+                    fallbackText.remove();
+                }
+                
+                console.log('Image loaded successfully:', imagePaths[currentTry]);
+            };
+            
+            img.onerror = function() {
+                console.log('Image failed to load:', imagePaths[currentTry]);
+                currentTry++;
+                setTimeout(tryNextImage, 100);
+            };
+            
+            img.src = imagePaths[currentTry];
+        }
+        
+        // First, try the current image source
+        if (awardImage.src && awardImage.src !== window.location.href) {
+            const testImg = new Image();
+            testImg.onload = function() {
+                awardImage.classList.add('loaded');
+                console.log('Current image loaded successfully');
+            };
+            testImg.onerror = function() {
+                console.log('Current image failed, trying alternatives');
+                tryNextImage();
+            };
+            testImg.src = awardImage.src;
+        } else {
+            // No image source set, start trying
+            tryNextImage();
+        }
     }
 
     // Initialize
@@ -161,8 +211,8 @@ document.addEventListener("DOMContentLoaded", function () {
             showNotification("48-hour countdown to January 4th has started!");
         }, 1000);
         
-        // Check image periodically
-        setInterval(checkBackgroundImage, 30000);
+        // Check image periodically (every 5 minutes)
+        setInterval(checkBackgroundImage, 300000);
         
         // Add CSS for animations
         const style = document.createElement('style');
@@ -174,13 +224,19 @@ document.addEventListener("DOMContentLoaded", function () {
             .countdown-item span {
                 transition: all 0.3s ease;
             }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            .award-image {
+                animation: fadeIn 1s ease forwards;
+            }
         `;
         document.head.appendChild(style);
     }
 
     // Start the application
     initialize();
-    
-    // Handle window resize
-    window.addEventListener('resize', checkBackgroundImage);
 });

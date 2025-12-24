@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function checkBackgroundImage() {
         const img = new Image();
         img.onload = function() {
-            imageSide.style.backgroundImage = `linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('images/award-image1.png')`;
+            imageSide.style.backgroundImage = `linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('images/first_pic.jpeg')`;
             imageSide.classList.remove('fallback-bg');
             
             const fallbackText = imageSide.querySelector('.fallback-text');
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
         
-        img.src = 'images/award-image1.png';
+        img.src = 'images/first_pic.jpeg';
     }
 
     // Initialize

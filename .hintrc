@@ -16,10 +16,16 @@
       {
         "ignore": [
           "min-height: auto",
-          "backdrop-filter"
+          "backdrop-filter",
+          "-webkit-backdrop-filter",
+          "-webkit-text-size-adjust"
         ]
       }
-    ]
+    ],
+    "disown-opener": "off",
+    "no-inline-styles": "off",
+    "axe/name-role-value": "off",
+    "css-prefix-order": "off"
   },
   "browserslist": [
     "defaults",

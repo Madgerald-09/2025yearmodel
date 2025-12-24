@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
         
-        img.src = 'images/award-image1.png';
+        img.src = 'images/first_pic.jpe';
     }
 
     // Initialize

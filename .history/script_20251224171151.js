@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
     const notification = document.getElementById("notification");
-    const imageSide = document.getElementById("imageSide");
+    const imageBackground = document.getElementById("imageBackground");
+    const mainContainer = document.getElementById("mainContainer");
     const countdownTitle = document.getElementById("countdownTitle");
     const countdownNote = document.getElementById("countdownNote");
     const countdownItems = document.querySelectorAll('.countdown-item');
@@ -54,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update note with time left
         if (hours > 24) {
             const days = 2;
-            const hoursLeft = hours - 48;
             countdownNote.textContent = `${days} days until January 4th announcement`;
         } else if (hours > 0) {
             countdownNote.textContent = `${hours}h ${minutes}m until January 4th announcement`;
@@ -117,38 +117,97 @@ document.addEventListener("DOMContentLoaded", function () {
         }, duration);
     }
 
-    // Check background image
-    function checkBackgroundImage() {
-        const img = new Image();
-        img.onload = function() {
-            imageSide.style.backgroundImage = `linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('images/award-image1.png')`;
-            imageSide.classList.remove('fallback-bg');
-            
-            const fallbackText = imageSide.querySelector('.fallback-text');
-            if (fallbackText) {
-                fallbackText.remove();
-            }
-        };
+    // Load and set background image
+    function setBackgroundImage() {
+        const imagePaths = [
+            'images/award-image1.png',
+            'images/first_pic.jpeg',
+            'images/model-award.jpg',
+            'images/award.jpg',
+            'https://images.unsplash.com/photo-1596703923338-48f1c07e4f2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+        ];
         
-        img.onerror = function() {
-            imageSide.classList.add('fallback-bg');
-            imageSide.style.backgroundImage = 'none';
-            
-            if (!imageSide.querySelector('.fallback-text')) {
-                const fallbackText = document.createElement('div');
-                fallbackText.className = 'fallback-text';
-                fallbackText.textContent = 'MODEL AWARD 2025';
-                imageSide.appendChild(fallbackText);
-            }
-        };
+        let currentTry = 0;
         
-        img.src = 'images/award-image1.png';
+        function tryNextImage() {
+            if (currentTry >= imagePaths.length) {
+                // All images failed, show fallback
+                showFallbackBackground();
+                return;
+            }
+            
+            const img = new Image();
+            img.onload = function() {
+                // Set the background image
+                imageBackground.style.backgroundImage = `url('${imagePaths[currentTry]}')`;
+                imageBackground.style.backgroundSize = 'cover';
+                imageBackground.style.backgroundPosition = 'center center';
+                imageBackground.style.backgroundRepeat = 'no-repeat';
+                
+                // Adjust background size for mobile
+                if (window.innerWidth <= 768) {
+                    imageBackground.style.backgroundSize = 'contain';
+                }
+                
+                console.log('Background image loaded successfully:', imagePaths[currentTry]);
+            };
+            
+            img.onerror = function() {
+                console.log('Background image failed to load:', imagePaths[currentTry]);
+                currentTry++;
+                setTimeout(tryNextImage, 100);
+            };
+            
+            img.src = imagePaths[currentTry];
+        }
+        
+        // Start trying images
+        tryNextImage();
+    }
+    
+    // Show fallback background
+    function showFallbackBackground() {
+        // Remove any existing fallback content
+        const existingFallback = document.querySelector('.fallback-content');
+        if (existingFallback) {
+            existingFallback.remove();
+        }
+        
+        // Create fallback content
+        const fallbackContent = document.createElement('div');
+        fallbackContent.className = 'fallback-content';
+        fallbackContent.innerHTML = `
+            <h3>MODEL OF THE YEAR</h3>
+            <p>AWARD 2025</p>
+            <div class="fallback-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+        `;
+        
+        // Add fallback to the background
+        imageBackground.classList.add('fallback-bg');
+        imageBackground.appendChild(fallbackContent);
+        
+        console.log('Using fallback background');
+    }
+    
+    // Adjust background for different screen sizes
+    function adjustBackgroundForScreen() {
+        if (window.innerWidth <= 768) {
+            // Mobile - use contain to show full image
+            imageBackground.style.backgroundSize = 'contain';
+            imageBackground.style.backgroundPosition = 'center center';
+        } else {
+            // Desktop - use cover for better appearance
+            imageBackground.style.backgroundSize = 'cover';
+            imageBackground.style.backgroundPosition = 'center center';
+        }
     }
 
     // Initialize
     function initialize() {
-        // Check background image
-        checkBackgroundImage();
+        // Set background image
+        setBackgroundImage();
         
         // Start countdown immediately
         updateCountdown();
@@ -161,8 +220,14 @@ document.addEventListener("DOMContentLoaded", function () {
             showNotification("48-hour countdown to January 4th has started!");
         }, 1000);
         
-        // Check image periodically
-        setInterval(checkBackgroundImage, 30000);
+        // Adjust background on resize
+        window.addEventListener('resize', adjustBackgroundForScreen);
+        
+        // Adjust background initially
+        setTimeout(adjustBackgroundForScreen, 100);
+        
+        // Check image periodically (every 10 minutes)
+        setInterval(setBackgroundImage, 600000);
         
         // Add CSS for animations
         const style = document.createElement('style');
@@ -174,13 +239,34 @@ document.addEventListener("DOMContentLoaded", function () {
             .countdown-item span {
                 transition: all 0.3s ease;
             }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            .image-background {
+                animation: fadeIn 1.5s ease forwards;
+            }
+            
+            .award-card {
+                animation: slideUp 1s ease forwards;
+            }
+            
+            @keyframes slideUp {
+                from { 
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to { 
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         `;
         document.head.appendChild(style);
     }
 
     // Start the application
     initialize();
-    
-    // Handle window resize
-    window.addEventListener('resize', checkBackgroundImage);
 });

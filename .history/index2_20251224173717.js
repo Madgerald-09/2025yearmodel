@@ -26,10 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const thankYouSection = document.querySelector(".thank-you-section");
   const contactSection = document.querySelector(".contact-section");
   const vidFiveSection = document.querySelector(".vid-five-section");
+  const bmLink = document.querySelector(".bm-link");
 
-  // URLs - SIMPLIFIED AND WORKING
+  // URLs - FIXED WHATSAPP LINK
   const INSTAGRAM_URL = "https://instagram.com/modelaward";
-  const WHATSAPP_URL = "https://wa.me/2347077027579";
+  const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=2347077027579&text=Hello!%20I%20would%20like%20to%20inquire%20about%20your%20services.";
 
   // Check if mobile device
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -42,30 +43,63 @@ document.addEventListener("DOMContentLoaded", function () {
         element: video1, 
         placeholder: videoPlaceholder1, 
         overlayBtn: videoOverlayBtn1, 
-        container: videoContainer1
+        container: videoContainer1,
+        sources: [
+          { src: "videos/award-video1.mp4", type: "video/mp4" },
+          { src: "videos/award-video1.webm", type: "video/webm" }
+        ]
       },
       { 
         element: video2, 
         placeholder: videoPlaceholder2, 
         overlayBtn: videoOverlayBtn2, 
-        container: videoContainer2
+        container: videoContainer2,
+        sources: [
+          { src: "videos/thank-you-video.mp4", type: "video/mp4" },
+          { src: "videos/thank-you-video.webm", type: "video/webm" }
+        ]
       },
       { 
         element: video3, 
         placeholder: videoPlaceholder3, 
         overlayBtn: videoOverlayBtn3, 
-        container: videoContainer3
+        container: videoContainer3,
+        sources: [] // Empty array for video 3
       },
       { 
         element: video5, 
         placeholder: videoPlaceholder5, 
         overlayBtn: videoOverlayBtn5, 
-        container: videoContainer5
+        container: videoContainer5,
+        sources: [
+          { src: "videos/video5.mp4", type: "video/mp4" },
+          { src: "videos/video5.webm", type: "video/webm" }
+        ]
       }
     ];
 
     videos.forEach((videoData, index) => {
       if (!videoData.element) return;
+
+      // Clear existing sources
+      videoData.element.innerHTML = "";
+
+      // Add sources if available
+      if (videoData.sources.length > 0) {
+        videoData.sources.forEach(source => {
+          if (source.src) {
+            const sourceElement = document.createElement("source");
+            sourceElement.src = source.src;
+            sourceElement.type = source.type;
+            videoData.element.appendChild(sourceElement);
+          }
+        });
+
+        // Add fallback text
+        const fallbackText = document.createElement("p");
+        fallbackText.textContent = "Your browser does not support the video element.";
+        videoData.element.appendChild(fallbackText);
+      }
 
       // Set video attributes
       videoData.element.playsInline = true;
@@ -120,8 +154,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Enable sound button (skip video 3)
       if (videoData.overlayBtn && index !== 2) {
-        videoData.overlayBtn.addEventListener("click", function () {
-          enableSound(videoData.element);
+        videoOverlayBtn1.addEventListener("click", function () {
+          enableSound(video1);
         });
         
         if (isMobile) {
@@ -178,20 +212,69 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Open Instagram DM - SIMPLE AND WORKING
-  function openInstagramDM() {
-    showNotification("Opening Instagram...");
-    setTimeout(() => {
-      window.open(INSTAGRAM_URL, '_blank');
-    }, 500);
+  // Load portfolio image
+  function loadPortfolioImage() {
+    if (!schoolImageContainer) return;
+    
+    const portfolioImages = [
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
+      "images/portfolio-showcase.jpg",
+    ];
+
+    const placeholder = schoolImageContainer.querySelector('.placeholder-text');
+
+    // Try loading placeholder image
+    const img = new Image();
+    img.onload = function () {
+      schoolImageContainer.style.backgroundImage =
+        `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${portfolioImages[0]}')`;
+      schoolImageContainer.classList.add('loaded');
+      if (placeholder) placeholder.style.display = 'none';
+    };
+    img.onerror = function () {
+      if (placeholder) {
+        placeholder.textContent = 'PORTFOLIO IMAGES COMING SOON';
+        placeholder.style.color = 'rgba(212, 185, 150, 0.2)';
+        placeholder.style.fontSize = isSmallScreen ? '1rem' : '1.2rem';
+      }
+    };
+    img.src = portfolioImages[0];
   }
 
-  // Open WhatsApp Message - SIMPLE AND WORKING
+  // Open Instagram DM - FIXED
+  function openInstagramDM() {
+    window.open(INSTAGRAM_URL, '_blank');
+    showNotification('Opening Instagram...');
+  }
+
+  // Open WhatsApp Message - FIXED (Simplified and working)
   function openWhatsAppMessage() {
-    showNotification("Opening WhatsApp...");
-    setTimeout(() => {
-      window.open(WHATSAPP_URL, '_blank');
-    }, 500);
+    window.open(WHATSAPP_URL, '_blank');
+    showNotification('Opening WhatsApp...');
+  }
+
+  // BM Link functionality
+  function setupBMLink() {
+    if (bmLink) {
+      bmLink.addEventListener('click', function () {
+        showNotification('BM link clicked! Add your functionality here.');
+        
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = 'scale(1)';
+        }, 200);
+      });
+      
+      if (isMobile) {
+        bmLink.addEventListener('touchstart', function() {
+          this.style.opacity = '0.8';
+        });
+        
+        bmLink.addEventListener('touchend', function() {
+          this.style.opacity = '1';
+        });
+      }
+    }
   }
 
   // Initialize sections with scroll detection
@@ -291,25 +374,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize everything
   function initialize() {
     initVideos();
+    loadPortfolioImage();
     initScrollAnimations();
+    setupBMLink();
 
-    // Instagram DM Button
     if (dmButton) {
       dmButton.addEventListener("click", openInstagramDM);
-      dmButton.addEventListener("touchend", function(e) {
-        e.preventDefault();
-        openInstagramDM();
-      }, { passive: false });
     }
 
-    // WhatsApp Button - FIXED
     if (whatsappMessageButton) {
       whatsappMessageButton.addEventListener("click", openWhatsAppMessage);
-      whatsappMessageButton.addEventListener("touchend", function(e) {
-        e.preventDefault();
-        openWhatsAppMessage();
-      }, { passive: false });
     }
+
+    setInterval(loadPortfolioImage, 60000);
   }
 
   // Start initialization
@@ -319,10 +396,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!isSmallScreen) {
     document.querySelectorAll('.service-item').forEach(item => {
       item.addEventListener('mouseenter', function () {
-        this.style.transform = 'translateY(-5px)';
+        this.style.transform = 'translateY(-10px)';
         const icon = this.querySelector('i');
         if (icon) {
-          icon.style.transform = 'scale(1.1)';
+          icon.style.transform = 'scale(1.2) rotate(5deg)';
           icon.style.color = '#ffffff';
         }
       });
@@ -331,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function () {
         this.style.transform = 'translateY(0)';
         const icon = this.querySelector('i');
         if (icon) {
-          icon.style.transform = 'scale(1)';
+          icon.style.transform = 'scale(1) rotate(0)';
           icon.style.color = '#d4b996';
         }
       });

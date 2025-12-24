@@ -1,0 +1,736 @@
+/* ===== BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    background-color: #1a120b; /* Dark brown/black background */
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.main-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a120b 0%, #0a0a0a 100%);
+}
+
+/* ===== AWARD PAGE ===== */
+.page-section {
+    width: 100%;
+    max-width: 1600px; /* Increased from 1400px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.award-card {
+    background: rgba(42, 36, 31, 0.95); /* Dark brown background */
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    min-height: 750px; /* Increased from 700px */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(93, 76, 58, 0.3); /* Dark brown border */
+    backdrop-filter: blur(10px);
+}
+
+/* Left Content Side */
+.content-side {
+    flex: 1;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to right, #2a241f 70%, #1a120b);
+}
+
+.welcome-text {
+    font-size: 1.1rem;
+    color: #d4b996; /* Light brown/gold */
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.award-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.model-text {
+    color: #d4b996; /* Light brown/gold */
+    display: inline-block;
+    font-size: 4rem;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #d4b996, #a08c70);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.year {
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: #d4b996; /* Light brown/gold */
+    margin: 25px 0;
+    text-align: center;
+    letter-spacing: 8px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #d4b996, #f5d5b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== COUNTDOWN STYLES ===== */
+.countdown-container {
+    margin: 40px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.countdown-title {
+    font-size: 1.6rem;
+    color: #ffffff; /* White for contrast */
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.3;
+    transition: all 0.3s ease;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(26, 26, 26, 0.9); /* Dark background */
+    padding: 25px 20px;
+    border-radius: 15px;
+    border: 2px solid #5d4c3a; /* Dark brown border */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.countdown-item:first-child {
+    min-width: 180px; /* Larger for hours */
+}
+
+.countdown-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #d4b996, #5d4c3a); /* Brown gradient */
+    transition: all 0.3s ease;
+}
+
+.countdown-item span {
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: #ffffff; /* White numbers */
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-variant-numeric: tabular-nums;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    letter-spacing: 2px;
+}
+
+.countdown-label {
+    font-size: 1.1rem;
+    color: #a08c70; /* Light brown text */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.countdown-note {
+    color: #a08c70; /* Light brown text */
+    font-size: 1rem;
+    font-style: italic;
+    margin-top: 15px;
+    min-height: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Countdown states */
+.countdown-item.warning {
+    border-color: #a08c70; /* Light brown for warning */
+    background: rgba(160, 140, 112, 0.1);
+}
+
+.countdown-item.warning::before {
+    background: linear-gradient(90deg, #a08c70, #d4b996);
+}
+
+.countdown-item.urgent {
+    border-color: #d4b996; /* Gold for urgent */
+    background: rgba(212, 185, 150, 0.1);
+}
+
+.countdown-item.urgent::before {
+    background: linear-gradient(90deg, #d4b996, #ffd700);
+}
+
+.countdown-item.urgent span {
+    color: #ffd700; /* Gold for urgent numbers */
+}
+
+.countdown-item.celebration {
+    border-color: #ffd700; /* Gold for celebration */
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.countdown-item.celebration::before {
+    background: linear-gradient(90deg, #ffd700, #ffffff);
+}
+
+.countdown-item.celebration span {
+    color: #ffd700; /* Gold for celebration */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-fast {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 1s infinite;
+}
+
+.pulse-fast {
+    animation: pulse-fast 0.5s infinite;
+}
+
+/* ===== WATCH SHOW BUTTON ===== */
+.watch-show-container {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.watch-show-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 45px;
+    background: linear-gradient(135deg, #5d4c3a, #a08c70); /* Brown gradient */
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 12px;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(93, 76, 58, 0.4);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.watch-show-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #a08c70, #5d4c3a);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.watch-show-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(93, 76, 58, 0.6);
+    color: #ffffff;
+}
+
+.watch-show-btn:hover::before {
+    left: 0;
+}
+
+.watch-show-btn i {
+    font-size: 1.3rem;
+}
+
+.show-info {
+    margin-top: 20px;
+    color: #a08c70; /* Light brown text */
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+/* ===== IMAGE SIDE - UPDATED FOR BIGGER IMAGE ===== */
+.image-side {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2a241f 0%, #1a120b 100%);
+    min-height: 750px; /* Increased from 500px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pic-label {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: rgba(93, 76, 58, 0.95); /* Dark brown */
+    color: #ffffff; /* White text */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    z-index: 100;
+    text-transform: uppercase;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(212, 185, 150, 0.3);
+}
+
+.image-area {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px; /* Increased padding */
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    max-width: 900px; /* Increased from 800px */
+    max-height: 800px; /* Increased from 600px */
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(212, 185, 150, 0.2);
+    background: rgba(26, 26, 26, 0.3);
+}
+
+.award-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Changed from contain to ensure full image shows */
+    object-position: center center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    display: block;
+    opacity: 0;
+}
+
+.award-image.loaded {
+    opacity: 1;
+}
+
+.award-image:hover {
+    transform: scale(1.03);
+}
+
+/* ===== SCROLL INDICATOR ===== */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #d4b996; /* Light brown/gold */
+    animation: bounce 2s infinite;
+    z-index: 20;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.scroll-indicator p {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.scroll-indicator i {
+    font-size: 1.2rem;
+    display: block;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(0); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(5px); }
+}
+
+/* ===== NOTIFICATION ===== */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(42, 36, 31, 0.95); /* Dark brown background */
+    color: #ffffff; /* White text */
+    padding: 18px 28px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    max-width: 400px;
+    border-left: 4px solid #d4b996; /* Gold accent */
+    border: 1px solid rgba(93, 76, 58, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.notification p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Fallback for missing image */
+.image-side.fallback-bg {
+    background: linear-gradient(135deg, #2a241f, #1a120b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fallback-text {
+    color: rgba(212, 185, 150, 0.8);
+    text-align: center;
+    padding: 30px;
+    z-index: 10;
+}
+
+.fallback-text h3 {
+    font-size: 3rem; /* Increased from 2.5rem */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #d4b996, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.fallback-text p {
+    font-size: 2rem; /* Increased from 1.8rem */
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: #a08c70;
+}
+
+.fallback-icon {
+    font-size: 5rem; /* Increased from 4rem */
+    color: rgba(212, 185, 150, 0.6);
+    animation: pulse 2s infinite;
+}
+
+/* ===== MEDIA QUERIES ===== */
+
+/* Large Tablets and Small Laptops (1024px and below) */
+@media (max-width: 1024px) {
+    .award-card {
+        min-height: 700px; /* Increased from 650px */
+    }
+    
+    .content-side {
+        padding: 50px 40px;
+    }
+    
+    .award-title {
+        font-size: 3rem;
+    }
+    
+    .model-text {
+        font-size: 3.5rem;
+    }
+    
+    .year {
+        font-size: 4.5rem;
+        letter-spacing: 6px;
+    }
+    
+    .countdown-title {
+        font-size: 1.4rem;
+        min-height: 55px;
+    }
+    
+    .countdown-item {
+        min-width: 140px;
+        padding: 20px 15px;
+    }
+    
+    .countdown-item:first-child {
+        min-width: 150px;
+    }
+    
+    .countdown-item span {
+        font-size: 4rem;
+        min-height: 70px;
+    }
+    
+    .image-side {
+        min-height: 700px; /* Increased */
+    }
+    
+    .image-container {
+        max-width: 750px; /* Increased from 600px */
+        max-height: 650px; /* Increased from 450px */
+    }
+}
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 15px;
+        align-items: flex-start;
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    .award-card {
+        flex-direction: column;
+        min-height: auto;
+        margin: 20px 0;
+        border-radius: 25px;
+    }
+    
+    .content-side {
+        padding: 40px 30px;
+        order: 2;
+    }
+    
+    .image-side {
+        order: 1;
+        min-height: 500px; /* Increased from 350px */
+        border-bottom: 2px dashed rgba(93, 76, 58, 0.3);
+    }
+    
+    .award-title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    
+    .model-text {
+        font-size: 3rem;
+    }
+    
+    .year {
+        font-size: 4rem;
+        letter-spacing: 5px;
+        margin: 20px 0;
+    }
+    
+    .countdown-title {
+        font-size: 1.3rem;
+        min-height: 50px;
+    }
+    
+    .countdown {
+        gap: 15px;
+    }
+    
+    .countdown-item {
+        min-width: 120px;
+        padding: 18px 12px;
+    }
+    
+    .countdown-item:first-child {
+        min-width: 130px;
+    }
+    
+    .countdown-item span {
+        font-size: 3.5rem;
+        min-height: 65px;
+    }
+    
+    .countdown-label {
+        font-size: 1rem;
+    }
+    
+    .watch-show-btn {
+        padding: 18px 35px;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
+    }
+    
+    .image-container {
+        max-width: 650px; /* Increased from 500px */
+        max-height: 450px; /* Increased from 350px */
+    }
+}
+
+/* Mobile Portrait (480px and below) */
+@media (max-width: 480px) {
+    .main-container {
+        padding: 10px;
+    }
+    
+    .award-card {
+        border-radius: 20px;
+        margin: 15px 0 60px 0;
+    }
+    
+    .content-side {
+        padding: 30px 20px;
+    }
+    
+    .image-side {
+        min-height: 400px; /* Increased from 300px */
+    }
+    
+    .award-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .model-text {
+        font-size: 2.5rem;
+    }
+    
+    .year {
+        font-size: 3.5rem;
+        letter-spacing: 4px;
+    }
+    
+    .countdown-title {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        min-height: 45px;
+    }
+    
+    .countdown {
+        gap: 8px;
+    }
+    
+    .countdown-item {
+        min-width: 30%;
+        padding: 15px 8px;
+    }
+    
+    .countdown-item:first-child {
+        min-width: 32%;
+    }
+    
+    .countdown-item span {
+        font-size: 2.5rem;
+        min-height: 55px;
+    }
+    
+    .countdown-label {
+        font-size: 0.9rem;
+    }
+    
+    .watch-show-btn {
+        padding: 16px 25px;
+        font-size: 1rem;
+    }
+    
+    .notification {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        max-width: none;
+        padding: 15px 20px;
+    }
+    
+    .image-container {
+        max-width: 350px; /* Increased from 350px */
+        max-height: 700px; /* Increased from 250px */
+    }
+    
+    .fallback-text h3 {
+        font-size: 2.0rem; /* Increased from 2rem */
+    }
+    
+    .fallback-text p {
+        font-size: 1.8rem; /* Increased from 1.5rem */
+    }
+}
+
+/* Small Mobile (360px and below) */
+@media (max-width: 360px) {
+    .countdown-item span {
+        font-size: 2.2rem;
+    }
+    
+    .watch-show-btn {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .image-container {
+        max-width: 350px; /* Increased from 300px */
+        max-height: px; /* Increased from 200px */
+    }
+}
