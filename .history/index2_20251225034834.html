@@ -422,8 +422,7 @@
       .vid-five-section,
       .vid-six-section,
       .vid-seven-section,
-      .vid-eight-section,
-      .pics-nine-section {
+      .vid-eight-section {
           width: 100%;
           min-height: auto;
           background: linear-gradient(135deg, #1a120b 0%, #0a0a0a 100%);
@@ -449,8 +448,7 @@
       .vid-five-section.visible,
       .vid-six-section.visible,
       .vid-seven-section.visible,
-      .vid-eight-section.visible,
-      .pics-nine-section.visible {
+      .vid-eight-section.visible {
           opacity: 1;
           transform: translateY(0);
       }
@@ -460,8 +458,7 @@
       .vid-five-content,
       .vid-six-content,
       .vid-seven-content,
-      .vid-eight-content,
-      .pics-nine-content {
+      .vid-eight-content {
           max-width: 100%;
           width: 100%;
           text-align: center;
@@ -487,6 +484,7 @@
       }
 
       /* ===== VID SEVEN SECTION STYLES ===== */
+      /* Specific Full Screen Styles for Vid Seven */
       .vid-seven-section {
           min-height: 100vh;
           padding: 0;
@@ -560,19 +558,21 @@
           transform: translateX(-50%) translateY(0);
       }
 
-      /* ===== VID EIGHT SECTION STYLES ===== */
+      /* ===== VID EIGHT SECTION STYLES (UPDATED - LARGER SIZE) ===== */
       .vid-eight-section {
           min-height: auto;
-          padding: 10px 15px;
+          /* Reduced padding to give more space to the media (Width) */
+          padding: 10px 15px; 
           background: linear-gradient(135deg, #1a120b 0%, #0f0905 100%);
       }
 
       .vid-eight-content {
+          /* Removed background and border to make it look full-width/larger */
           background: transparent;
           border: none;
           border-radius: 0;
           padding: 0;
-          gap: 20px;
+          gap: 20px; /* Gap between video and image */
       }
 
       .vid-eight-header {
@@ -581,7 +581,7 @@
       }
 
       .vid-eight-subtitle {
-          font-size: 1.5rem;
+          font-size: 1.5rem; /* Increased */
           color: #a08c70;
           text-transform: uppercase;
           letter-spacing: 3px;
@@ -590,7 +590,7 @@
       }
 
       .vid-eight-main-title {
-          font-size: 3.5rem;
+          font-size: 3.5rem; /* Increased */
           color: #d4b996;
           font-weight: 800;
           text-transform: uppercase;
@@ -599,11 +599,12 @@
           text-shadow: 0 0 20px rgba(212, 185, 150, 0.3);
       }
 
+      /* Video Container - INCREASED HEIGHT TO 85vh */
       .vid-eight-video-wrapper {
           width: 100%;
-          height: 85vh;
+          height: 85vh; /* INCREASED SIZE */
           position: relative;
-          border-radius: 20px;
+          border-radius: 20px; /* Slightly rounder for modern look */
           overflow: hidden;
           border: 2px solid #5d4c3a;
           box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
@@ -611,7 +612,7 @@
       }
 
       .vid-eight-video-wrapper:hover {
-          transform: scale(1.01);
+          transform: scale(1.01); /* Subtle zoom effect */
           border-color: #d4b996;
       }
 
@@ -619,9 +620,10 @@
           background: rgba(20, 15, 10, 0.9);
       }
       
+      /* Picture Container - INCREASED HEIGHT TO 35vh */
       .pics-three-image-wrapper {
           width: 100%;
-          height: 35vh;
+          height: 35vh; /* INCREASED SIZE */
           position: relative;
           border-radius: 20px;
           overflow: hidden;
@@ -645,125 +647,15 @@
       }
 
       .pics-three-placeholder i {
-          font-size: 3rem;
+          font-size: 3rem; /* Increased Icon */
           margin-bottom: 15px;
       }
 
       .pics-three-placeholder span {
-          font-size: 1.5rem;
+          font-size: 1.5rem; /* Increased Text */
           letter-spacing: 2px;
           text-transform: uppercase;
           font-weight: 600;
-      }
-
-      /* ===== PICS NINE SECTION STYLES (NEW FINAL PAGE) ===== */
-      .pics-nine-section {
-          min-height: auto;
-          padding: 10px 15px;
-          background: linear-gradient(135deg, #1a120b 0%, #0f0905 100%);
-      }
-
-      .pics-nine-content {
-          background: transparent;
-          border: none;
-          border-radius: 0;
-          padding: 0;
-          gap: 20px;
-      }
-
-      .pics-nine-header {
-          text-align: center;
-          margin-bottom: 10px;
-      }
-
-      .thank-you-msg {
-          font-size: 4rem; /* Big text like the handwritten note */
-          color: #d4b996;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 5px;
-          line-height: 1;
-          text-shadow: 0 0 30px rgba(212, 185, 150, 0.4);
-          margin-bottom: 10px;
-          font-family: 'Courier New', monospace; /* Slightly handwritten feel */
-      }
-
-      .pics-nine-image-wrapper {
-          width: 100%;
-          height: 80vh; /* Large image */
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-          border: 2px solid #5d4c3a;
-          background-color: #2a241f;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-      }
-
-      .pics-nine-placeholder {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle, rgba(93, 76, 58, 0.3) 0%, rgba(26, 20, 15, 0.8) 100%);
-          color: #5d4c3a;
-      }
-
-      .pics-nine-placeholder i {
-          font-size: 4rem;
-          margin-bottom: 20px;
-      }
-
-      .pics-nine-placeholder h3 {
-          font-size: 2rem;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          font-weight: 600;
-      }
-
-      .facebook-section {
-          margin-top: 10px;
-      }
-
-      .facebook-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          padding: 18px 40px;
-          background: linear-gradient(135deg, #4267B2, #365899); /* Facebook Blue */
-          color: #ffffff;
-          border: none;
-          font-size: 1.3rem;
-          font-weight: 600;
-          border-radius: 12px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          box-shadow: 0 10px 25px rgba(66, 103, 178, 0.3);
-          transition: all 0.3s ease !important;
-          cursor: pointer;
-          text-decoration: none !important;
-          width: 100%;
-          max-width: 400px;
-      }
-
-      .facebook-button:hover {
-          transform: translateY(-4px) !important;
-          box-shadow: 0 15px 35px rgba(66, 103, 178, 0.4) !important;
-          background: linear-gradient(135deg, #365899, #4267B2) !important;
-      }
-
-      .facebook-label {
-          font-size: 1.1rem;
-          color: #a08c70;
-          margin-top: 15px;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          font-weight: 500;
       }
 
 
@@ -1080,8 +972,7 @@
       .contact-section::before,
       .vid-five-section::before,
       .vid-six-section::before,
-      .vid-eight-section::before,
-      .pics-nine-section::before {
+      .vid-eight-section::before {
           content: '';
           position: absolute;
           top: 0;
@@ -1187,20 +1078,11 @@
           .vid-five-section,
           .vid-six-section,
           .vid-seven-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-eight-section {
               padding: 30px 20px;
           }
 
-          /* Pics Nine Mobile Adjustments */
-          .thank-you-msg {
-              font-size: 3rem;
-          }
-          
-          .pics-nine-image-wrapper {
-              height: 60vh;
-          }
-
+          /* Vid 8 Responsive Adjustments (Large Media) */
           .vid-eight-main-title {
               font-size: 4rem;
           }
@@ -1343,17 +1225,8 @@
           .contact-section,
           .vid-five-section,
           .vid-six-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-eight-section {
               padding: 40px 30px;
-          }
-
-          .thank-you-msg {
-              font-size: 5rem;
-          }
-          
-          .pics-nine-image-wrapper {
-              height: 70vh;
           }
 
           .short-interlude-label {
@@ -1514,8 +1387,7 @@
           .contact-section,
           .vid-five-section,
           .vid-six-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-eight-section {
               padding: 50px 40px;
               min-height: auto; 
           }
@@ -1668,17 +1540,21 @@
           .contact-section,
           .vid-five-section,
           .vid-six-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-eight-section {
               padding: 20px 10px;
           }
 
-          .thank-you-msg {
-              font-size: 2.5rem;
+          /* Vid 8 Mobile Constraint */
+          .vid-eight-main-title {
+              font-size: 2rem;
           }
 
-          .pics-nine-image-wrapper {
-              height: 50vh;
+          .vid-eight-video-wrapper {
+              height: 65vh; /* Smaller on very small phones to fit header/image */
+          }
+          
+          .pics-three-image-wrapper {
+              height: 20vh;
           }
 
           .short-interlude-label {
@@ -2156,7 +2032,7 @@
           </div>
         </div>
 
-        <!-- VID EIGHT SECTION -->
+        <!-- VID EIGHT SECTION (UPDATED - LARGER SIZE) -->
         <div class="vid-eight-section">
           <div class="vid-eight-content">
             <div class="vid-eight-header">
@@ -2164,7 +2040,7 @@
               <h2 class="vid-eight-main-title">Model Of The Year</h2>
             </div>
 
-            <!-- Video Space (Vid figure) - 85vh -->
+            <!-- Video Space (Vid figure) - INCREASED TO 85vh -->
             <div class="vid-eight-video-wrapper">
                <div id="videoPlaceholder8" class="video-placeholder">
                 <i class="fas fa-play-circle"></i>
@@ -2183,44 +2059,12 @@
               </div>
             </div>
 
-            <!-- Picture Space (Pics three) - 35vh -->
+            <!-- Picture Space (Pics three) - INCREASED TO 35vh -->
             <div class="pics-three-image-wrapper">
                <div class="pics-three-placeholder">
                  <i class="fas fa-images"></i>
                  <span>Pics Three</span>
                </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PICS NINE SECTION (NEW FINAL PAGE) -->
-        <div class="pics-nine-section">
-          <div class="pics-nine-content">
-            <div class="pics-nine-header">
-              <h2 class="thank-you-msg">Thank you!!</h2>
-            </div>
-
-            <!-- Image Space (Was Vid Nine, now Pics Nine) -->
-            <div class="pics-nine-image-wrapper">
-               <div class="pics-nine-placeholder">
-                 <i class="fas fa-image"></i>
-                 <h3>Pics Nine</h3>
-                 <p>Placeholder for Final Image</p>
-               </div>
-               <!-- To add a real image: <img src="path/to/image.jpg" style="width:100%; height:100%; object-fit:cover;" /> -->
-            </div>
-
-            <!-- Facebook Link Section -->
-            <div class="facebook-section">
-              <a 
-                href="https://www.facebook.com/profile.php?id=61585174856455" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="facebook-button"
-              >
-                <i class="fab fa-facebook-f"></i> Facebook Link
-              </a>
-              <p class="facebook-label">Follow FB Page</p>
             </div>
           </div>
         </div>
@@ -2274,7 +2118,6 @@
         const vidSixSection = document.querySelector(".vid-six-section");
         const vidSevenSection = document.querySelector(".vid-seven-section");
         const vidEightSection = document.querySelector(".vid-eight-section");
-        const picsNineSection = document.querySelector(".pics-nine-section"); // Added
 
         // Check if mobile device
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -2490,8 +2333,7 @@
             { element: vidFiveSection, threshold: 0.2 },
             { element: vidSixSection, threshold: 0.2 },
             { element: vidSevenSection, threshold: 0.1 },
-            { element: vidEightSection, threshold: 0.1 },
-            { element: picsNineSection, threshold: 0.1 } // Added Pics Nine
+            { element: vidEightSection, threshold: 0.1 }
           ];
 
           sections.forEach(sectionData => {

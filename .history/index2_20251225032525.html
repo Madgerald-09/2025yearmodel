@@ -108,7 +108,7 @@
       .contact-video-container,
       .vid-five-video-container,
       .vid-six-video-container,
-      .vid-seven-video-container,
+      .vid-seven-video-container, /* Added Vid Seven */
       .school-image-container {
           width: 100%;
           height: 75vh; 
@@ -421,9 +421,7 @@
       .contact-section,
       .vid-five-section,
       .vid-six-section,
-      .vid-seven-section,
-      .vid-eight-section,
-      .pics-nine-section {
+      .vid-seven-section { /* Added Vid Seven */
           width: 100%;
           min-height: auto;
           background: linear-gradient(135deg, #1a120b 0%, #0a0a0a 100%);
@@ -448,9 +446,7 @@
       .contact-section.visible,
       .vid-five-section.visible,
       .vid-six-section.visible,
-      .vid-seven-section.visible,
-      .vid-eight-section.visible,
-      .pics-nine-section.visible {
+      .vid-seven-section.visible { /* Added Vid Seven */
           opacity: 1;
           transform: translateY(0);
       }
@@ -459,9 +455,7 @@
       .contact-content,
       .vid-five-content,
       .vid-six-content,
-      .vid-seven-content,
-      .vid-eight-content,
-      .pics-nine-content {
+      .vid-seven-content { /* Added Vid Seven */
           max-width: 100%;
           width: 100%;
           text-align: center;
@@ -487,9 +481,11 @@
       }
 
       /* ===== VID SEVEN SECTION STYLES ===== */
+      /* Specific Full Screen Styles for Vid Seven */
       .vid-seven-section {
+          /* Full viewport height requirement */
           min-height: 100vh;
-          padding: 0;
+          padding: 0; /* Remove internal padding for full bleed video */
           border: none;
           background: #000;
       }
@@ -508,19 +504,22 @@
           align-items: center;
       }
 
+      /* The full screen container for Vid Seven */
       .vid-seven-video-container {
           width: 100%;
-          height: 100vh;
+          height: 100vh; /* FORCE FULL HEIGHT */
           background: #000;
           border-radius: 0;
           border: none;
           position: relative;
       }
       
+      /* Override placeholder to be transparent or very dark for cinematic feel */
       .vid-seven-video-container .video-placeholder {
           background: rgba(0, 0, 0, 0.8);
       }
 
+      /* "Short Interlude" Floating Label */
       .short-interlude-label {
           position: absolute;
           top: 30px;
@@ -537,6 +536,7 @@
           pointer-events: none;
       }
 
+      /* Vid Seven Main Label */
       .vid-seven-title {
           position: absolute;
           bottom: 10%;
@@ -559,213 +559,6 @@
           opacity: 1;
           transform: translateX(-50%) translateY(0);
       }
-
-      /* ===== VID EIGHT SECTION STYLES ===== */
-      .vid-eight-section {
-          min-height: auto;
-          padding: 10px 15px;
-          background: linear-gradient(135deg, #1a120b 0%, #0f0905 100%);
-      }
-
-      .vid-eight-content {
-          background: transparent;
-          border: none;
-          border-radius: 0;
-          padding: 0;
-          gap: 20px;
-      }
-
-      .vid-eight-header {
-          text-align: center;
-          margin-bottom: 10px;
-      }
-
-      .vid-eight-subtitle {
-          font-size: 1.5rem;
-          color: #a08c70;
-          text-transform: uppercase;
-          letter-spacing: 3px;
-          margin-bottom: 10px;
-          font-weight: 500;
-      }
-
-      .vid-eight-main-title {
-          font-size: 3.5rem;
-          color: #d4b996;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          line-height: 1.1;
-          text-shadow: 0 0 20px rgba(212, 185, 150, 0.3);
-      }
-
-      .vid-eight-video-wrapper {
-          width: 100%;
-          height: 85vh;
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-          border: 2px solid #5d4c3a;
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-          transition: transform 0.3s ease;
-      }
-
-      .vid-eight-video-wrapper:hover {
-          transform: scale(1.01);
-          border-color: #d4b996;
-      }
-
-      .vid-eight-video-wrapper .video-placeholder {
-          background: rgba(20, 15, 10, 0.9);
-      }
-      
-      .pics-three-image-wrapper {
-          width: 100%;
-          height: 35vh;
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-          border: 2px solid #5d4c3a;
-          background-color: #2a241f;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      }
-
-      .pics-three-placeholder {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle, rgba(93, 76, 58, 0.3) 0%, rgba(26, 20, 15, 0.8) 100%);
-          color: #5d4c3a;
-      }
-
-      .pics-three-placeholder i {
-          font-size: 3rem;
-          margin-bottom: 15px;
-      }
-
-      .pics-three-placeholder span {
-          font-size: 1.5rem;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          font-weight: 600;
-      }
-
-      /* ===== PICS NINE SECTION STYLES (NEW FINAL PAGE) ===== */
-      .pics-nine-section {
-          min-height: auto;
-          padding: 10px 15px;
-          background: linear-gradient(135deg, #1a120b 0%, #0f0905 100%);
-      }
-
-      .pics-nine-content {
-          background: transparent;
-          border: none;
-          border-radius: 0;
-          padding: 0;
-          gap: 20px;
-      }
-
-      .pics-nine-header {
-          text-align: center;
-          margin-bottom: 10px;
-      }
-
-      .thank-you-msg {
-          font-size: 4rem; /* Big text like the handwritten note */
-          color: #d4b996;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 5px;
-          line-height: 1;
-          text-shadow: 0 0 30px rgba(212, 185, 150, 0.4);
-          margin-bottom: 10px;
-          font-family: 'Courier New', monospace; /* Slightly handwritten feel */
-      }
-
-      .pics-nine-image-wrapper {
-          width: 100%;
-          height: 80vh; /* Large image */
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-          border: 2px solid #5d4c3a;
-          background-color: #2a241f;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-      }
-
-      .pics-nine-placeholder {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle, rgba(93, 76, 58, 0.3) 0%, rgba(26, 20, 15, 0.8) 100%);
-          color: #5d4c3a;
-      }
-
-      .pics-nine-placeholder i {
-          font-size: 4rem;
-          margin-bottom: 20px;
-      }
-
-      .pics-nine-placeholder h3 {
-          font-size: 2rem;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          font-weight: 600;
-      }
-
-      .facebook-section {
-          margin-top: 10px;
-      }
-
-      .facebook-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          padding: 18px 40px;
-          background: linear-gradient(135deg, #4267B2, #365899); /* Facebook Blue */
-          color: #ffffff;
-          border: none;
-          font-size: 1.3rem;
-          font-weight: 600;
-          border-radius: 12px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          box-shadow: 0 10px 25px rgba(66, 103, 178, 0.3);
-          transition: all 0.3s ease !important;
-          cursor: pointer;
-          text-decoration: none !important;
-          width: 100%;
-          max-width: 400px;
-      }
-
-      .facebook-button:hover {
-          transform: translateY(-4px) !important;
-          box-shadow: 0 15px 35px rgba(66, 103, 178, 0.4) !important;
-          background: linear-gradient(135deg, #365899, #4267B2) !important;
-      }
-
-      .facebook-label {
-          font-size: 1.1rem;
-          color: #a08c70;
-          margin-top: 15px;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          font-weight: 500;
-      }
-
 
       /* ===== TEXT STYLES ===== */
       .thank-you-text,
@@ -1005,7 +798,7 @@
           animation: fadeInUp 0.8s ease-out 0.9s forwards;
       }
 
-      /* ===== VID SIX SECTION ===== */
+      /* ===== VID SIX SECTION (NEW) ===== */
       .vid-six-header {
           display: flex;
           flex-direction: column;
@@ -1079,9 +872,7 @@
       .thank-you-section::before,
       .contact-section::before,
       .vid-five-section::before,
-      .vid-six-section::before,
-      .vid-eight-section::before,
-      .pics-nine-section::before {
+      .vid-six-section::before {
           content: '';
           position: absolute;
           top: 0;
@@ -1186,31 +977,13 @@
           .contact-section,
           .vid-five-section,
           .vid-six-section,
-          .vid-seven-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-seven-section {
               padding: 30px 20px;
           }
-
-          /* Pics Nine Mobile Adjustments */
-          .thank-you-msg {
-              font-size: 3rem;
-          }
           
-          .pics-nine-image-wrapper {
-              height: 60vh;
-          }
-
-          .vid-eight-main-title {
-              font-size: 4rem;
-          }
-          
-          .vid-eight-video-wrapper {
-              height: 75vh; 
-          }
-          
-          .pics-three-image-wrapper {
-              height: 25vh;
+          /* Vid Seven specific adjustments */
+          .vid-seven-section {
+              padding: 0;
           }
 
           .short-interlude-label {
@@ -1342,20 +1115,15 @@
           .thank-you-section,
           .contact-section,
           .vid-five-section,
-          .vid-six-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-six-section {
               padding: 40px 30px;
           }
 
-          .thank-you-msg {
-              font-size: 5rem;
+          /* Vid Seven adjustments */
+          .vid-seven-section {
+              padding: 0;
           }
           
-          .pics-nine-image-wrapper {
-              height: 70vh;
-          }
-
           .short-interlude-label {
               font-size: 1.4rem;
               top: 40px;
@@ -1460,6 +1228,7 @@
               gap: 40px;
           }
           
+          /* ALL CONTAINERS TALL ON DESKTOP */
           .video-container,
           .thank-you-video-container,
           .contact-video-container,
@@ -1470,6 +1239,7 @@
               min-height: 600px;
           }
           
+          /* Vid Seven on desktop stays 100vh as requested */
           .vid-seven-video-container {
               height: 100vh;
               min-height: 100vh;
@@ -1513,13 +1283,12 @@
           .thank-you-section,
           .contact-section,
           .vid-five-section,
-          .vid-six-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-six-section {
               padding: 50px 40px;
-              min-height: auto; 
+              min-height: 100vh;
           }
 
+          /* Vid Seven adjustments */
           .vid-seven-section {
               padding: 0;
               min-height: 100vh;
@@ -1667,20 +1436,11 @@
           .thank-you-section,
           .contact-section,
           .vid-five-section,
-          .vid-six-section,
-          .vid-eight-section,
-          .pics-nine-section {
+          .vid-six-section {
               padding: 20px 10px;
           }
 
-          .thank-you-msg {
-              font-size: 2.5rem;
-          }
-
-          .pics-nine-image-wrapper {
-              height: 50vh;
-          }
-
+          /* Vid Seven specific mobile adjustments */
           .short-interlude-label {
               font-size: 0.8rem;
               top: 20px;
@@ -1789,6 +1549,7 @@
               min-height: auto;
           }
 
+          /* Keep height in landscape but respect limits */
           .video-container,
           .thank-you-video-container,
           .contact-video-container,
@@ -1799,6 +1560,7 @@
               min-height: 300px;
           }
 
+          /* Vid Seven in landscape: just fit the viewport */
           .vid-seven-video-container {
               height: 100vh; 
               min-height: 100vh;
@@ -1859,6 +1621,7 @@
               min-height: auto;
           }
 
+          /* Vid Seven Landscape Text */
           .short-interlude-label {
               top: 10px;
               font-size: 0.8rem;
@@ -2086,7 +1849,7 @@
           </div>
         </div>
 
-        <!-- VID SIX SECTION -->
+        <!-- VID SIX SECTION (NEW) -->
         <div class="vid-six-section">
           <div class="vid-six-content">
             <div class="vid-six-header">
@@ -2114,6 +1877,7 @@
 
             <div class="vid-six-cta">
               <p>Click Link to Congratulate</p>
+              <!-- WhatsApp Link using the existing number -->
               <a 
                 href="https://wa.me/2347077027579?text=Congratulations%20Vid%20Six%20on%20being%20the%20Second%20Runner%20Up!%20Well%20done!" 
                 target="_blank" 
@@ -2156,75 +1920,6 @@
           </div>
         </div>
 
-        <!-- VID EIGHT SECTION -->
-        <div class="vid-eight-section">
-          <div class="vid-eight-content">
-            <div class="vid-eight-header">
-              <h3 class="vid-eight-subtitle">Award Presentation</h3>
-              <h2 class="vid-eight-main-title">Model Of The Year</h2>
-            </div>
-
-            <!-- Video Space (Vid figure) - 85vh -->
-            <div class="vid-eight-video-wrapper">
-               <div id="videoPlaceholder8" class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <h3>Vid Eight</h3>
-                <p>Click to play Model Figure video</p>
-              </div>
-              <video id="awardVideo8" controls playsinline preload="metadata">
-                <source src="videos/video8.mp4" type="video/mp4" />
-                <source src="videos/video8.webm" type="video/webm" />
-                Your browser does not support the video element.
-              </video>
-              <div id="videoOverlay8" class="video-overlay">
-                <button id="videoOverlayBtn8" class="overlay-btn">
-                  <i class="fas fa-volume-up"></i> Play with sound
-                </button>
-              </div>
-            </div>
-
-            <!-- Picture Space (Pics three) - 35vh -->
-            <div class="pics-three-image-wrapper">
-               <div class="pics-three-placeholder">
-                 <i class="fas fa-images"></i>
-                 <span>Pics Three</span>
-               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PICS NINE SECTION (NEW FINAL PAGE) -->
-        <div class="pics-nine-section">
-          <div class="pics-nine-content">
-            <div class="pics-nine-header">
-              <h2 class="thank-you-msg">Thank you!!</h2>
-            </div>
-
-            <!-- Image Space (Was Vid Nine, now Pics Nine) -->
-            <div class="pics-nine-image-wrapper">
-               <div class="pics-nine-placeholder">
-                 <i class="fas fa-image"></i>
-                 <h3>Pics Nine</h3>
-                 <p>Placeholder for Final Image</p>
-               </div>
-               <!-- To add a real image: <img src="path/to/image.jpg" style="width:100%; height:100%; object-fit:cover;" /> -->
-            </div>
-
-            <!-- Facebook Link Section -->
-            <div class="facebook-section">
-              <a 
-                href="https://www.facebook.com/profile.php?id=61585174856455" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="facebook-button"
-              >
-                <i class="fab fa-facebook-f"></i> Facebook Link
-              </a>
-              <p class="facebook-label">Follow FB Page</p>
-            </div>
-          </div>
-        </div>
-
         <div class="back-indicator">
           <a href="index.html" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back to Award Page
@@ -2241,40 +1936,34 @@
         const video3 = document.getElementById("awardVideo3");
         const video5 = document.getElementById("awardVideo5");
         const video6 = document.getElementById("awardVideo6");
-        const video7 = document.getElementById("awardVideo7");
-        const video8 = document.getElementById("awardVideo8");
+        const video7 = document.getElementById("awardVideo7"); // Added Vid 7
         
         const videoPlaceholder1 = document.getElementById("videoPlaceholder1");
         const videoPlaceholder2 = document.getElementById("videoPlaceholder2");
         const videoPlaceholder3 = document.getElementById("videoPlaceholder3");
         const videoPlaceholder5 = document.getElementById("videoPlaceholder5");
         const videoPlaceholder6 = document.getElementById("videoPlaceholder6");
-        const videoPlaceholder7 = document.getElementById("videoPlaceholder7");
-        const videoPlaceholder8 = document.getElementById("videoPlaceholder8");
+        const videoPlaceholder7 = document.getElementById("videoPlaceholder7"); // Added Vid 7
         
         const videoOverlayBtn1 = document.getElementById("videoOverlayBtn1");
         const videoOverlayBtn2 = document.getElementById("videoOverlayBtn2");
         const videoOverlayBtn3 = document.getElementById("videoOverlayBtn3");
         const videoOverlayBtn5 = document.getElementById("videoOverlayBtn5");
         const videoOverlayBtn6 = document.getElementById("videoOverlayBtn6");
-        const videoOverlayBtn7 = document.getElementById("videoOverlayBtn7");
-        const videoOverlayBtn8 = document.getElementById("videoOverlayBtn8");
+        const videoOverlayBtn7 = document.getElementById("videoOverlayBtn7"); // Added Vid 7
         
         const videoContainer1 = document.querySelector(".video-container");
         const videoContainer2 = document.querySelector(".thank-you-video-container");
         const videoContainer3 = document.querySelector(".contact-video-container");
         const videoContainer5 = document.querySelector(".vid-five-video-container");
         const videoContainer6 = document.querySelector(".vid-six-video-container");
-        const videoContainer7 = document.querySelector(".vid-seven-video-container");
-        const videoContainer8 = document.querySelector(".vid-eight-video-wrapper");
+        const videoContainer7 = document.querySelector(".vid-seven-video-container"); // Added Vid 7
         
         const thankYouSection = document.querySelector(".thank-you-section");
         const contactSection = document.querySelector(".contact-section");
         const vidFiveSection = document.querySelector(".vid-five-section");
         const vidSixSection = document.querySelector(".vid-six-section");
-        const vidSevenSection = document.querySelector(".vid-seven-section");
-        const vidEightSection = document.querySelector(".vid-eight-section");
-        const picsNineSection = document.querySelector(".pics-nine-section"); // Added
+        const vidSevenSection = document.querySelector(".vid-seven-section"); // Added Vid 7
 
         // Check if mobile device
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -2318,12 +2007,6 @@
               placeholder: videoPlaceholder7, 
               overlayBtn: videoOverlayBtn7, 
               container: videoContainer7 
-            },
-            { 
-              element: video8, 
-              placeholder: videoPlaceholder8, 
-              overlayBtn: videoOverlayBtn8, 
-              container: videoContainer8 
             }
           ];
 
@@ -2489,9 +2172,7 @@
             { element: contactSection, threshold: 0.2 },
             { element: vidFiveSection, threshold: 0.2 },
             { element: vidSixSection, threshold: 0.2 },
-            { element: vidSevenSection, threshold: 0.1 },
-            { element: vidEightSection, threshold: 0.1 },
-            { element: picsNineSection, threshold: 0.1 } // Added Pics Nine
+            { element: vidSevenSection, threshold: 0.1 } // Lower threshold for full screen section
           ];
 
           sections.forEach(sectionData => {
