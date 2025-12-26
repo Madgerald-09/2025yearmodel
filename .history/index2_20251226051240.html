@@ -172,18 +172,14 @@
         transform: translateY(-2px);
       }
 
-      /* ===== IMAGE STYLES (UPDATED) ===== */
-      /* 
-         Changed object-fit to 'contain' so the whole image is visible.
-         Added background to handle empty space if aspect ratios differ.
-      */
+      /* ===== IMAGE STYLES (NEW) ===== */
+      /* Class for images to fill their containers perfectly */
       .responsive-img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Changed from cover to contain */
+        object-fit: cover; /* Ensures image covers the area without stretching */
         display: block;
-        border-radius: inherit;
-        background-color: transparent; /* Keeps background clean */
+        border-radius: inherit; /* Follows the border radius of the container */
       }
 
       /* ===== SECTION STYLING ===== */
@@ -284,11 +280,10 @@
       /* Portfolio Container */
       .portfolio-placeholder {
         width: 100%;
-        height: 40vh; /* Increased from 200px to fit screen better */
-        min-height: 300px;
+        height: 200px;
         border: 2px dashed var(--bronze);
         border-radius: 10px;
-        overflow: hidden;
+        overflow: hidden; /* Ensures image stays inside border */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -383,11 +378,11 @@
       /* Pics Container */
       .pics-nine-image {
         width: 100%;
-        height: 40vh; /* Adjusted for better screen fit */
+        height: 70vh; /* Default height */
         background: var(--bg-section);
         border-radius: 20px;
         border: 2px solid var(--bronze);
-        overflow: hidden;
+        overflow: hidden; /* Important for object-fit: cover to work */
         position: relative;
         display: flex;
         align-items: center;
@@ -480,9 +475,6 @@
           font-size: 4rem;
           bottom: 15%;
         }
-        .portfolio-placeholder {
-          height: 50vh; /* Bigger on tablet/desktop */
-        }
       }
 
       /* Desktop */
@@ -498,12 +490,6 @@
         }
         .services-title {
           font-size: 2.5rem;
-        }
-        .portfolio-placeholder {
-          height: 60vh; /* Bigger on desktop */
-        }
-        .pics-nine-image {
-          height: 50vh;
         }
       }
 
@@ -524,8 +510,8 @@
           height: 40vh;
         }
         .pics-nine-image {
-          height: 30vh;
-        }
+          height: 50vh;
+        } /* Smaller on mobile */
       }
     </style>
   </head>
@@ -585,12 +571,13 @@
               </a>
 
               <!-- IMAGE PLACEHOLDER 1: PORTFOLIO -->
-              <!-- Height is now responsive (40vh/50vh/60vh) to fit screen better -->
+              <!-- CHANGE 'images/portfolio.jpg' TO YOUR ACTUAL FILE PATH -->
               <div class="portfolio-placeholder">
                 <img
                   src="images/first_pic.jpeg"
                   alt="Portfolio Image"
                   class="responsive-img"
+                  style="width: 180%; height: 100%; object-fit: contain"
                   onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-images\' style=\'font-size:2rem; margin-bottom:10px;\'></i><p>Image not found</p>'"
                 />
               </div>
@@ -677,7 +664,7 @@
             <p style="font-size: 1.2rem">Thank you for your</p>
             <p style="font-size: 1.2rem">active participation</p>
             <div class="big-text" style="font-size: 1.8rem; margin: 10px 0">
-              in show
+              in the show
             </div>
           </div>
         </div>
@@ -772,12 +759,13 @@
           </div>
 
           <!-- IMAGE PLACEHOLDER 2: PICS THREE -->
-          <!-- Height updated to 40vh to fit screen better -->
-          <div class="pics-nine-image" style="height: 13vh;">
+          <!-- CHANGE 'images/pics-three.jpg' TO YOUR ACTUAL FILE PATH -->
+          <div class="pics-nine-image" style="height: 13vh">
             <img
               src="images/pics-thre.jpeg"
               alt="Pics Three"
               class="responsive-img"
+              style="width: 100%; height: 100%; object-fit: contain"
               onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'"
             />
           </div>
@@ -799,16 +787,14 @@
           </h2>
 
           <!-- IMAGE PLACEHOLDER 3: FINAL IMAGE -->
-          <!-- Wrapped in container with specific height to ensure it fits screen nicely -->
-          <div class="pics-nine-image" style="height: 35vh">
-            <img
-              src="images/pics-three.jpeg"
-              alt="Pics Three"
-              class="responsive-img"
-              style="width: 100%; height: 100%; object-fit: contain"
-              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'"
-            />
-          </div>
+          <!-- CHANGE 'images/final-image.jpg' TO YOUR ACTUAL FILE PATH -->
+          <img
+            src="images/pics-three.jpeg"
+            alt="Pics Three"
+            class="responsive-img"
+            style="width: 100%; height: 100%; object-fit: contain"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'"
+          />
 
           <div class="facebook-section">
             <a

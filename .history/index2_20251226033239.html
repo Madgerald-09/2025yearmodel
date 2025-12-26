@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services - Model Of The Year Award</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    
+    <style>
+      /* ===== BASE STYLES ===== */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+          font-size: 16px;
+          -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+          font-family: 'Montserrat', 'Segoe UI', sans-serif;
+          background-color: #1a120b;
+          color: #ffffff;
+          overflow-x: hidden;
+          min-height: 100vh;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+      }
+
+      .services-container {
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px;
+          background: linear-gradient(135deg, #1a120b 0%, #0a0a0a 100%);
+      }
+
+      .services-page {
+          width: 100%;
+          max-width: 1400px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 40px;
+      }
+
+      /* ===== SERVICES CARD ===== */
+      .services-card {
+          background: rgba(42, 36, 31, 0.95);
+          border-radius: 25px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          min-height: auto;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+          border: 1px solid rgba(93, 76, 58, 0.3);
+          backdrop-filter: blur(10px);
+          animation: fadeIn 0.8s ease-out;
+      }
+
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Video Side */
+      .video-side {
+          padding: 25px;
+          display: flex;
+          flex-direction: column;
+          background: linear-gradient(to bottom, #2a241f, #1a120b);
+          position: relative;
+          min-height: 75vh; 
+      }
+
+      .video-label {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          background: rgba(93, 76, 58, 0.95);
+          color: #ffffff;
+          padding: 8px 15px;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 1px;
+          z-index: 10;
+          text-transform: uppercase;
+          backdrop-filter: blur(5px);
+      }
+
+      /* STANDARDIZED TALL HEIGHTS FOR ALL CONTAINERS */
+      .video-container,
+      .thank-you-video-container,
+      .contact-video-container,
+      .vid-five-video-container,
+      .vid-six-video-container,
+      .vid-seven-video-container,
+      .school-image-container {
+          width: 100%;
+          height: 75vh; 
+          min-height: 450px;
+          background: rgba(26, 26, 26, 0.9);
+          border-radius: 12px;
+          border: 2px solid #5d4c3a;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          will-change: transform;
+      }
+
+      .video-container:hover,
+      .thank-you-video-container:hover,
+      .contact-video-container:hover,
+      .vid-five-video-container:hover,
+      .vid-six-video-container:hover,
+      .vid-seven-video-container:hover {
+          border-color: #d4b996 !important;
+          transform: translateY(-3px) !important;
+      }
+
+      .video-placeholder {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding: 20px;
+          color: #a08c70;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+          background: rgba(26, 26, 26, 0.95);
+      }
+
+      .video-placeholder i {
+          font-size: 3rem;
+          color: #5d4c3a;
+          margin-bottom: 15px;
+          opacity: 0.8;
+          transition: all 0.3s ease;
+      }
+
+      .video-placeholder:hover i {
+          color: #d4b996;
+          transform: scale(1.1);
+      }
+
+      .video-placeholder h3 {
+          color: #d4b996;
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+          font-weight: 600;
+      }
+
+      .video-placeholder p {
+          font-size: 1rem;
+          opacity: 0.8;
+      }
+
+      video {
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          display: block;
+          object-fit: cover;
+          position: relative;
+          z-index: 1;
+      }
+
+      .video-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 3;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+      }
+
+      .video-overlay:hover {
+          opacity: 1;
+      }
+
+      .overlay-btn {
+          background: linear-gradient(135deg, #5d4c3a, #a08c70);
+          color: #ffffff;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          transition: all 0.3s ease !important;
+          will-change: transform;
+      }
+
+      .overlay-btn:hover {
+          transform: translateY(-2px) !important;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+      }
+
+      /* Services Content Side */
+      .services-content-side {
+          padding: 25px;
+          display: flex;
+          flex-direction: column;
+          background: linear-gradient(to top, #2a241f, #1a120b);
+          gap: 25px;
+      }
+
+      .services-header {
+          text-align: center;
+      }
+
+      .services-title {
+          font-size: 2rem;
+          color: #d4b996;
+          margin-bottom: 10px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          line-height: 1.2;
+      }
+
+      .services-subtitle {
+          font-size: 1rem;
+          color: #a08c70;
+          font-weight: 500;
+          line-height: 1.4;
+      }
+
+      /* Services List */
+      .services-list {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 15px;
+          margin: 15px 0;
+      }
+
+      .service-item {
+          background: rgba(26, 26, 26, 0.8);
+          padding: 20px 15px;
+          border-radius: 10px;
+          text-align: center;
+          border: 1px solid #5d4c3a;
+          transition: all 0.3s ease !important;
+          animation: fadeIn 0.6s ease-out;
+          min-height: 180px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          cursor: pointer;
+          will-change: transform;
+      }
+
+      .service-item:hover {
+          border-color: #d4b996 !important;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+          transform: translateY(-3px) !important;
+      }
+
+      .service-item i {
+          font-size: 2rem;
+          color: #d4b996;
+          margin-bottom: 12px;
+          transition: all 0.3s ease;
+      }
+
+      .service-item:hover i {
+          transform: scale(1.1) !important;
+          color: #ffffff !important;
+      }
+
+      .service-item h3 {
+          font-size: 1.2rem;
+          color: #ffffff;
+          margin-bottom: 8px;
+          font-weight: 600;
+      }
+
+      .service-item p {
+          font-size: 0.9rem;
+          color: #a08c70;
+          line-height: 1.4;
+      }
+
+      /* DM Section */
+      .dm-section {
+          text-align: center;
+          padding: 20px 15px;
+          background: rgba(26, 26, 26, 0.8);
+          border-radius: 12px;
+          border: 1px solid #5d4c3a;
+          min-height: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+
+      .dm-button {
+          padding: 16px 30px;
+          background: linear-gradient(135deg, #5d4c3a, #a08c70);
+          color: #ffffff;
+          border: none;
+          font-size: 1.1rem;
+          font-weight: 600;
+          border-radius: 10px;
+          letter-spacing: 1px;
+          transition: all 0.3s ease !important;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          box-shadow: 0 8px 20px rgba(93, 76, 58, 0.3);
+          margin-bottom: 12px;
+          width: 100%;
+          max-width: 300px;
+          margin-left: auto;
+          margin-right: auto;
+          will-change: transform;
+          text-decoration: none !important;
+          text-align: center;
+      }
+
+      .dm-button:hover {
+          transform: translateY(-3px) !important;
+          box-shadow: 0 12px 25px rgba(93, 76, 58, 0.4) !important;
+          background: linear-gradient(135deg, #6d5a45, #b8a080) !important;
+          color: #ffffff !important;
+      }
+
+      .dm-button:active {
+          transform: translateY(-1px) !important;
+      }
+
+      .dm-button:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(93, 76, 58, 0.3) !important;
+      }
+
+      .dm-info {
+          color: #a08c70;
+          font-size: 0.9rem;
+          max-width: 300px;
+          margin: 0 auto;
+          line-height: 1.5;
+          opacity: 0.9;
+      }
+
+      /* Portfolio Section */
+      .school-section {
+          background: rgba(26, 26, 26, 0.8);
+          border-radius: 12px;
+          padding: 20px 15px;
+          border: 1px solid #5d4c3a;
+          position: relative;
+          min-height: auto;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 0;
+      }
+
+      .image-label {
+          position: absolute;
+          top: -12px;
+          left: 15px;
+          background: #5d4c3a;
+          color: #ffffff;
+          padding: 6px 15px;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+      }
+
+      /* Text styling for the portfolio container specifically */
+      .school-image-container .placeholder-text {
+          color: rgba(212, 185, 150, 0.2);
+          font-size: 2rem; 
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-align: center;
+          padding: 0 15px;
+      }
+
+      /* ===== SECTION SHARED STYLES ===== */
+      .thank-you-section,
+      .contact-section,
+      .vid-five-section,
+      .vid-six-section,
+      .vid-seven-section,
+      .vid-eight-section,
+      .pics-nine-section {
+          width: 100%;
+          min-height: auto;
+          background: linear-gradient(135deg, #1a120b 0%, #0a0a0a 100%);
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          border-radius: 25px;
+          border: 1px solid rgba(93, 76, 58, 0.3);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+          backdrop-filter: blur(10px);
+          padding: 25px 15px;
+          margin-bottom: 0;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 1s ease-out;
+      }
+
+      .thank-you-section.visible,
+      .contact-section.visible,
+      .vid-five-section.visible,
+      .vid-six-section.visible,
+      .vid-seven-section.visible,
+      .vid-eight-section.visible,
+      .pics-nine-section.visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+
+      .thank-you-content,
+      .contact-content,
+      .vid-five-content,
+      .vid-six-content,
+      .vid-seven-content,
+      .vid-eight-content,
+      .pics-nine-content {
+          max-width: 100%;
+          width: 100%;
+          text-align: center;
+          position: relative;
+          z-index: 2;
+          padding: 25px 20px;
+          background: rgba(42, 36, 31, 0.9);
+          border-radius: 20px;
+          border: 1px solid rgba(93, 76, 58, 0.5);
+          backdrop-filter: blur(10px);
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+      }
+
+      .thank-you-header,
+      .contact-header,
+      .vid-five-header,
+      .vid-six-header {
+          position: relative;
+          padding-bottom: 15px;
+          border-bottom: 2px solid rgba(93, 76, 58, 0.3);
+      }
+
+      /* ===== VID SEVEN SECTION STYLES ===== */
+      .vid-seven-section {
+          min-height: 100vh;
+          padding: 0;
+          border: none;
+          background: #000;
+      }
+
+      .vid-seven-content {
+          background: transparent;
+          border: none;
+          border-radius: 0;
+          backdrop-filter: none;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .vid-seven-video-container {
+          width: 100%;
+          height: 100vh;
+          background: #000;
+          border-radius: 0;
+          border: none;
+          position: relative;
+      }
+      
+      .vid-seven-video-container .video-placeholder {
+          background: rgba(0, 0, 0, 0.8);
+      }
+
+      .short-interlude-label {
+          position: absolute;
+          top: 30px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 10;
+          color: rgba(212, 185, 150, 0.6);
+          font-size: 1rem;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          font-weight: 300;
+          font-style: italic;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+          pointer-events: none;
+      }
+
+      .vid-seven-title {
+          position: absolute;
+          bottom: 10%;
+          left: 50%;
+          transform: translateX(-50%) translateY(20px);
+          z-index: 10;
+          color: #ffffff;
+          font-size: 2.5rem;
+          font-weight: 800;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+          opacity: 0;
+          transition: all 1s ease-out;
+          text-align: center;
+          width: 90%;
+      }
+
+      .vid-seven-section.visible .vid-seven-title {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+      }
+
+      /* ===== VID EIGHT SECTION STYLES ===== */
+      .vid-eight-section {
+          min-height: auto;
+          padding: 10px 15px;
+          background: linear-gradient(135deg, #1a120b 0%, #0f0905 100%);
+      }
+
+      .vid-eight-content {
+          background: transparent;
+          border: none;
+          border-radius: 0;
+          padding: 0;
+          gap: 20px;
+      }
+
+      .vid-eight-header {
+          text-align: center;
+          margin-bottom: 10px;
+      }
+
+      .vid-eight-subtitle {
+          font-size: 1.5rem;
+          color: #a08c70;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          margin-bottom: 10px;
+          font-weight: 500;
+      }
+
+      .vid-eight-main-title {
+          font-size: 3.5rem;
+          color: #d4b996;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          line-height: 1.1;
+          text-shadow: 0 0 20px rgba(212, 185, 150, 0.3);
+      }
+
+      .vid-eight-video-wrapper {
+          width: 100%;
+          height: 85vh;
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 2px solid #5d4c3a;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+          transition: transform 0.3s ease;
+      }
+
+      .vid-eight-video-wrapper:hover {
+          transform: scale(1.01);
+          border-color: #d4b996;
+      }
+
+      .vid-eight-video-wrapper .video-placeholder {
+          background: rgba(20, 15, 10, 0.9);
+      }
+      
+      .pics-three-image-wrapper {
+          width: 100%;
+          height: 35vh;
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 2px solid #5d4c3a;
+          background-color: #2a241f;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .pics-three-placeholder {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(circle, rgba(93, 76, 58, 0.3) 0%, rgba(26, 20, 15, 0.8) 100%);
+          color: #5d4c3a;
+      }
+
+      .pics-three-placeholder i {
+          font-size: 3rem;
+          margin-bottom: 15px;
+      }
+
+      .pics-three-placeholder span {
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          font-weight: 600;
+      }
+
+      /* ===== PICS NINE SECTION STYLES (NEW FINAL PAGE) ===== */
+      .pics-nine-section {
+          min-height: auto;
+          padding: 10px 15px;
+          background: linear-gradient(135deg, #1a120b 0%, #0f0905 100%);
+      }
+
+      .pics-nine-content {
+          background: transparent;
+          border: none;
+          border-radius: 0;
+          padding: 0;
+          gap: 20px;
+      }
+
+      .pics-nine-header {
+          text-align: center;
+          margin-bottom: 10px;
+      }
+
+      .thank-you-msg {
+          font-size: 4rem; /* Big text like the handwritten note */
+          color: #d4b996;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 5px;
+          line-height: 1;
+          text-shadow: 0 0 30px rgba(212, 185, 150, 0.4);
+          margin-bottom: 10px;
+          font-family: 'Courier New', monospace; /* Slightly handwritten feel */
+      }
+
+      .pics-nine-image-wrapper {
+          width: 100%;
+          height: 80vh; /* Large image */
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 2px solid #5d4c3a;
+          background-color: #2a241f;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .pics-nine-placeholder {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(circle, rgba(93, 76, 58, 0.3) 0%, rgba(26, 20, 15, 0.8) 100%);
+          color: #5d4c3a;
+      }
+
+      .pics-nine-placeholder i {
+          font-size: 4rem;
+          margin-bottom: 20px;
+      }
+
+      .pics-nine-placeholder h3 {
+          font-size: 2rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          font-weight: 600;
+      }
+
+      .facebook-section {
+          margin-top: 10px;
+      }
+
+      .facebook-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          padding: 18px 40px;
+          background: linear-gradient(135deg, #4267B2, #365899); /* Facebook Blue */
+          color: #ffffff;
+          border: none;
+          font-size: 1.3rem;
+          font-weight: 600;
+          border-radius: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          box-shadow: 0 10px 25px rgba(66, 103, 178, 0.3);
+          transition: all 0.3s ease !important;
+          cursor: pointer;
+          text-decoration: none !important;
+          width: 100%;
+          max-width: 400px;
+      }
+
+      .facebook-button:hover {
+          transform: translateY(-4px) !important;
+          box-shadow: 0 15px 35px rgba(66, 103, 178, 0.4) !important;
+          background: linear-gradient(135deg, #365899, #4267B2) !important;
+      }
+
+      .facebook-label {
+          font-size: 1.1rem;
+          color: #a08c70;
+          margin-top: 15px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          font-weight: 500;
+      }
+
+
+      /* ===== TEXT STYLES ===== */
+      .thank-you-text,
+      .contact-text,
+      .vid-five-text {
+          font-family: 'Montserrat', sans-serif;
+          line-height: 1.5;
+          padding: 25px 20px;
+          background: rgba(26, 26, 26, 0.85);
+          border-radius: 15px;
+          border: 1px solid #5d4c3a;
+          min-height: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+
+      .thank-you-text p {
+          margin: 0;
+          padding: 0;
+          font-weight: 400;
+          opacity: 0;
+          transform: translateY(20px);
+      }
+
+      .line1 {
+          font-size: 1.5rem;
+          color: #a08c70;
+          margin-bottom: 15px !important;
+          letter-spacing: 1px;
+          animation: fadeInUp 0.8s ease-out 0.4s forwards;
+      }
+
+      .line2 {
+          font-size: 1.5rem;
+          color: #a08c70;
+          margin-bottom: 15px !important;
+          letter-spacing: 1px;
+          animation: fadeInUp 0.8s ease-out 0.6s forwards;
+      }
+
+      .line3 {
+          font-size: 2.5rem;
+          font-weight: 800;
+          color: #ffffff;
+          margin: 25px 0 !important;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+          position: relative;
+          display: inline-block;
+          padding: 15px 25px;
+          background: rgba(93, 76, 58, 0.2);
+          border-radius: 15px;
+          border: 2px solid #5d4c3a;
+          animation: fadeInUp 0.8s ease-out 0.8s forwards;
+          line-height: 1.2;
+      }
+
+      .line4 {
+          font-size: 1.3rem;
+          color: #d4b996;
+          margin-top: 25px !important;
+          margin-bottom: 20px !important;
+          letter-spacing: 1px;
+          animation: fadeInUp 0.8s ease-out 1s forwards;
+      }
+
+      .signature {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin-top: 30px !important;
+          font-family: 'Courier New', monospace;
+          letter-spacing: 2px;
+          position: relative;
+          display: inline-block;
+          padding: 10px 20px;
+          background: rgba(93, 76, 58, 0.3);
+          border-radius: 8px;
+          border: 1px solid #5d4c3a;
+          animation: fadeInUp 0.8s ease-out 1.2s forwards;
+      }
+
+      .contact-text {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          align-items: center;
+          text-align: center;
+      }
+
+      .airtime-section {
+          background: rgba(26, 26, 26, 0.9);
+          padding: 20px 15px;
+          border-radius: 15px;
+          border: 1px solid #5d4c3a;
+          width: 100%;
+          max-width: 100%;
+          min-height: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 20px;
+      }
+
+      .airtime-section h3 {
+          color: #d4b996;
+          font-size: 1.5rem;
+          margin-bottom: 0;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          line-height: 1.3;
+      }
+
+      /* WhatsApp Message Section */
+      .whatsapp-message-section {
+          text-align: center;
+          padding: 20px 15px;
+          background: rgba(26, 26, 26, 0.8);
+          border-radius: 15px;
+          border: 1px solid #5d4c3a;
+          min-height: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-top: 15px;
+      }
+
+      .whatsapp-message-button {
+          padding: 16px 30px;
+          background: linear-gradient(135deg, #25D366, #1da851);
+          color: #ffffff;
+          border: none;
+          font-size: 1.1rem;
+          font-weight: 600;
+          border-radius: 10px;
+          letter-spacing: 1px;
+          transition: all 0.3s ease !important;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+          margin-bottom: 12px;
+          width: 100%;
+          max-width: 300px;
+          margin-left: auto;
+          margin-right: auto;
+          position: relative;
+          will-change: transform;
+          text-decoration: none !important;
+          text-align: center;
+      }
+
+      .whatsapp-message-button:hover {
+          transform: translateY(-3px) !important;
+          box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4) !important;
+          background: linear-gradient(135deg, #1da851, #25D366) !important;
+          color: #ffffff !important;
+      }
+
+      .whatsapp-message-button:active {
+          transform: translateY(-1px) !important;
+      }
+
+      .whatsapp-message-button:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.3) !important;
+      }
+
+      .whatsapp-message-info {
+          color: #a08c70;
+          font-size: 0.9rem;
+          max-width: 300px;
+          margin: 0 auto;
+          line-height: 1.5;
+          opacity: 0.9;
+      }
+
+      /* ===== VID FIVE SECTION ===== */
+      .vid-five-text {
+          padding: 25px 20px;
+      }
+
+      .vid-five-title {
+          font-size: 1.8rem;
+          color: #d4b996;
+          margin-bottom: 15px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          text-shadow: 0 0 15px rgba(212, 185, 150, 0.5);
+          opacity: 0;
+          transform: translateY(20px);
+          animation: fadeInUp 0.8s ease-out 0.3s forwards;
+          line-height: 1.2;
+      }
+
+      .vid-five-message {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+      }
+
+      .vid-five-message p {
+          margin: 0 !important;
+          padding: 0 !important;
+          font-weight: 500;
+          opacity: 0;
+          transform: translateY(20px);
+      }
+
+      .vid-five-line1 {
+          font-size: 1.5rem;
+          color: #ffffff;
+          letter-spacing: 1px;
+          animation: fadeInUp 0.8s ease-out 0.5s forwards;
+      }
+
+      .vid-five-line2 {
+          font-size: 1.5rem;
+          color: #ffffff;
+          letter-spacing: 1px;
+          animation: fadeInUp 0.8s ease-out 0.7s forwards;
+      }
+
+      .vid-five-line3 {
+          font-size: 1.8rem;
+          color: #d4b996;
+          font-weight: 600;
+          letter-spacing: 2px;
+          margin-top: 10px !important;
+          text-transform: uppercase;
+          animation: fadeInUp 0.8s ease-out 0.9s forwards;
+      }
+
+      /* ===== VID SIX SECTION ===== */
+      .vid-six-header {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+      }
+
+      .award-badge {
+          background: linear-gradient(90deg, #d4b996, #a08c70);
+          color: #1a120b;
+          padding: 8px 20px;
+          border-radius: 50px;
+          font-size: 0.9rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          display: inline-block;
+          margin: 0 auto;
+          box-shadow: 0 4px 15px rgba(212, 185, 150, 0.3);
+      }
+
+      .runner-up-title {
+          font-size: 2.5rem;
+          color: #d4b996;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin: 10px 0;
+          text-shadow: 0 0 20px rgba(212, 185, 150, 0.2);
+      }
+
+      .contestant-name {
+          font-size: 2rem;
+          color: #ffffff;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+      }
+
+      .vid-six-cta {
+          background: rgba(26, 26, 26, 0.85);
+          padding: 30px 25px;
+          border-radius: 15px;
+          border: 1px solid #5d4c3a;
+          min-height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+      }
+
+      .vid-six-cta p {
+          font-size: 1.2rem;
+          color: #d4b996;
+          margin: 0;
+          letter-spacing: 1px;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(20px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      /* Pattern overlay */
+      .thank-you-section::before,
+      .contact-section::before,
+      .vid-five-section::before,
+      .vid-six-section::before,
+      .vid-eight-section::before,
+      .pics-nine-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+              radial-gradient(circle at 20% 30%, rgba(93, 76, 58, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(93, 76, 58, 0.1) 0%, transparent 50%);
+          z-index: 1;
+      }
+
+      /* Back Button */
+      .back-indicator {
+          width: 100%;
+          text-align: center;
+          padding: 25px 0;
+          margin-top: 15px;
+      }
+
+      .back-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 16px 30px;
+          background: rgba(93, 76, 58, 0.9);
+          color: #ffffff;
+          text-decoration: none;
+          border-radius: 10px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          transition: all 0.3s ease !important;
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(212, 185, 150, 0.2);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+          width: 100%;
+          max-width: 300px;
+          margin: 0 auto;
+          cursor: pointer;
+          will-change: transform;
+      }
+
+      .back-btn:hover {
+          background: #6d5a45 !important;
+          transform: translateY(-3px) !important;
+          box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      .back-btn:active {
+          transform: translateY(-1px) !important;
+      }
+
+      /* ===== MOBILE RESPONSIVE DESIGN ===== */
+
+      /* Small Tablets and Large Phones */
+      @media (min-width: 481px) and (max-width: 768px) {
+          .services-page {
+              gap: 35px;
+          }
+          
+          .services-card {
+              border-radius: 30px;
+          }
+          
+          .video-side,
+          .services-content-side {
+              padding: 30px;
+          }
+          
+          .services-title {
+              font-size: 2.5rem;
+          }
+          
+          .services-subtitle {
+              font-size: 1.2rem;
+          }
+          
+          .services-list {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 20px;
+          }
+          
+          .service-item {
+              padding: 25px 20px;
+              min-height: 200px;
+          }
+          
+          .service-item i {
+              font-size: 2.5rem;
+          }
+          
+          .service-item h3 {
+              font-size: 1.4rem;
+          }
+          
+          .service-item p {
+              font-size: 1rem;
+          }
+          
+          .thank-you-section,
+          .contact-section,
+          .vid-five-section,
+          .vid-six-section,
+          .vid-seven-section,
+          .vid-eight-section,
+          .pics-nine-section {
+              padding: 30px 20px;
+          }
+
+          /* Pics Nine Mobile Adjustments */
+          .thank-you-msg {
+              font-size: 3rem;
+          }
+          
+          .pics-nine-image-wrapper {
+              height: 60vh;
+          }
+
+          .vid-eight-main-title {
+              font-size: 4rem;
+          }
+          
+          .vid-eight-video-wrapper {
+              height: 75vh; 
+          }
+          
+          .pics-three-image-wrapper {
+              height: 25vh;
+          }
+
+          .short-interlude-label {
+              font-size: 1.2rem;
+          }
+
+          .vid-seven-title {
+              font-size: 3rem;
+              bottom: 15%;
+          }
+          
+          .thank-you-content,
+          .contact-content,
+          .vid-five-content,
+          .vid-six-content {
+              padding: 30px 25px;
+          }
+          
+          .line1,
+          .line2 {
+              font-size: 1.8rem;
+          }
+          
+          .line3 {
+              font-size: 3rem;
+              padding: 20px 35px;
+              margin: 30px 0 !important;
+          }
+          
+          .line4 {
+              font-size: 1.5rem;
+              margin-top: 30px !important;
+          }
+          
+          .signature {
+              font-size: 2.2rem;
+              margin-top: 40px !important;
+          }
+          
+          .vid-five-title {
+              font-size: 2.2rem;
+          }
+          
+          .vid-five-line1,
+          .vid-five-line2 {
+              font-size: 1.8rem;
+          }
+          
+          .vid-five-line3 {
+              font-size: 2rem;
+          }
+
+          .runner-up-title {
+              font-size: 2.8rem;
+          }
+
+          .contestant-name {
+              font-size: 2.2rem;
+          }
+          
+          .airtime-section h3 {
+              font-size: 1.8rem;
+          }
+          
+          .dm-button,
+          .whatsapp-message-button {
+              padding: 18px 35px;
+              font-size: 1.2rem;
+              max-width: 350px;
+          }
+          
+          .back-btn {
+              padding: 18px 35px;
+              font-size: 1.2rem;
+              max-width: 350px;
+          }
+      }
+
+      /* Tablets */
+      @media (min-width: 769px) and (max-width: 1024px) {
+          .services-container {
+              padding: 25px;
+          }
+          
+          .services-page {
+              gap: 45px;
+          }
+          
+          .services-card {
+              flex-direction: row;
+              min-height: 80vh;
+          }
+          
+          .video-side,
+          .services-content-side {
+              padding: 35px;
+          }
+          
+          .services-title {
+              font-size: 3rem;
+          }
+          
+          .services-subtitle {
+              font-size: 1.4rem;
+          }
+          
+          .services-list {
+              grid-template-columns: repeat(3, 1fr);
+              gap: 25px;
+          }
+          
+          .service-item {
+              padding: 30px 20px;
+              min-height: 220px;
+          }
+          
+          .service-item i {
+              font-size: 3rem;
+          }
+          
+          .service-item h3 {
+              font-size: 1.6rem;
+          }
+          
+          .service-item p {
+              font-size: 1.1rem;
+          }
+          
+          .thank-you-section,
+          .contact-section,
+          .vid-five-section,
+          .vid-six-section,
+          .vid-eight-section,
+          .pics-nine-section {
+              padding: 40px 30px;
+          }
+
+          .thank-you-msg {
+              font-size: 5rem;
+          }
+          
+          .pics-nine-image-wrapper {
+              height: 70vh;
+          }
+
+          .short-interlude-label {
+              font-size: 1.4rem;
+              top: 40px;
+          }
+
+          .vid-seven-title {
+              font-size: 4rem;
+              bottom: 20%;
+          }
+          
+          .thank-you-content,
+          .contact-content,
+          .vid-five-content,
+          .vid-six-content {
+              padding: 40px 35px;
+          }
+          
+          .line1,
+          .line2 {
+              font-size: 2.2rem;
+          }
+          
+          .line3 {
+              font-size: 3.5rem;
+              padding: 25px 45px;
+              margin: 40px 0 !important;
+          }
+          
+          .line4 {
+              font-size: 1.8rem;
+              margin-top: 40px !important;
+          }
+          
+          .signature {
+              font-size: 2.5rem;
+              margin-top: 50px !important;
+          }
+          
+          .vid-five-title {
+              font-size: 2.8rem;
+          }
+          
+          .vid-five-line1,
+          .vid-five-line2 {
+              font-size: 2.2rem;
+          }
+          
+          .vid-five-line3 {
+              font-size: 2.5rem;
+          }
+
+          .runner-up-title {
+              font-size: 3.2rem;
+          }
+
+          .contestant-name {
+              font-size: 2.5rem;
+          }
+          
+          .airtime-section h3 {
+              font-size: 2.2rem;
+          }
+          
+          .dm-button,
+          .whatsapp-message-button {
+              padding: 20px 40px;
+              font-size: 1.3rem;
+              max-width: 400px;
+          }
+          
+          .back-btn {
+              padding: 20px 40px;
+              font-size: 1.3rem;
+              max-width: 400px;
+          }
+      }
+
+      /* Desktop */
+      @media (min-width: 1025px) {
+          .services-container {
+              padding: 30px;
+          }
+          
+          .services-page {
+              gap: 50px;
+          }
+          
+          .services-card {
+              flex-direction: row;
+              min-height: 85vh;
+              border-radius: 35px;
+          }
+          
+          .video-side {
+              flex: 1.2;
+              padding: 40px;
+          }
+          
+          .services-content-side {
+              flex: 1;
+              padding: 40px;
+              gap: 40px;
+          }
+          
+          .video-container,
+          .thank-you-video-container,
+          .contact-video-container,
+          .vid-five-video-container,
+          .vid-six-video-container,
+          .school-image-container {
+              height: 75vh;
+              min-height: 600px;
+          }
+          
+          .vid-seven-video-container {
+              height: 100vh;
+              min-height: 100vh;
+          }
+          
+          .services-title {
+              font-size: 3.5rem;
+          }
+          
+          .services-subtitle {
+              font-size: 1.6rem;
+          }
+          
+          .services-list {
+              grid-template-columns: repeat(3, 1fr);
+              gap: 30px;
+          }
+          
+          .service-item {
+              padding: 35px 25px;
+              min-height: 250px;
+          }
+          
+          .service-item:hover {
+              transform: translateY(-10px) !important;
+              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+          }
+          
+          .service-item i {
+              font-size: 3.5rem;
+          }
+          
+          .service-item h3 {
+              font-size: 1.8rem;
+          }
+          
+          .service-item p {
+              font-size: 1.2rem;
+          }
+          
+          .thank-you-section,
+          .contact-section,
+          .vid-five-section,
+          .vid-six-section,
+          .vid-eight-section,
+          .pics-nine-section {
+              padding: 50px 40px;
+              min-height: auto; 
+          }
+
+          .vid-seven-section {
+              padding: 0;
+              min-height: 100vh;
+          }
+
+          .short-interlude-label {
+              font-size: 1.5rem;
+              top: 50px;
+          }
+
+          .vid-seven-title {
+              font-size: 5rem;
+              bottom: 25%;
+          }
+          
+          .thank-you-content,
+          .contact-content,
+          .vid-five-content,
+          .vid-six-content {
+              padding: 50px 40px;
+          }
+          
+          .line1,
+          .line2 {
+              font-size: 3rem;
+          }
+          
+          .line3 {
+              font-size: 5rem;
+              padding: 30px 60px;
+              margin: 60px 0 !important;
+          }
+          
+          .line4 {
+              font-size: 2.5rem;
+              margin-top: 60px !important;
+          }
+          
+          .signature {
+              font-size: 3.5rem;
+              margin-top: 80px !important;
+          }
+          
+          .vid-five-title {
+              font-size: 3.5rem;
+          }
+          
+          .vid-five-line1,
+          .vid-five-line2 {
+              font-size: 3rem;
+          }
+          
+          .vid-five-line3 {
+              font-size: 3.5rem;
+          }
+
+          .runner-up-title {
+              font-size: 4rem;
+          }
+
+          .contestant-name {
+              font-size: 3rem;
+          }
+          
+          .airtime-section h3 {
+              font-size: 2.8rem;
+          }
+          
+          .dm-button,
+          .whatsapp-message-button {
+              padding: 22px 50px;
+              font-size: 1.4rem;
+              max-width: 450px;
+          }
+          
+          .dm-button:hover,
+          .whatsapp-message-button:hover {
+              transform: translateY(-5px) !important;
+          }
+          
+          .back-btn {
+              padding: 22px 50px;
+              font-size: 1.4rem;
+              max-width: 450px;
+          }
+          
+          .back-btn:hover {
+              transform: translateY(-5px) !important;
+          }
+      }
+
+      /* Extra Small Phones */
+      @media (max-width: 360px) {
+          .services-container {
+              padding: 10px;
+          }
+          
+          .services-page {
+              gap: 25px;
+          }
+          
+          .video-side,
+          .services-content-side {
+              padding: 20px;
+          }
+          
+          .video-label {
+              top: 12px;
+              left: 12px;
+              padding: 6px 12px;
+              font-size: 0.7rem;
+          }
+          
+          .services-title {
+              font-size: 1.6rem;
+          }
+          
+          .services-subtitle {
+              font-size: 0.9rem;
+          }
+          
+          .service-item {
+              padding: 15px 12px;
+              min-height: 160px;
+          }
+          
+          .service-item i {
+              font-size: 1.8rem;
+          }
+          
+          .service-item h3 {
+              font-size: 1.1rem;
+          }
+          
+          .service-item p {
+              font-size: 0.85rem;
+          }
+          
+          .dm-button,
+          .whatsapp-message-button {
+              padding: 14px 20px;
+              font-size: 1rem;
+          }
+          
+          .thank-you-section,
+          .contact-section,
+          .vid-five-section,
+          .vid-six-section,
+          .vid-eight-section,
+          .pics-nine-section {
+              padding: 20px 10px;
+          }
+
+          .thank-you-msg {
+              font-size: 2.5rem;
+          }
+
+          .pics-nine-image-wrapper {
+              height: 50vh;
+          }
+
+          .short-interlude-label {
+              font-size: 0.8rem;
+              top: 20px;
+          }
+
+          .vid-seven-title {
+              font-size: 2rem;
+              bottom: 15%;
+          }
+          
+          .thank-you-content,
+          .contact-content,
+          .vid-five-content,
+          .vid-six-content {
+              padding: 20px 15px;
+          }
+          
+          .line1,
+          .line2 {
+              font-size: 1.3rem;
+          }
+          
+          .line3 {
+              font-size: 2rem;
+              padding: 12px 20px;
+              margin: 20px 0 !important;
+          }
+          
+          .line4 {
+              font-size: 1.1rem;
+              margin-top: 20px !important;
+          }
+          
+          .signature {
+              font-size: 1.5rem;
+              margin-top: 25px !important;
+              padding: 8px 15px;
+          }
+          
+          .vid-five-title {
+              font-size: 1.5rem;
+          }
+          
+          .vid-five-line1,
+          .vid-five-line2 {
+              font-size: 1.3rem;
+          }
+          
+          .vid-five-line3 {
+              font-size: 1.5rem;
+          }
+
+          .runner-up-title {
+              font-size: 1.8rem;
+          }
+
+          .contestant-name {
+              font-size: 1.5rem;
+          }
+          
+          .airtime-section h3 {
+              font-size: 1.3rem;
+          }
+          
+          .tap-link p {
+              font-size: 1rem;
+          }
+          
+          .back-btn {
+              padding: 14px 25px;
+              font-size: 1rem;
+          }
+      }
+
+      /* Ultra Small Phones */
+      @media (max-width: 320px) {
+          .services-title {
+              font-size: 1.4rem;
+          }
+          
+          .line3 {
+              font-size: 1.8rem;
+          }
+          
+          .vid-five-title {
+              font-size: 1.3rem;
+          }
+
+          .vid-seven-title {
+              font-size: 1.8rem;
+          }
+          
+          .dm-button,
+          .whatsapp-message-button {
+              font-size: 0.95rem;
+          }
+      }
+
+      /* Landscape Mode */
+      @media (max-height: 500px) and (orientation: landscape) {
+          .services-card {
+              min-height: auto;
+          }
+          
+          .video-side {
+              min-height: auto;
+          }
+
+          .video-container,
+          .thank-you-video-container,
+          .contact-video-container,
+          .vid-five-video-container,
+          .vid-six-video-container,
+          .school-image-container {
+              height: 65vh;
+              min-height: 300px;
+          }
+
+          .vid-seven-video-container {
+              height: 100vh; 
+              min-height: 100vh;
+          }
+          
+          .services-content-side {
+              padding: 20px;
+              gap: 20px;
+          }
+          
+          .services-title {
+              font-size: 1.8rem;
+              margin-bottom: 5px;
+          }
+          
+          .services-subtitle {
+              font-size: 0.9rem;
+          }
+          
+          .services-list {
+              grid-template-columns: repeat(3, 1fr);
+              gap: 15px;
+              margin: 10px 0;
+          }
+          
+          .service-item {
+              padding: 15px 10px;
+              min-height: 150px;
+          }
+          
+          .service-item i {
+              font-size: 1.5rem;
+              margin-bottom: 8px;
+          }
+          
+          .service-item h3 {
+              font-size: 1rem;
+              margin-bottom: 5px;
+          }
+          
+          .service-item p {
+              font-size: 0.8rem;
+          }
+          
+          .dm-section {
+              padding: 15px 10px;
+          }
+          
+          .dm-button,
+          .whatsapp-message-button {
+              padding: 12px 20px;
+              font-size: 0.9rem;
+              margin-bottom: 8px;
+          }
+          
+          .school-section {
+              padding: 15px 10px;
+              min-height: auto;
+          }
+
+          .short-interlude-label {
+              top: 10px;
+              font-size: 0.8rem;
+          }
+
+          .vid-seven-title {
+              font-size: 1.5rem;
+              bottom: 10px;
+          }
+      }
+
+      /* Additional Fixes for Touch Devices */
+      button, a {
+          touch-action: manipulation;
+      }
+
+      /* Fix for iOS Safari */
+      @supports (-webkit-touch-callout: none) {
+          .services-container {
+              min-height: -webkit-fill-available;
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="services-container">
+      <section class="services-page">
+        <!-- SERVICES SECTION -->
+        <div class="services-card">
+          <div class="video-side">
+            <div class="video-container">
+              <div id="videoPlaceholder1" class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <h3>Our Services Video</h3>
+                <p>Click to play our showcase video</p>
+              </div>
+              <video id="awardVideo1" controls playsinline preload="metadata">
+                <source src="videos/award_video1.mp4" type="video/mp4" />
+                <source src="videos/award_video1.webm" type="video/webm" />
+                Your browser does not support the video element.
+              </video>
+              <div id="videoOverlay1" class="video-overlay">
+                <button id="videoOverlayBtn1" class="overlay-btn">
+                  <i class="fas fa-volume-up"></i> Play with sound
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-content-side">
+            <div class="services-header">
+              <h2 class="services-title">Our Services</h2>
+              <p class="services-subtitle">
+                Professional award events & production
+              </p>
+            </div>
+
+            <div class="services-list">
+              <div class="service-item">
+                <i class="fas fa-trophy"></i>
+                <h3>Award Events</h3>
+                <p>Complete award ceremony planning and execution</p>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-video"></i>
+                <h3>Video Production</h3>
+                <p>High-quality video content creation</p>
+              </div>
+              <div class="service-item">
+                <i class="fas fa-photo-video"></i>
+                <h3>Media Coverage</h3>
+                <p>Professional photography and media services</p>
+              </div>
+            </div>
+
+            <div class="dm-section">
+              <a 
+                href="https://instagram.com/modelaward" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="dm-button" 
+                id="dmButton"
+              >
+                <i class="fab fa-instagram"></i> Send us a DM
+              </a>
+              <p class="dm-info">
+                Contact us for award events, video production, and more
+              </p>
+            </div>
+
+            <div class="school-section">
+              <div class="school-image-container" id="schoolImageContainer">
+                <div class="placeholder-text">Portfolio Coming Soon</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- THANK YOU SECTION -->
+        <div class="thank-you-section">
+          <div class="thank-you-content">
+            <div class="thank-you-header">
+            </div>
+
+            <div class="thank-you-video-container">
+              <div id="videoPlaceholder2" class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <h3>Thank You Video</h3>
+                <p>Click to play our special message</p>
+              </div>
+              <video id="awardVideo2" controls playsinline preload="metadata">
+                <source src="videos/thank-you-video.mp4" type="video/mp4" />
+                <source src="videos/thank-you-video.webm" type="video/webm" />
+                Your browser does not support the video element.
+              </video>
+              <div id="videoOverlay2" class="video-overlay">
+                <button id="videoOverlayBtn2" class="overlay-btn">
+                  <i class="fas fa-volume-up"></i> Play with sound
+                </button>
+              </div>
+            </div>
+
+            <div class="thank-you-text">
+              <p class="line1">We couldn't have</p>
+              <p class="line2">Done this without</p>
+              <p class="line3">YOU ALL!</p>
+              <p class="line4">A big shout out to u'll</p>
+              <p class="signature">Thanks<K</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT SECTION -->
+        <div class="contact-section">
+          <div class="contact-content">
+            <div class="contact-header">
+              <div class="video-label">Contact Us</div>
+            </div>
+
+            <div class="contact-video-container">
+              <div id="videoPlaceholder3" class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <h3>Contact Video</h3>
+                <p>Coming soon</p>
+              </div>
+              <video
+                id="awardVideo3"
+                controls
+                playsinline
+                preload="metadata"
+                style="display: none"
+              >
+                <!-- Video source will be added later -->
+                Your browser does not support the video element.
+              </video>
+              <div id="videoOverlay3" class="video-overlay">
+                <button id="videoOverlayBtn3" class="overlay-btn">
+                  <i class="fas fa-volume-up"></i> Play with sound
+                </button>
+              </div>
+            </div>
+
+            <div class="contact-text">
+              <div class="airtime-section">
+                <h3>Get In Touch With Us</h3>
+                <p>We'd love to hear from you!</p>
+
+                <!-- WhatsApp Message Section -->
+                <div class="whatsapp-message-section">
+                  <a 
+                    href="https://wa.me/2347077027579?text=Hello%20Model%20Of%20The%20Year%20Award%20team!%20I%20have%20an%20inquiry." 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="whatsapp-message-button"
+                    id="whatsappMessageButton"
+                  >
+                    <i class="fab fa-whatsapp"></i> Reach us on WhatsApp
+                  </a>
+                  <p class="whatsapp-message-info">
+                    Message us directly on WhatsApp for any inquiries or feedback
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VID FIVE SECTION -->
+        <div class="vid-five-section">
+          <div class="vid-five-content">
+            <div class="vid-five-header">
+              <div>
+                <h2 class="vid-five-title">Contestants that are evicted</h2>
+              </div>
+            </div>
+
+            <div class="vid-five-video-container">
+              <div id="videoPlaceholder5" class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <h3>Video Five</h3>
+                <p>Click to play contestants video</p>
+              </div>
+              <video id="awardVideo5" controls playsinline preload="metadata">
+                <source src="videos/video5.mp4" type="video/mp4" />
+                <source src="videos/video5.webm" type="video/webm" />
+                Your browser does not support the video element.
+              </video>
+              <div id="videoOverlay5" class="video-overlay">
+                <button id="videoOverlayBtn5" class="overlay-btn">
+                  <i class="fas fa-volume-up"></i> Play with sound
+                </button>
+              </div>
+            </div>
+
+            <div class="vid-five-text">
+              <div class="vid-five-message">
+                <p class="vid-five-line1">Thank you for your</p>
+                <p class="vid-five-line2">active participation</p>
+                <p class="vid-five-line3">in the show</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VID SIX SECTION -->
+        <div class="vid-six-section">
+          <div class="vid-six-content">
+            <div class="vid-six-header">
+              <div class="award-badge">Award Presentation</div>
+              <h2 class="runner-up-title">SECOND RUNNER UP</h2>
+            </div>
+
+            <div class="vid-six-video-container">
+              <div id="videoPlaceholder6" class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <h3>Video Six</h3>
+                <p>Click to play contestant video</p>
+              </div>
+              <video id="awardVideo6" controls playsinline preload="metadata">
+                <source src="videos/video6.mp4" type="video/mp4" />
+                <source src="videos/video6.webm" type="video/webm" />
+                Your browser does not support the video element.
+              </video>
+              <div id="videoOverlay6" class="video-overlay">
+                <button id="videoOverlayBtn6" class="overlay-btn">
+                  <i class="fas fa-volume-up"></i> Play with sound
+                </button>
+              </div>
+            </div>
+
+            <div class="vid-six-cta">
+              <p>Click Link to Congratulate</p>
+              <a 
+                href="https://wa.me/2347077027579?text=Congratulations%20Vid%20Six%20on%20being%20the%20Second%20Runner%20Up!%20Well%20done!" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="whatsapp-message-button"
+              >
+                <i class="fab fa-whatsapp"></i> CLICK ME
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- VID SEVEN SECTION (SHORT INTERLUDE - FULL SCREEN) -->
+        <div class="vid-seven-section">
+          <div class="short-interlude-label">Short Interlude</div>
+          
+          <div class="vid-seven-content">
+            <div class="vid-seven-video-container">
+              <div id="videoPlaceholder7" class="video-placeholder">
+                <i class="fas fa-play-circle" style="font-size: 4rem; color: #ffffff;"></i>
+                <h3 style="font-size: 2rem; color: #ffffff;">Vid Seven</h3>
+                <p style="color: #cccccc;">Click to play full screen video</p>
+              </div>
+              
+              <!-- Video 7 -->
+              <video id="awardVideo7" controls playsinline preload="metadata" style="border-radius: 0;">
+                <source src="videos/video7.mp4" type="video/mp4" />
+                <source src="videos/video7.webm" type="video/webm" />
+                Your browser does not support the video element.
+              </video>
+              
+              <div id="videoOverlay7" class="video-overlay">
+                <button id="videoOverlayBtn7" class="overlay-btn" style="padding: 15px 40px; font-size: 1.2rem;">
+                  <i class="fas fa-volume-up"></i> Play with sound
+                </button>
+              </div>
+
+              <div class="vid-seven-title">Vid Seven</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VID EIGHT SECTION -->
+        <div class="vid-eight-section">
+          <div class="vid-eight-content">
+            <div class="vid-eight-header">
+              <h3 class="vid-eight-subtitle">Award Presentation</h3>
+              <h2 class="vid-eight-main-title">Model Of The Year</h2>
+            </div>
+
+            <!-- Video Space (Vid figure) - 85vh -->
+            <div class="vid-eight-video-wrapper">
+               <div id="videoPlaceholder8" class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <h3>Vid Eight</h3>
+                <p>Click to play Model Figure video</p>
+              </div>
+              <video id="awardVideo8" controls playsinline preload="metadata">
+                <source src="videos/video8.mp4" type="video/mp4" />
+                <source src="videos/video8.webm" type="video/webm" />
+                Your browser does not support the video element.
+              </video>
+              <div id="videoOverlay8" class="video-overlay">
+                <button id="videoOverlayBtn8" class="overlay-btn">
+                  <i class="fas fa-volume-up"></i> Play with sound
+                </button>
+              </div>
+            </div>
+
+            <!-- Picture Space (Pics three) - 35vh -->
+            <div class="pics-three-image-wrapper">
+               <div class="pics-three-placeholder">
+                 <i class="fas fa-images"></i>
+                 <span>Pics Three</span>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PICS NINE SECTION (NEW FINAL PAGE) -->
+        <div class="pics-nine-section">
+          <div class="pics-nine-content">
+            <div class="pics-nine-header">
+              <h2 class="thank-you-msg">Thank you!!</h2>
+            </div>
+
+            <!-- Image Space (Was Vid Nine, now Pics Nine) -->
+            <div class="pics-nine-image-wrapper">
+               <div class="pics-nine-placeholder">
+                 <i class="fas fa-image"></i>
+                 <h3>Pics Nine</h3>
+                 <p>Placeholder for Final Image</p>
+               </div>
+               <!-- To add a real image: <img src="path/to/image.jpg" style="width:100%; height:100%; object-fit:cover;" /> -->
+            </div>
+
+            <!-- Facebook Link Section -->
+            <div class="facebook-section">
+              <a 
+                href="https://www.facebook.com/profile.php?id=61585174856455" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="facebook-button"
+              >
+                <i class="fab fa-facebook-f"></i> Facebook Link
+              </a>
+              <p class="facebook-label">Follow FB Page</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="back-indicator">
+          <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Award Page
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Elements
+        const video1 = document.getElementById("awardVideo1");
+        const video2 = document.getElementById("awardVideo2");
+        const video3 = document.getElementById("awardVideo3");
+        const video5 = document.getElementById("awardVideo5");
+        const video6 = document.getElementById("awardVideo6");
+        const video7 = document.getElementById("awardVideo7");
+        const video8 = document.getElementById("awardVideo8");
+        
+        const videoPlaceholder1 = document.getElementById("videoPlaceholder1");
+        const videoPlaceholder2 = document.getElementById("videoPlaceholder2");
+        const videoPlaceholder3 = document.getElementById("videoPlaceholder3");
+        const videoPlaceholder5 = document.getElementById("videoPlaceholder5");
+        const videoPlaceholder6 = document.getElementById("videoPlaceholder6");
+        const videoPlaceholder7 = document.getElementById("videoPlaceholder7");
+        const videoPlaceholder8 = document.getElementById("videoPlaceholder8");
+        
+        const videoOverlayBtn1 = document.getElementById("videoOverlayBtn1");
+        const videoOverlayBtn2 = document.getElementById("videoOverlayBtn2");
+        const videoOverlayBtn3 = document.getElementById("videoOverlayBtn3");
+        const videoOverlayBtn5 = document.getElementById("videoOverlayBtn5");
+        const videoOverlayBtn6 = document.getElementById("videoOverlayBtn6");
+        const videoOverlayBtn7 = document.getElementById("videoOverlayBtn7");
+        const videoOverlayBtn8 = document.getElementById("videoOverlayBtn8");
+        
+        const videoContainer1 = document.querySelector(".video-container");
+        const videoContainer2 = document.querySelector(".thank-you-video-container");
+        const videoContainer3 = document.querySelector(".contact-video-container");
+        const videoContainer5 = document.querySelector(".vid-five-video-container");
+        const videoContainer6 = document.querySelector(".vid-six-video-container");
+        const videoContainer7 = document.querySelector(".vid-seven-video-container");
+        const videoContainer8 = document.querySelector(".vid-eight-video-wrapper");
+        
+        const thankYouSection = document.querySelector(".thank-you-section");
+        const contactSection = document.querySelector(".contact-section");
+        const vidFiveSection = document.querySelector(".vid-five-section");
+        const vidSixSection = document.querySelector(".vid-six-section");
+        const vidSevenSection = document.querySelector(".vid-seven-section");
+        const vidEightSection = document.querySelector(".vid-eight-section");
+        const picsNineSection = document.querySelector(".pics-nine-section"); // Added
+
+        // Check if mobile device
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const isSmallScreen = window.innerWidth <= 768;
+
+        // Initialize all videos
+        function initVideos() {
+          const videos = [
+            { 
+              element: video1, 
+              placeholder: videoPlaceholder1, 
+              overlayBtn: videoOverlayBtn1, 
+              container: videoContainer1
+            },
+            { 
+              element: video2, 
+              placeholder: videoPlaceholder2, 
+              overlayBtn: videoOverlayBtn2, 
+              container: videoContainer2
+            },
+            { 
+              element: video3, 
+              placeholder: videoPlaceholder3, 
+              overlayBtn: videoOverlayBtn3, 
+              container: videoContainer3
+            },
+            { 
+              element: video5, 
+              placeholder: videoPlaceholder5, 
+              overlayBtn: videoOverlayBtn5, 
+              container: videoContainer5
+            },
+            { 
+              element: video6, 
+              placeholder: videoPlaceholder6, 
+              overlayBtn: videoOverlayBtn6, 
+              container: videoContainer6
+            },
+            { 
+              element: video7, 
+              placeholder: videoPlaceholder7, 
+              overlayBtn: videoOverlayBtn7, 
+              container: videoContainer7 
+            },
+            { 
+              element: video8, 
+              placeholder: videoPlaceholder8, 
+              overlayBtn: videoOverlayBtn8, 
+              container: videoContainer8 
+            }
+          ];
+
+          videos.forEach((videoData, index) => {
+            if (!videoData.element) return;
+
+            // Set video attributes
+            videoData.element.playsInline = true;
+            videoData.element.muted = isMobile;
+            videoData.element.preload = "metadata";
+            videoData.element.controls = true;
+
+            // Video event listeners
+            videoData.element.addEventListener("loadeddata", function () {
+              if (videoData.placeholder) {
+                videoData.placeholder.style.display = "none";
+              }
+            });
+
+            videoData.element.addEventListener("error", function () {
+              if (videoData.placeholder) {
+                if (index === 2) {
+                  // For video 3, show placeholder since video is not available
+                  videoData.placeholder.style.display = "flex";
+                  videoData.placeholder.querySelector("h3").textContent = "Video Coming Soon";
+                  videoData.placeholder.querySelector("p").textContent = "Check back later for our contact video";
+                } else {
+                  videoData.placeholder.style.display = "flex";
+                  videoData.placeholder.querySelector("h3").textContent = "Video Unavailable";
+                  videoData.placeholder.querySelector("p").textContent = "Please check back later";
+                  const icon = videoData.placeholder.querySelector("i");
+                  if (icon) icon.className = "fas fa-exclamation-triangle";
+                }
+              }
+            });
+
+            // Click placeholder to play (skip video 3)
+            if (videoData.placeholder && index !== 2) {
+              videoData.placeholder.addEventListener("click", function () {
+                playVideo(videoData.element, videoData.placeholder);
+              });
+              
+              videoData.placeholder.addEventListener("touchend", function (e) {
+                e.preventDefault();
+                playVideo(videoData.element, videoData.placeholder);
+              }, { passive: false });
+            }
+
+            // Click container to play/pause (desktop only)
+            if (videoData.container && !isSmallScreen && index !== 2) {
+              videoData.container.addEventListener("click", function (e) {
+                if (e.target === videoData.container || e.target === videoData.placeholder) {
+                  toggleVideoPlayback(videoData.element, videoData.placeholder);
+                }
+              });
+            }
+
+            // Enable sound button (skip video 3)
+            if (videoData.overlayBtn && index !== 2) {
+              videoData.overlayBtn.addEventListener("click", function () {
+                enableSound(videoData.element);
+              });
+              
+              if (isMobile) {
+                videoData.overlayBtn.style.display = "none";
+              }
+            }
+          });
+        }
+
+        // Play video function
+        function playVideo(videoElement, placeholder) {
+          if (!videoElement) return;
+          
+          if (isMobile) {
+            videoElement.muted = false;
+          }
+          
+          videoElement.play()
+            .then(() => {
+              if (placeholder) placeholder.style.display = "none";
+            })
+            .catch(error => {
+              console.error("Video playback failed:", error);
+              if (isMobile) {
+                videoElement.muted = true;
+                videoElement.play().catch(e => {
+                  showNotification("Tap the video to play");
+                });
+              }
+            });
+        }
+
+        // Toggle video playback
+        function toggleVideoPlayback(videoElement, placeholder) {
+          if (!videoElement) return;
+          if (videoElement.paused) {
+            playVideo(videoElement, placeholder);
+          } else {
+            videoElement.pause();
+          }
+        }
+
+        // Enable sound and play
+        function enableSound(videoElement) {
+          if (!videoElement) return;
+          videoElement.muted = false;
+          videoElement.play()
+            .then(() => {
+            })
+            .catch(error => {
+              console.error("Failed to play with sound:", error);
+              showNotification("Tap the video to enable sound");
+            });
+        }
+
+        // Show notification
+        function showNotification(message) {
+          let notification = document.querySelector('.notification');
+          if (!notification) {
+            notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              background: rgba(93, 76, 58, 0.95);
+              color: #ffffff;
+              padding: 15px 20px;
+              border-radius: 10px;
+              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+              z-index: 10000;
+              opacity: 0;
+              transform: translateX(100%);
+              transition: all 0.5s ease;
+              backdrop-filter: blur(10px);
+              border: 2px solid rgba(212, 185, 150, 0.3);
+              max-width: 300px;
+              display: none;
+            `;
+            document.body.appendChild(notification);
+          }
+          
+          notification.innerHTML = `<p style="margin: 0; font-size: 0.9rem; font-weight: 500; line-height: 1.4;">${message}</p>`;
+          notification.style.display = 'block';
+          notification.style.opacity = '1';
+          notification.style.transform = 'translateX(0)';
+          
+          setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+              notification.style.display = 'none';
+            }, 500);
+          }, 3000);
+        }
+
+        // Initialize sections with scroll detection
+        function initScrollAnimations() {
+          const sections = [
+            { element: thankYouSection, threshold: 0.2 },
+            { element: contactSection, threshold: 0.2 },
+            { element: vidFiveSection, threshold: 0.2 },
+            { element: vidSixSection, threshold: 0.2 },
+            { element: vidSevenSection, threshold: 0.1 },
+            { element: vidEightSection, threshold: 0.1 },
+            { element: picsNineSection, threshold: 0.1 } // Added Pics Nine
+          ];
+
+          sections.forEach(sectionData => {
+            if (!sectionData.element) return;
+
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+                  
+                  if (entry.target === vidFiveSection) {
+                    animateVidFiveText();
+                  }
+                  
+                  observer.disconnect();
+                }
+              });
+            }, {
+              threshold: sectionData.threshold,
+              rootMargin: '50px'
+            });
+
+            observer.observe(sectionData.element);
+          });
+        }
+
+        // Animate Vid Five text
+        function animateVidFiveText() {
+          const title = document.querySelector('.vid-five-title');
+          const line1 = document.querySelector('.vid-five-line1');
+          const line2 = document.querySelector('.vid-five-line2');
+          const line3 = document.querySelector('.vid-five-line3');
+          
+          if (title) {
+            title.style.animation = 'fadeInUp 0.8s ease-out 0.3s forwards';
+          }
+          if (line1) {
+            line1.style.animation = 'fadeInUp 0.8s ease-out 0.5s forwards';
+          }
+          if (line2) {
+            line2.style.animation = 'fadeInUp 0.8s ease-out 0.7s forwards';
+          }
+          if (line3) {
+            line3.style.animation = 'fadeInUp 0.8s ease-out 0.9s forwards';
+          }
+        }
+
+        // Initialize everything
+        function initialize() {
+          console.log("Initializing services page...");
+          
+          initVideos();
+          initScrollAnimations();
+
+          // Instagram and WhatsApp buttons now work directly via HTML links
+          console.log("Buttons are now HTML links - they will work immediately when clicked");
+        }
+
+        // Start initialization
+        initialize();
+
+        // Add enhanced hover effects for desktop
+        if (!isSmallScreen) {
+          document.querySelectorAll('.service-item').forEach(item => {
+            item.addEventListener('mouseenter', function () {
+              this.style.transform = 'translateY(-5px)';
+              const icon = this.querySelector('i');
+              if (icon) {
+                icon.style.transform = 'scale(1.1)';
+                icon.style.color = '#ffffff';
+              }
+            });
+
+            item.addEventListener('mouseleave', function () {
+              this.style.transform = 'translateY(0)';
+              const icon = this.querySelector('i');
+              if (icon) {
+                icon.style.transform = 'scale(1)';
+                icon.style.color = '#d4b996';
+              }
+            });
+          });
+        }
+
+        // Log success
+        console.log("Services page loaded successfully!");
+      });
+    </script>
+  </body>
+</html>

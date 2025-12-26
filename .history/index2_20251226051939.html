@@ -481,7 +481,7 @@
           bottom: 15%;
         }
         .portfolio-placeholder {
-          height: 50vh; /* Bigger on tablet/desktop */
+            height: 50vh; /* Bigger on tablet/desktop */
         }
       }
 
@@ -500,10 +500,10 @@
           font-size: 2.5rem;
         }
         .portfolio-placeholder {
-          height: 60vh; /* Bigger on desktop */
+            height: 60vh; /* Bigger on desktop */
         }
         .pics-nine-image {
-          height: 50vh;
+            height: 50vh; 
         }
       }
 
@@ -773,7 +773,7 @@
 
           <!-- IMAGE PLACEHOLDER 2: PICS THREE -->
           <!-- Height updated to 40vh to fit screen better -->
-          <div class="pics-nine-image" style="height: 13vh;">
+          <div class="pics-nine-image">
             <img
               src="images/pics-thre.jpeg"
               alt="Pics Three"
@@ -800,12 +800,11 @@
 
           <!-- IMAGE PLACEHOLDER 3: FINAL IMAGE -->
           <!-- Wrapped in container with specific height to ensure it fits screen nicely -->
-          <div class="pics-nine-image" style="height: 35vh">
+          <div class="pics-nine-image" style="height: 60vh;">
             <img
               src="images/pics-three.jpeg"
               alt="Pics Three"
               class="responsive-img"
-              style="width: 100%; height: 100%; object-fit: contain"
               onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'"
             />
           </div>

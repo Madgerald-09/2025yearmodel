@@ -42,7 +42,7 @@
       }
 
       body {
-        font-family: "Montserrat", sans-serif;
+        font-family: 'Montserrat', sans-serif;
         background-color: var(--bg-dark);
         color: var(--text-white);
         overflow-x: hidden;
@@ -56,11 +56,7 @@
         flex-direction: column;
         align-items: center;
         padding: 20px;
-        background: linear-gradient(
-          135deg,
-          var(--bg-dark) 0%,
-          var(--bg-darker) 100%
-        );
+        background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
       }
 
       .services-page {
@@ -79,32 +75,21 @@
         background: #000;
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         border: 2px solid var(--bronze);
-        pointer-events: auto;
+        pointer-events: auto; 
       }
 
-      .video-container-sm {
-        height: 50vh;
-        min-height: 300px;
-      }
-      .video-container-md {
-        height: 75vh;
-        min-height: 500px;
-      }
-      .video-container-lg {
-        height: 100vh;
-        width: 100%;
-        border-radius: 0;
-        border: none;
-      }
-
+      .video-container-sm { height: 50vh; min-height: 300px; }
+      .video-container-md { height: 75vh; min-height: 500px; }
+      .video-container-lg { height: 100vh; width: 100%; border-radius: 0; border: none; }
+      
       video {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
-        pointer-events: auto;
+        pointer-events: auto; 
       }
 
       /* Video Overlay / Placeholder */
@@ -119,7 +104,7 @@
         justify-content: center;
         align-items: center;
         background: rgba(0, 0, 0, 0.8);
-        z-index: 100;
+        z-index: 100; 
         cursor: pointer;
         transition: opacity 0.3s ease;
         text-align: center;
@@ -151,11 +136,7 @@
 
       .play-btn {
         margin-top: 15px;
-        background: linear-gradient(
-          135deg,
-          var(--bronze),
-          var(--secondary-gold)
-        );
+        background: linear-gradient(135deg, var(--bronze), var(--secondary-gold));
         color: #fff;
         border: none;
         padding: 12px 24px;
@@ -172,18 +153,14 @@
         transform: translateY(-2px);
       }
 
-      /* ===== IMAGE STYLES (UPDATED) ===== */
-      /* 
-         Changed object-fit to 'contain' so the whole image is visible.
-         Added background to handle empty space if aspect ratios differ.
-      */
+      /* ===== IMAGE STYLES (NEW) ===== */
+      /* Class for images to fill their containers perfectly */
       .responsive-img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Changed from cover to contain */
+        object-fit: cover; /* Ensures image covers the area without stretching */
         display: block;
-        border-radius: inherit;
-        background-color: transparent; /* Keeps background clean */
+        border-radius: inherit; /* Follows the border radius of the container */
       }
 
       /* ===== SECTION STYLING ===== */
@@ -242,8 +219,7 @@
         margin-bottom: 10px;
       }
 
-      .dm-button,
-      .whatsapp-button {
+      .dm-button, .whatsapp-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -261,34 +237,21 @@
       }
 
       .dm-button {
-        background: linear-gradient(
-          135deg,
-          var(--bronze),
-          var(--secondary-gold)
-        );
+        background: linear-gradient(135deg, var(--bronze), var(--secondary-gold));
       }
+      
+      .dm-button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(93, 76, 58, 0.4); }
 
-      .dm-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(93, 76, 58, 0.4);
-      }
-
-      .whatsapp-button {
-        background: linear-gradient(135deg, #25d366, #1da851);
-      }
-      .whatsapp-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-      }
+      .whatsapp-button { background: linear-gradient(135deg, #25D366, #1da851); }
+      .whatsapp-button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
 
       /* Portfolio Container */
       .portfolio-placeholder {
         width: 100%;
-        height: 40vh; /* Increased from 200px to fit screen better */
-        min-height: 300px;
+        height: 200px;
         border: 2px dashed var(--bronze);
         border-radius: 10px;
-        overflow: hidden;
+        overflow: hidden; /* Ensures image stays inside border */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -313,7 +276,7 @@
       }
 
       .handwritten {
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
         font-weight: 700;
         color: #fff;
         font-size: 2rem;
@@ -352,20 +315,20 @@
         overflow: hidden;
         border: 1px solid var(--bronze);
       }
-
+      
       .vid-seven-label {
         position: absolute;
         top: 30px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 20;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255,255,255,0.7);
         text-transform: uppercase;
         letter-spacing: 3px;
         font-style: italic;
         pointer-events: none;
       }
-
+      
       .vid-seven-title {
         position: absolute;
         bottom: 10%;
@@ -375,7 +338,7 @@
         font-size: 2rem;
         font-weight: 800;
         text-transform: uppercase;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+        text-shadow: 0 4px 20px rgba(0,0,0,0.9);
         z-index: 20;
         pointer-events: none;
       }
@@ -383,11 +346,11 @@
       /* Pics Container */
       .pics-nine-image {
         width: 100%;
-        height: 40vh; /* Adjusted for better screen fit */
+        height: 70vh; /* Default height */
         background: var(--bg-section);
         border-radius: 20px;
         border: 2px solid var(--bronze);
-        overflow: hidden;
+        overflow: hidden; /* Important for object-fit: cover to work */
         position: relative;
         display: flex;
         align-items: center;
@@ -400,7 +363,7 @@
       }
 
       .facebook-button {
-        background: linear-gradient(135deg, #4267b2, #365899);
+        background: linear-gradient(135deg, #4267B2, #365899);
         color: #fff;
         padding: 18px 40px;
         border-radius: 10px;
@@ -421,11 +384,7 @@
       }
 
       /* Back Button */
-      .back-indicator {
-        width: 100%;
-        text-align: center;
-        padding: 20px 0;
-      }
+      .back-indicator { width: 100%; text-align: center; padding: 20px 0; }
       .back-btn {
         background: rgba(93, 76, 58, 0.5);
         color: #fff;
@@ -436,10 +395,7 @@
         transition: var(--transition);
         border: 1px solid var(--bronze);
       }
-      .back-btn:hover {
-        background: var(--bronze);
-        transform: translateY(-3px);
-      }
+      .back-btn:hover { background: var(--bronze); transform: translateY(-3px); }
 
       /* ===== ANIMATIONS ===== */
       .fade-in-section {
@@ -453,85 +409,43 @@
       }
 
       /* ===== RESPONSIVE MEDIA QUERIES ===== */
-
+      
       /* Tablets & Small Desktops */
       @media (min-width: 769px) {
         .services-card {
           flex-direction: row;
           align-items: stretch;
         }
-        .video-side {
-          flex: 1.2;
-          padding-right: 20px;
-        }
-        .content-side {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-        .services-list {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .big-text {
-          font-size: 3.5rem;
-        }
-        .vid-seven-title {
-          font-size: 4rem;
-          bottom: 15%;
-        }
-        .portfolio-placeholder {
-          height: 50vh; /* Bigger on tablet/desktop */
-        }
+        .video-side { flex: 1.2; padding-right: 20px; }
+        .content-side { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .services-list { grid-template-columns: repeat(2, 1fr); }
+        .big-text { font-size: 3.5rem; }
+        .vid-seven-title { font-size: 4rem; bottom: 15%; }
       }
 
       /* Desktop */
       @media (min-width: 1025px) {
-        .services-list {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .big-text {
-          font-size: 5rem;
-        }
-        .vid-seven-title {
-          font-size: 5rem;
-        }
-        .services-title {
-          font-size: 2.5rem;
-        }
-        .portfolio-placeholder {
-          height: 60vh; /* Bigger on desktop */
-        }
-        .pics-nine-image {
-          height: 50vh;
-        }
+        .services-list { grid-template-columns: repeat(3, 1fr); }
+        .big-text { font-size: 5rem; }
+        .vid-seven-title { font-size: 5rem; }
+        .services-title { font-size: 2.5rem; }
       }
-
+      
       /* Mobile Landscape & Small Screens adjustments */
       @media (max-width: 768px) {
-        .services-title {
-          font-size: 1.8rem;
-        }
-        .big-text {
-          font-size: 2rem;
-        }
-        .vid-seven-title {
-          font-size: 1.5rem;
-          bottom: 20px;
-        }
-        .video-container-sm,
-        .video-container-md {
-          height: 40vh;
-        }
-        .pics-nine-image {
-          height: 30vh;
-        }
+        .services-title { font-size: 1.8rem; }
+        .big-text { font-size: 2rem; }
+        .vid-seven-title { font-size: 1.5rem; bottom: 20px; }
+        .video-container-sm, .video-container-md { height: 40vh; }
+        .pics-nine-image { height: 50vh; } /* Smaller on mobile */
       }
     </style>
   </head>
   <body>
     <div class="services-container">
+      
       <section class="services-page">
+        
         <!-- SERVICES SECTION -->
         <div class="content-card services-card fade-in-section">
           <div class="video-side">
@@ -544,9 +458,7 @@
                 <i class="fas fa-play-circle"></i>
                 <h3>Our Services Video</h3>
                 <p>Click to play showcase</p>
-                <button class="play-btn">
-                  <i class="fas fa-volume-up"></i> Play with Sound
-                </button>
+                <button class="play-btn"><i class="fas fa-volume-up"></i> Play with Sound</button>
               </div>
             </div>
           </div>
@@ -554,9 +466,7 @@
           <div class="content-side">
             <div class="services-header">
               <h2 class="services-title">Our Services</h2>
-              <p style="color: var(--text-muted)">
-                Professional award events & production
-              </p>
+              <p style="color: var(--text-muted)">Professional award events & production</p>
             </div>
 
             <div class="services-list">
@@ -574,25 +484,15 @@
               </div>
             </div>
 
-            <div style="text-align: center">
-              <a
-                href="https://instagram.com/modelaward"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="dm-button"
-              >
+            <div style="text-align: center;">
+              <a href="https://instagram.com/modelaward" target="_blank" rel="noopener noreferrer" class="dm-button">
                 <i class="fab fa-instagram"></i> Send us a DM
               </a>
-
+              
               <!-- IMAGE PLACEHOLDER 1: PORTFOLIO -->
-              <!-- Height is now responsive (40vh/50vh/60vh) to fit screen better -->
+              <!-- CHANGE 'images/portfolio.jpg' TO YOUR ACTUAL FILE PATH -->
               <div class="portfolio-placeholder">
-                <img
-                  src="images/first_pic.jpeg"
-                  alt="Portfolio Image"
-                  class="responsive-img"
-                  onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-images\' style=\'font-size:2rem; margin-bottom:10px;\'></i><p>Image not found</p>'"
-                />
+                <img src="images/portfolio.jpg" alt="Portfolio Image" class="responsive-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-images\' style=\'font-size:2rem; margin-bottom:10px;\'></i><p>Image not found</p>'">
               </div>
             </div>
           </div>
@@ -607,18 +507,14 @@
             <div class="video-overlay" id="overlay2">
               <i class="fas fa-play-circle"></i>
               <h3>Thank You Video</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play with Sound
-              </button>
+              <button class="play-btn"><i class="fas fa-volume-up"></i> Play with Sound</button>
             </div>
           </div>
           <div class="text-content">
-            <p style="font-size: 1.2rem; color: var(--text-muted)">
-              We couldn't have done this without
-            </p>
+            <p style="font-size: 1.2rem; color: var(--text-muted)">We couldn't have done this without</p>
             <div class="big-text">YOU ALL!</div>
             <p style="color: var(--text-muted)">A big shout out to y'all</p>
-            <p class="handwritten" style="margin-top: 20px">Thanks<K</p>
+            <p class="handwritten" style="margin-top: 20px;">Thanks<K</p>
           </div>
         </div>
 
@@ -627,13 +523,10 @@
           <div class="services-header">
             <h2 class="services-title">Contact Us</h2>
           </div>
-          <div
-            class="video-wrapper video-container-md"
-            style="margin-bottom: 20px"
-          >
+          <div class="video-wrapper video-container-md" style="margin-bottom: 20px;">
             <video id="video3" playsinline preload="metadata">
-              <!-- Placeholder source -->
-              <source src="" type="video/mp4" />
+               <!-- Placeholder source -->
+               <source src="" type="video/mp4" />
             </video>
             <div class="video-overlay" id="overlay3">
               <i class="fas fa-video"></i>
@@ -641,16 +534,9 @@
             </div>
           </div>
           <div class="text-content">
-            <h3 style="color: var(--primary-gold); margin-bottom: 15px">
-              Get In Touch
-            </h3>
-            <p style="margin-bottom: 20px">We'd love to hear from you!</p>
-            <a
-              href="https://wa.me/2347077027579?text=Hello%20Model%20Of%20The%20Year%20Award%20team!"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="whatsapp-button"
-            >
+            <h3 style="color: var(--primary-gold); margin-bottom: 15px;">Get In Touch</h3>
+            <p style="margin-bottom: 20px;">We'd love to hear from you!</p>
+            <a href="https://wa.me/2347077027579?text=Hello%20Model%20Of%20The%20Year%20Award%20team!" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
               <i class="fab fa-whatsapp"></i> Reach us on WhatsApp
             </a>
           </div>
@@ -658,9 +544,7 @@
 
         <!-- VID FIVE SECTION -->
         <div class="content-card fade-in-section">
-          <h2 class="services-title" style="text-align: center">
-            Contestants Evicted
-          </h2>
+          <h2 class="services-title" style="text-align: center;">Contestants Evicted</h2>
           <div class="video-wrapper video-container-md">
             <video id="video5" playsinline preload="metadata">
               <source src="videos/video5.mp4" type="video/mp4" />
@@ -668,27 +552,23 @@
             <div class="video-overlay" id="overlay5">
               <i class="fas fa-play-circle"></i>
               <h3>Evicted Contestants</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Video
-              </button>
+              <button class="play-btn"><i class="fas fa-volume-up"></i> Play Video</button>
             </div>
           </div>
           <div class="text-content">
-            <p style="font-size: 1.2rem">Thank you for your</p>
-            <p style="font-size: 1.2rem">active participation</p>
-            <div class="big-text" style="font-size: 1.8rem; margin: 10px 0">
-              in show
-            </div>
+            <p style="font-size: 1.2rem;">Thank you for your</p>
+            <p style="font-size: 1.2rem;">active participation</p>
+            <div class="big-text" style="font-size: 1.8rem; margin: 10px 0;">in the show</div>
           </div>
         </div>
 
         <!-- VID SIX SECTION -->
         <div class="content-card fade-in-section">
-          <div style="text-align: center; margin-bottom: 20px">
+          <div style="text-align: center; margin-bottom: 20px;">
             <span class="award-badge">Award Presentation</span>
             <h2 class="runner-up-title">SECOND RUNNER UP</h2>
           </div>
-
+          
           <div class="video-wrapper video-container-md">
             <video id="video6" playsinline preload="metadata">
               <source src="videos/video6.mp4" type="video/mp4" />
@@ -696,20 +576,13 @@
             <div class="video-overlay" id="overlay6">
               <i class="fas fa-play-circle"></i>
               <h3>Runner Up Video</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Video
-              </button>
+              <button class="play-btn"><i class="fas fa-volume-up"></i> Play Video</button>
             </div>
           </div>
-
+          
           <div class="text-content">
             <p>Click Link to Congratulate</p>
-            <a
-              href="https://wa.me/2347077027579?text=Congratulations%20on%20being%20the%20Second%20Runner%20Up!"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="whatsapp-button"
-            >
+            <a href="https://wa.me/2347077027579?text=Congratulations%20on%20being%20the%20Second%20Runner%20Up!" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
               <i class="fab fa-whatsapp"></i> CLICK ME
             </a>
           </div>
@@ -718,17 +591,15 @@
         <!-- VID SEVEN SECTION (Full Screen) -->
         <div class="vid-seven-section fade-in-section">
           <div class="vid-seven-label">Short Interlude</div>
-
+          
           <div class="video-wrapper video-container-lg">
             <video id="video7" playsinline preload="metadata">
               <source src="videos/video7.mp4" type="video/mp4" />
             </video>
             <div class="video-overlay" id="overlay7">
-              <i class="fas fa-play-circle" style="font-size: 4rem"></i>
+              <i class="fas fa-play-circle" style="font-size: 4rem;"></i>
               <h3>Vid Seven</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Full Screen
-              </button>
+              <button class="play-btn"><i class="fas fa-volume-up"></i> Play Full Screen</button>
             </div>
           </div>
 
@@ -736,100 +607,45 @@
         </div>
 
         <!-- VID EIGHT SECTION -->
-        <div
-          class="content-card fade-in-section"
-          style="
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-          "
-        >
-          <div style="text-align: center; margin-bottom: 15px">
-            <h3
-              style="
-                color: var(--text-muted);
-                text-transform: uppercase;
-                letter-spacing: 2px;
-              "
-            >
-              Award Presentation
-            </h3>
-            <h2 class="services-title" style="margin: 0">Model Of The Year</h2>
+        <div class="content-card fade-in-section" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+          <div style="text-align: center; margin-bottom: 15px;">
+            <h3 style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px;">Award Presentation</h3>
+            <h2 class="services-title" style="margin: 0;">Model Of The Year</h2>
           </div>
 
-          <div class="video-wrapper" style="height: 80vh; margin-bottom: 20px">
+          <div class="video-wrapper" style="height: 80vh; margin-bottom: 20px;">
             <video id="video8" playsinline preload="metadata">
               <source src="videos/video8.mp4" type="video/mp4" />
             </video>
             <div class="video-overlay" id="overlay8">
               <i class="fas fa-play-circle"></i>
               <h3>Model Figure</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Video
-              </button>
+              <button class="play-btn"><i class="fas fa-volume-up"></i> Play Video</button>
             </div>
           </div>
 
           <!-- IMAGE PLACEHOLDER 2: PICS THREE -->
-          <!-- Height updated to 40vh to fit screen better -->
-          <div class="pics-nine-image" style="height: 13vh;">
-            <img
-              src="images/pics-thre.jpeg"
-              alt="Pics Three"
-              class="responsive-img"
-              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'"
-            />
+          <!-- CHANGE 'images/pics-three.jpg' TO YOUR ACTUAL FILE PATH -->
+          <div class="pics-nine-image" style="height: 35vh;">
+             <img src="images/pics-three.jpeg" alt="Pics Three" class="responsive-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'">
           </div>
         </div>
 
         <!-- PICS NINE SECTION (Final) -->
-        <div
-          class="content-card fade-in-section"
-          style="
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-            text-align: center;
-          "
-        >
-          <h2 class="services-title" style="margin-bottom: 20px">
-            Thank you!!
-          </h2>
-
+        <div class="content-card fade-in-section" style="background: transparent; border: none; box-shadow: none; padding: 0; text-align: center;">
+          <h2 class="services-title" style="margin-bottom: 20px;">Thank you!!</h2>
+          
           <!-- IMAGE PLACEHOLDER 3: FINAL IMAGE -->
-          <!-- Wrapped in container with specific height to ensure it fits screen nicely -->
-          <div class="pics-nine-image" style="height: 35vh">
-            <img
-              src="images/pics-three.jpeg"
-              alt="Pics Three"
-              class="responsive-img"
-              style="width: 100%; height: 100%; object-fit: contain"
-              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'"
-            />
+          <!-- CHANGE 'images/final-image.jpg' TO YOUR ACTUAL FILE PATH -->
+          <div class="pics-nine-image">
+             <img src="images/pics-three.jpeg" alt="Final Image" class="responsive-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-image\' style=\'font-size:3rem; margin-bottom:10px;\'></i><h3>Pics Nine</h3><p>Final Image</p></div>'">
           </div>
 
           <div class="facebook-section">
-            <a
-              href="https://www.facebook.com/profile.php?id=61585174856455"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="facebook-button"
-            >
+            <a href="https://www.facebook.com/profile.php?id=61585174856455" target="_blank" rel="noopener noreferrer" class="facebook-button">
               <i class="fab fa-facebook-f"></i> Facebook Link
             </a>
-            <p
-              style="
-                color: var(--text-muted);
-                margin-top: 10px;
-                text-transform: uppercase;
-                font-size: 0.8rem;
-                letter-spacing: 1px;
-              "
-            >
-              Follow FB Page
-            </p>
+            <p style="color: var(--text-muted); margin-top: 10px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Follow FB Page</p>
           </div>
         </div>
 
@@ -839,45 +655,37 @@
             <i class="fas fa-arrow-left"></i> Back to Award Page
           </a>
         </div>
+
       </section>
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        
         // 1. SCROLL ANIMATION LOGIC
         const observerOptions = {
           threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
+          rootMargin: "0px 0px -50px 0px"
         };
 
         const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
+          entries.forEach(entry => {
             if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
+              entry.target.classList.add('visible');
             }
           });
         }, observerOptions);
 
-        document.querySelectorAll(".fade-in-section").forEach((section) => {
+        document.querySelectorAll('.fade-in-section').forEach(section => {
           observer.observe(section);
         });
 
         // 2. VIDEO LOGIC
-        const videoIds = [
-          "video1",
-          "video2",
-          "video3",
-          "video5",
-          "video6",
-          "video7",
-          "video8",
-        ];
-
-        videoIds.forEach((id) => {
+        const videoIds = ['video1', 'video2', 'video3', 'video5', 'video6', 'video7', 'video8'];
+        
+        videoIds.forEach(id => {
           const video = document.getElementById(id);
-          const overlay = document.getElementById(
-            id.replace("video", "overlay")
-          );
+          const overlay = document.getElementById(id.replace('video', 'overlay'));
 
           if (!video || !overlay) return;
 
@@ -886,44 +694,40 @@
             const playPromise = video.play();
 
             if (playPromise !== undefined) {
-              playPromise
-                .then(() => {
-                  overlay.style.display = "none";
+              playPromise.then(() => {
+                overlay.style.display = 'none';
+                video.controls = true;
+              }).catch(error => {
+                console.log("Autoplay prevented, trying muted");
+                video.muted = true;
+                video.play().then(() => {
+                  overlay.style.display = 'none';
                   video.controls = true;
-                })
-                .catch((error) => {
-                  console.log("Autoplay prevented, trying muted");
-                  video.muted = true;
-                  video
-                    .play()
-                    .then(() => {
-                      overlay.style.display = "none";
-                      video.controls = true;
-                    })
-                    .catch((e) => console.error("Video play failed:", e));
-                });
+                }).catch(e => console.error("Video play failed:", e));
+              });
             }
           };
 
-          overlay.addEventListener("click", startVideo);
+          overlay.addEventListener('click', startVideo);
 
-          video.addEventListener("ended", () => {
-            overlay.style.display = "flex";
+          video.addEventListener('ended', () => {
+            overlay.style.display = 'flex';
             video.currentTime = 0;
             video.controls = false;
           });
 
-          video.addEventListener("pause", () => {
+          video.addEventListener('pause', () => {
             if (!video.ended) {
-              overlay.style.display = "flex";
+              overlay.style.display = 'flex';
             }
           });
 
-          video.addEventListener("play", () => {
-            overlay.style.display = "none";
-            video.controls = true;
+          video.addEventListener('play', () => {
+             overlay.style.display = 'none';
+             video.controls = true;
           });
         });
+
       });
     </script>
   </body>
