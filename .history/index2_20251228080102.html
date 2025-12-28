@@ -173,13 +173,17 @@
       }
 
       /* ===== IMAGE STYLES (UPDATED) ===== */
+      /* 
+         Changed object-fit to 'contain' so the whole image is visible.
+         Added background to handle empty space if aspect ratios differ.
+      */
       .responsive-img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: contain; /* Changed from cover to contain */
         display: block;
         border-radius: inherit;
-        background-color: transparent;
+        background-color: transparent; /* Keeps background clean */
       }
 
       /* ===== SECTION STYLING ===== */
@@ -280,7 +284,7 @@
       /* Portfolio Container */
       .portfolio-placeholder {
         width: 100%;
-        height: 40vh;
+        height: 40vh; /* Increased from 200px to fit screen better */
         min-height: 300px;
         border: 2px dashed var(--bronze);
         border-radius: 10px;
@@ -379,7 +383,7 @@
       /* Pics Container */
       .pics-nine-image {
         width: 100%;
-        height: 40vh;
+        height: 40vh; /* Adjusted for better screen fit */
         background: var(--bg-section);
         border-radius: 20px;
         border: 2px solid var(--bronze);
@@ -477,7 +481,7 @@
           bottom: 15%;
         }
         .portfolio-placeholder {
-          height: 50vh;
+          height: 50vh; /* Bigger on tablet/desktop */
         }
       }
 
@@ -496,7 +500,7 @@
           font-size: 2.5rem;
         }
         .portfolio-placeholder {
-          height: 60vh;
+          height: 60vh; /* Bigger on desktop */
         }
         .pics-nine-image {
           height: 50vh;
@@ -581,6 +585,7 @@
               </a>
 
               <!-- IMAGE PLACEHOLDER 1: PORTFOLIO -->
+              <!-- Height is now responsive (40vh/50vh/60vh) to fit screen better -->
               <div class="portfolio-placeholder">
                 <img
                   src="images/first_pic.jpeg"
@@ -601,6 +606,7 @@
             </video>
             <div class="video-overlay" id="overlay2">
               <i class="fas fa-play-circle"></i>
+              <h3>Thank You Video</h3>
               <button class="play-btn">
                 <i class="fas fa-volume-up"></i> Play with Sound
               </button>
@@ -715,10 +721,11 @@
 
           <div class="video-wrapper video-container-lg">
             <video id="video7" playsinline preload="metadata">
-              <source src="videos/thank-you-video.mp4" type="video/mp4" />
+              <source src="videos/thank-you-videos.mp4" type="video/mp4" />
             </video>
             <div class="video-overlay" id="overlay7">
               <i class="fas fa-play-circle" style="font-size: 4rem"></i>
+              <h3>Vid Seven</h3>
               <button class="play-btn">
                 <i class="fas fa-volume-up"></i> Play Full Screen
               </button>
@@ -765,6 +772,7 @@
           </div>
 
           <!-- IMAGE PLACEHOLDER 2: PICS THREE -->
+          <!-- Height updated to 40vh to fit screen better -->
           <div class="pics-nine-image" style="height: 13vh;">
             <img
               src="images/pics-thre.jpeg"
@@ -791,6 +799,7 @@
           </h2>
 
           <!-- IMAGE PLACEHOLDER 3: FINAL IMAGE -->
+          <!-- Wrapped in container with specific height to ensure it fits screen nicely -->
           <div class="pics-nine-image" style="height: 35vh">
             <img
               src="images/pics-three.jpeg"
@@ -853,7 +862,7 @@
           observer.observe(section);
         });
 
-        // 2. VIDEO MANAGEMENT
+        // 2. VIDEO LOGIC
         const videoIds = [
           "video1",
           "video2",
@@ -864,36 +873,6 @@
           "video8",
         ];
 
-        // --- NEW FEATURE: PAUSE OTHER VIDEOS WHEN ONE STARTS ---
-        function pauseOtherVideos(currentVideo) {
-          videoIds.forEach((id) => {
-            const video = document.getElementById(id);
-            // Check if video exists, is not the current one, and is playing
-            if (video && video !== currentVideo && !video.paused) {
-              video.pause(); // Pause triggers the 'pause' event listener which resets overlay
-            }
-          });
-        }
-
-        // --- NEW FEATURE: PAUSE VIDEO WHEN OUT OF VIEWPORT (SCROLL) ---
-        const videoVisibilityObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              const video = entry.target;
-              // If the video leaves the viewport (is not intersecting)
-              if (!entry.isIntersecting) {
-                if (!video.paused) {
-                  video.pause();
-                }
-              }
-            });
-          },
-          {
-            root: null,
-            threshold: 0.25, // Pause when less than 25% of the video is visible
-          }
-        );
-
         videoIds.forEach((id) => {
           const video = document.getElementById(id);
           const overlay = document.getElementById(
@@ -902,13 +881,7 @@
 
           if (!video || !overlay) return;
 
-          // Observe this video for scroll-away pausing
-          videoVisibilityObserver.observe(video);
-
           const startVideo = () => {
-            // 1. Pause all other videos first
-            pauseOtherVideos(video);
-
             video.muted = false;
             const playPromise = video.play();
 

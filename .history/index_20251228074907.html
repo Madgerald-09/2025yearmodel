@@ -17,48 +17,54 @@
 
         body {
             font-family: 'Montserrat', 'Segoe UI', sans-serif;
-            background-color: #050505; 
+            background-color: #050505; /* Darker body background */
             color: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
         }
 
-        /* ===== HEADER BANNER (FULL IMAGE) ===== */
+        /* ===== HEADER BANNER (IMAGE BOX AT TOP) ===== */
         .header-banner {
             position: relative;
             width: 100%;
+            height: 50vh; /* Takes up 50% of the screen height */
+            min-height: 400px; /* Ensures it doesn't get too small on mobile */
             z-index: 1;
             background: #000;
             border-bottom: 2px solid #d4b996;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            /* Height is now controlled by the image, not fixed here */
+            overflow: hidden;
         }
 
-        /* The actual image tag */
-        #headerImage {
-            width: 100%;     /* Fits the full width of the screen */
-            height: auto;    /* Height adjusts automatically to show full picture */
-            display: block;  /* Removes extra space below image */
-            max-width: 100%;
-        }
-
-        /* The dark overlay sitting on top of the image */
-        .header-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* The container where the JS injects the image */
+        .header-bg-container {
             width: 100%;
             height: 100%;
-            /* Gradient from transparent at top to dark at bottom */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
-            pointer-events: none; /* Allows clicking through overlay if needed */
+            /* Initial fallback */
+            background: linear-gradient(
+                rgba(0, 0, 0, 0.3), 
+                rgba(0, 0, 0, 0.6)
+            ), url('https://images.unsplash.com/photo-1596703923338-48f1c07e4f2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center top;
+            transition: background-image 0.5s ease;
+        }
+
+        /* Optional: Overlay text on the image if desired later */
+        .header-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, #050505, transparent);
         }
 
         /* ===== MAIN CONTAINER ===== */
         .main-container {
-            /* Pulls content up slightly to overlap the bottom of the image */
-            margin-top: -50px; 
+            /* Pull the container up to overlap the image box slightly */
+            margin-top: -80px; 
             position: relative;
             z-index: 2;
             padding: 0 20px 60px 20px;
@@ -82,7 +88,7 @@
             border-radius: 20px;
             overflow: hidden;
             width: 100%;
-            max-width: 900px; 
+            max-width: 900px; /* Slightly narrower for the new layout */
             padding: 50px 40px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(212, 185, 150, 0.3);
@@ -256,7 +262,7 @@
             animation: bounce 2s infinite;
             z-index: 20;
             pointer-events: none;
-            display: none;
+            display: none; /* Hidden on desktop since content is visible */
         }
 
         .scroll-indicator p {
@@ -307,8 +313,13 @@
 
         /* Tablets */
         @media (max-width: 768px) {
+            .header-banner {
+                height: 40vh;
+                min-height: 300px;
+            }
+
             .main-container {
-                margin-top: -30px; /* Less overlap on mobile so more of the image is seen */
+                margin-top: -50px;
                 padding: 0 15px 40px 15px;
             }
             
@@ -359,8 +370,13 @@
 
         /* Mobile */
         @media (max-width: 480px) {
+            .header-banner {
+                height: 35vh;
+                min-height: 250px;
+            }
+
             .main-container {
-                margin-top: -20px; /* Even less overlap on small mobile */
+                margin-top: -30px;
             }
 
             .award-card {
@@ -424,10 +440,11 @@
 </head>
 <body>
     
-    <!-- TOP HEADER BOX: Full Image visible -->
+    <!-- NEW: Top Header Box for the Image -->
     <div class="header-banner">
-        <!-- Using IMG tag instead of CSS background for full picture visibility -->
-        <img id="headerImage" src="" alt="Model Award Banner">
+        <div class="header-bg-container" id="backgroundContainer">
+            <!-- Background image will be set here via JS -->
+        </div>
         <div class="header-overlay"></div>
     </div>
 
@@ -461,6 +478,7 @@
                     </div>
                     
                     <div class="watch-show-container">
+                        <!-- Replaced href with # for demo purposes, originally index2.html -->
                         <a href="index2.html" class="watch-show-btn">
                             <i class="fas fa-play-circle"></i> Watch Show
                         </a>
@@ -469,6 +487,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <p>Click "Watch Show" for Services</p>
+                <i class="fas fa-arrow-right"></i>
             </div>
         </section>
     </div>
@@ -484,13 +507,13 @@
             const minutesEl = document.getElementById("minutes");
             const secondsEl = document.getElementById("seconds");
             const notification = document.getElementById("notification");
-            // Targeting the IMG tag directly
-            const headerImage = document.getElementById("headerImage");
+            // Now targeting the header bg container
+            const backgroundContainer = document.getElementById("backgroundContainer");
             const countdownTitle = document.getElementById("countdownTitle");
             const countdownNote = document.getElementById("countdownNote");
 
             // Set 48-hour countdown from current time
-            let totalSeconds = 48 * 60 * 60; 
+            let totalSeconds = 48 * 60 * 60; // 48 hours in seconds
 
             // Countdown function
             function updateCountdown() {
@@ -502,6 +525,7 @@
                     countdownTitle.textContent = "🎉 January 4th Has Arrived!";
                     countdownNote.textContent = "Welcome to Model Of The Year Award 2025!";
                     
+                    // Show celebration notification
                     if (!window.countdownFinished) {
                         showNotification("🎉 January 4th has arrived! Welcome to Model Of The Year Award 2025!");
                         window.countdownFinished = true;
@@ -540,8 +564,9 @@
                 }, 3000);
             }
 
-            // Set background image (Now setting SRC for IMG tag)
+            // Set background image for the header box
             function setBackgroundImage() {
+                // Try multiple image sources
                 const imageSources = [
                     'images/award-image1.png',
                     'images/first_pic.jpeg',
@@ -555,18 +580,21 @@
                 
                 function tryNextImage() {
                     if (currentImage >= imageSources.length) {
-                        // All images failed - use a placeholder or hide
-                        headerImage.style.display = 'none';
-                        console.log('All images failed to load.');
+                        // All images failed - use solid color
+                        backgroundContainer.style.background = 
+                            'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))';
                         return;
                     }
                     
                     const img = new Image();
-                    
                     img.onload = function() {
                         // Image loaded successfully
-                        headerImage.src = imageSources[currentImage];
-                        headerImage.style.display = 'block';
+                        backgroundContainer.style.backgroundImage = 
+                            `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), 
+                             url('${imageSources[currentImage]}')`;
+                        backgroundContainer.style.backgroundSize = 'cover';
+                        backgroundContainer.style.backgroundPosition = 'center top'; // Focus on top
+                        backgroundContainer.style.backgroundRepeat = 'no-repeat';
                         console.log('Background image loaded:', imageSources[currentImage]);
                     };
                     
