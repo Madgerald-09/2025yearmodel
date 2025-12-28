@@ -147,16 +147,17 @@
       .video-overlay p {
         color: var(--text-muted);
         font-size: 0.9rem;
+        margin-bottom: 15px; /* Added margin for spacing before button */
       }
 
       .play-btn {
-        margin-top: 15px;
+        margin-top: 0; /* Reset margin since p has it */
         background: linear-gradient(
           135deg,
           var(--bronze),
           var(--secondary-gold)
         );
-        color: #fff;
+        color: #181212;
         border: none;
         padding: 12px 24px;
         border-radius: 8px;
@@ -166,20 +167,152 @@
         align-items: center;
         gap: 8px;
         transition: transform 0.2s;
+        box-shadow: 0 4px 10px rgba(93, 76, 58, 0.4);
       }
 
       .play-btn:hover {
         transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(93, 76, 58, 0.6);
       }
 
-      /* ===== IMAGE STYLES (UPDATED) ===== */
+      /* Fullscreen Exit Hint */
+      .exit-hint {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(0, 0, 0, 0.6);
+        color: rgba(255, 255, 255, 0.9);
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 105; /* Above video controls */
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        backdrop-filter: blur(3px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .exit-hint.visible {
+        opacity: 1;
+      }
+
+      /* ===== IMAGE STYLES ===== */
       .responsive-img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         display: block;
         border-radius: inherit;
         background-color: transparent;
+      }
+
+      /* Style for the DM Text */
+      .dm-text {
+        color: var(--text-white);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        margin: 15px 0;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        letter-spacing: 0.5px;
+      }
+
+      /* Style for the Contact Image */
+      .contact-display-img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        border-radius: 12px;
+        border: 3px solid var(--bronze);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        display: block;
+        margin: 0 auto 25px auto;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-display-img:hover {
+        transform: scale(1.02);
+      }
+
+      /* ===== ENHANCED BUTTON STYLES ===== */
+      .whatsapp-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 350px;
+        padding: 16px;
+        border-radius: 50px; /* Pill shape */
+        font-weight: 700;
+        text-decoration: none;
+        color: #fff;
+        margin: 15px auto;
+        transition: var(--transition);
+        cursor: pointer;
+        /* WhatsApp Gradient Design */
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .whatsapp-button:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+        filter: brightness(1.1);
+      }
+
+      .facebook-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: linear-gradient(135deg, #1877f2, #1058a3);
+        color: #fff;
+        padding: 18px 45px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 1rem;
+        transition: var(--transition);
+        box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
+      }
+
+      .facebook-button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(24, 119, 242, 0.6);
+        filter: brightness(1.1);
+      }
+
+      .back-btn {
+        background: linear-gradient(
+          135deg,
+          var(--primary-gold),
+          var(--secondary-gold)
+        );
+        color: #1a120b; /* Dark text for contrast on gold */
+        text-decoration: none;
+        padding: 16px 40px;
+        border-radius: 50px;
+        display: inline-block;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: var(--transition);
+        border: 2px solid var(--primary-gold);
+        box-shadow: 0 6px 20px rgba(212, 185, 150, 0.3);
+      }
+      .back-btn:hover {
+        background: transparent;
+        color: var(--primary-gold);
+        transform: translateY(-3px);
+        box-shadow: 0 0 15px rgba(212, 185, 150, 0.5);
       }
 
       /* ===== SECTION STYLING ===== */
@@ -191,7 +324,6 @@
         backdrop-filter: blur(10px);
       }
 
-      /* Section 1: Services Split */
       .services-card {
         display: flex;
         flex-direction: column;
@@ -230,6 +362,7 @@
       .service-item:hover {
         border-color: var(--primary-gold);
         transform: translateY(-3px);
+        background: rgba(42, 36, 31, 0.95);
       }
 
       .service-item i {
@@ -238,46 +371,6 @@
         margin-bottom: 10px;
       }
 
-      .dm-button,
-      .whatsapp-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-        max-width: 350px;
-        padding: 15px;
-        border-radius: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        color: #fff;
-        margin: 10px auto;
-        transition: var(--transition);
-        cursor: pointer;
-      }
-
-      .dm-button {
-        background: linear-gradient(
-          135deg,
-          var(--bronze),
-          var(--secondary-gold)
-        );
-      }
-
-      .dm-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(93, 76, 58, 0.4);
-      }
-
-      .whatsapp-button {
-        background: linear-gradient(135deg, #25d366, #1da851);
-      }
-      .whatsapp-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-      }
-
-      /* Portfolio Container */
       .portfolio-placeholder {
         width: 100%;
         height: 40vh;
@@ -288,9 +381,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       }
 
-      /* Section Typography (Thank You / Vid 5) */
       .text-content {
         padding: 30px;
         background: var(--bg-section);
@@ -315,7 +408,6 @@
         font-size: 2rem;
       }
 
-      /* Vid 6 Specifics */
       .award-badge {
         display: inline-block;
         background: var(--primary-gold);
@@ -336,7 +428,6 @@
         margin-bottom: 10px;
       }
 
-      /* Vid 7 Specifics (Full Screen) */
       .vid-seven-section {
         position: relative;
         min-height: 100vh;
@@ -376,7 +467,6 @@
         pointer-events: none;
       }
 
-      /* Pics Container */
       .pics-nine-image {
         width: 100%;
         height: 40vh;
@@ -395,46 +485,38 @@
         text-align: center;
       }
 
-      .facebook-button {
-        background: linear-gradient(135deg, #4267b2, #365899);
-        color: #fff;
-        padding: 18px 40px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        transition: var(--transition);
-        box-shadow: 0 5px 15px rgba(66, 103, 178, 0.4);
-      }
-
-      .facebook-button:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(66, 103, 178, 0.6);
-      }
-
-      /* Back Button */
       .back-indicator {
         width: 100%;
         text-align: center;
         padding: 20px 0;
       }
-      .back-btn {
-        background: rgba(93, 76, 58, 0.5);
-        color: #fff;
-        text-decoration: none;
+
+      /* ===== TOAST NOTIFICATION ===== */
+      .toast-notification {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: rgba(20, 15, 10, 0.95);
+        color: var(--primary-gold);
         padding: 15px 30px;
         border-radius: 50px;
-        display: inline-block;
-        transition: var(--transition);
-        border: 1px solid var(--bronze);
+        border: 1px solid var(--primary-gold);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+        font-weight: 600;
+        font-size: 0.9rem;
+        z-index: 2000;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
-      .back-btn:hover {
-        background: var(--bronze);
-        transform: translateY(-3px);
+
+      .toast-notification.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
       }
 
       /* ===== ANIMATIONS ===== */
@@ -449,8 +531,6 @@
       }
 
       /* ===== RESPONSIVE MEDIA QUERIES ===== */
-
-      /* Tablets & Small Desktops */
       @media (min-width: 769px) {
         .services-card {
           flex-direction: row;
@@ -480,8 +560,6 @@
           height: 50vh;
         }
       }
-
-      /* Desktop */
       @media (min-width: 1025px) {
         .services-list {
           grid-template-columns: repeat(3, 1fr);
@@ -502,8 +580,6 @@
           height: 50vh;
         }
       }
-
-      /* Mobile Landscape & Small Screens adjustments */
       @media (max-width: 768px) {
         .services-title {
           font-size: 1.8rem;
@@ -532,17 +608,18 @@
         <div class="content-card services-card fade-in-section">
           <div class="video-side">
             <div class="video-wrapper video-container-md">
-              <video id="video1" playsinline preload="metadata">
-                <source src="videos/award_video1.mp4" type="video/mp4" />
+              <video id="video1" preload="metadata">
+                <source src="videos/First_video.mp4" type="video/mp4" />
               </video>
+              <!-- Exit Hint -->
+              <div class="exit-hint" id="hint-video1">
+                <i class="fas fa-compress"></i> Tap to Exit
+              </div>
               <!-- OVERLAY -->
               <div class="video-overlay" id="overlay1">
                 <i class="fas fa-play-circle"></i>
-                <h3>Our Services Video</h3>
-                <p>Click to play showcase</p>
-                <button class="play-btn">
-                  <i class="fas fa-volume-up"></i> Play with Sound
-                </button>
+                <h3>Our Services</h3>
+                <p>Click to play</p>
               </div>
             </div>
           </div>
@@ -558,37 +635,28 @@
             <div class="services-list">
               <div class="service-item">
                 <i class="fas fa-trophy"></i>
-                <h3>Award Events</h3>
+                <h3>Graphics Design</h3>
               </div>
               <div class="service-item">
                 <i class="fas fa-video"></i>
-                <h3>Video Production</h3>
+                <h3>Video Editing</h3>
               </div>
               <div class="service-item">
                 <i class="fas fa-photo-video"></i>
-                <h3>Media Coverage</h3>
+                <h3>Video Shooting</h3>
               </div>
             </div>
 
             <div style="text-align: center">
-              <a
-                href="https://instagram.com/modelaward"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="dm-button"
-              >
-                <i class="fab fa-instagram"></i> Send us a DM
-              </a>
+              <!-- TEXT ADDED BACK HERE -->
+              <p class="dm-text">Give us a Dm of any of our services</p>
 
-              <!-- IMAGE PLACEHOLDER 1: PORTFOLIO -->
-              <div class="portfolio-placeholder">
-                <img
-                  src="images/first_pic.jpeg"
-                  alt="Portfolio Image"
-                  class="responsive-img"
-                  onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-images\' style=\'font-size:2rem; margin-bottom:10px;\'></i><p>Image not found</p>'"
-                />
-              </div>
+              <!-- YELLOW CONTACT IMAGE -->
+              <img
+                src="https://z-cdn-media.chatglm.cn/files/8bd1d41d-f0d8-43f5-9277-5045969c9503.jpg?auth_key=1866960160-61584742207d409a9eaa62d2f6b9234e-0-14912b8395edb024857b9eff387794a9"
+                alt="Contact Us"
+                class="contact-display-img"
+              />
             </div>
           </div>
         </div>
@@ -596,14 +664,16 @@
         <!-- THANK YOU SECTION -->
         <div class="content-card fade-in-section">
           <div class="video-wrapper video-container-md">
-            <video id="video2" playsinline preload="metadata">
-              <source src="videos/thank-you-video.mp4" type="video/mp4" />
+            <video id="video2" preload="metadata">
+              <source src="videos/Second_video.mp4" type="video/mp4" />
             </video>
+            <div class="exit-hint" id="hint-video2">
+              <i class="fas fa-compress"></i> Tap to Exit
+            </div>
             <div class="video-overlay" id="overlay2">
               <i class="fas fa-play-circle"></i>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play with Sound
-              </button>
+              <h3>Thank You</h3>
+              <p>Click to play</p>
             </div>
           </div>
           <div class="text-content">
@@ -619,28 +689,32 @@
         <!-- CONTACT SECTION -->
         <div class="content-card fade-in-section">
           <div class="services-header">
-            <h2 class="services-title">Contact Us</h2>
+            <h2 class="services-title">Most Active Contestants</h2>
           </div>
           <div
             class="video-wrapper video-container-md"
             style="margin-bottom: 20px"
           >
-            <video id="video3" playsinline preload="metadata">
+            <video id="video3" preload="metadata">
               <!-- Placeholder source -->
-              <source src="" type="video/mp4" />
+              <source src="videos/Third_video.mp4" type="video/mp4" />
             </video>
+            <div class="exit-hint" id="hint-video3">
+              <i class="fas fa-compress"></i> Tap to Exit
+            </div>
             <div class="video-overlay" id="overlay3">
               <i class="fas fa-video"></i>
-              <h3>Video Coming Soon</h3>
+              <h3>Most Active Contestant</h3>
+              <p>Click to play</p>
             </div>
           </div>
           <div class="text-content">
             <h3 style="color: var(--primary-gold); margin-bottom: 15px">
               Get In Touch
             </h3>
-            <p style="margin-bottom: 20px">We'd love to hear from you!</p>
+            <p style="margin-bottom: 20px">Click link to Congratulate</p>
             <a
-              href="https://wa.me/2347077027579?text=Hello%20Model%20Of%20The%20Year%20Award%20team!"
+              href="https://wa.me/2347077027579?text=Congratulations%20for%20being%20the%20most%20active%20contestant!"
               target="_blank"
               rel="noopener noreferrer"
               class="whatsapp-button"
@@ -656,15 +730,16 @@
             Contestants Evicted
           </h2>
           <div class="video-wrapper video-container-md">
-            <video id="video5" playsinline preload="metadata">
-              <source src="videos/video5.mp4" type="video/mp4" />
+            <video id="video5" preload="metadata">
+              <source src="videos/Fourth_video.mp4" type="video/mp4" />
             </video>
+            <div class="exit-hint" id="hint-video5">
+              <i class="fas fa-compress"></i> Tap to Exit
+            </div>
             <div class="video-overlay" id="overlay5">
               <i class="fas fa-play-circle"></i>
               <h3>Evicted Contestants</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Video
-              </button>
+              <p>Click to play</p>
             </div>
           </div>
           <div class="text-content">
@@ -684,15 +759,16 @@
           </div>
 
           <div class="video-wrapper video-container-md">
-            <video id="video6" playsinline preload="metadata">
-              <source src="videos/video6.mp4" type="video/mp4" />
+            <video id="video6" preload="metadata">
+              <source src="videos/firth_video.mp4" type="video/mp4" />
             </video>
+            <div class="exit-hint" id="hint-video6">
+              <i class="fas fa-compress"></i> Tap to Exit
+            </div>
             <div class="video-overlay" id="overlay6">
               <i class="fas fa-play-circle"></i>
-              <h3>Runner Up Video</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Video
-              </button>
+              <h3>Second Runner up</h3>
+              <p>Click to play</p>
             </div>
           </div>
 
@@ -714,18 +790,55 @@
           <div class="vid-seven-label">Short Interlude</div>
 
           <div class="video-wrapper video-container-lg">
-            <video id="video7" playsinline preload="metadata">
-              <source src="videos/thank-you-video.mp4" type="video/mp4" />
+            <video id="video7" preload="metadata">
+              <source src="videos/sixth_video.mp4" type="video/mp4" />
             </video>
+            <div class="exit-hint" id="hint-video7">
+              <i class="fas fa-compress"></i> Tap to Exit
+            </div>
             <div class="video-overlay" id="overlay7">
               <i class="fas fa-play-circle" style="font-size: 4rem"></i>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Full Screen
-              </button>
+              <h3>Short Interlude</h3>
+              <p>Click to play</p>
             </div>
           </div>
 
           <div class="vid-seven-title">Vid Seven</div>
+        </div>
+
+        <!-- NEW SECTION: SECOND RUNNER UP VIDEO (ADDED HERE) -->
+        <div class="content-card fade-in-section">
+          <div style="text-align: center; margin-bottom: 20px">
+            <span class="award-badge">Award Presentation</span>
+            <h2 class="runner-up-title">SECOND RUNNER UP</h2>
+          </div>
+
+          <div class="video-wrapper video-container-md">
+            <video id="video9" preload="metadata">
+              <!-- Replace this source with your actual video file -->
+              <source src="videos/Seventh_video.mp4" type="video/mp4" />
+            </video>
+            <div class="exit-hint" id="hint-video9">
+              <i class="fas fa-compress"></i> Tap to Exit
+            </div>
+            <div class="video-overlay" id="overlay9">
+              <i class="fas fa-play-circle"></i>
+              <h3>Second Runner Up</h3>
+              <p>Click to play</p>
+            </div>
+          </div>
+
+          <div class="text-content">
+            <p>Click Link to Congratulate</p>
+            <a
+              href="https://wa.me/2347077027579?text=Congratulations%20on%20being%20the%20Second%20Runner%20Up!"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="whatsapp-button"
+            >
+              <i class="fab fa-whatsapp"></i> CLICK ME
+            </a>
+          </div>
         </div>
 
         <!-- VID EIGHT SECTION -->
@@ -752,20 +865,21 @@
           </div>
 
           <div class="video-wrapper" style="height: 80vh; margin-bottom: 20px">
-            <video id="video8" playsinline preload="metadata">
-              <source src="videos/video8.mp4" type="video/mp4" />
+            <video id="video8" preload="metadata">
+              <source src="videos/Eighth_video.mp4" type="video/mp4" />
             </video>
+            <div class="exit-hint" id="hint-video8">
+              <i class="fas fa-compress"></i> Tap to Exit
+            </div>
             <div class="video-overlay" id="overlay8">
               <i class="fas fa-play-circle"></i>
               <h3>Model Figure</h3>
-              <button class="play-btn">
-                <i class="fas fa-volume-up"></i> Play Video
-              </button>
+              <p>Click to play</p>
             </div>
           </div>
 
           <!-- IMAGE PLACEHOLDER 2: PICS THREE -->
-          <div class="pics-nine-image" style="height: 13vh;">
+          <div class="pics-nine-image" style="height: 13vh">
             <img
               src="images/pics-thre.jpeg"
               alt="Pics Three"
@@ -833,6 +947,11 @@
       </section>
     </div>
 
+    <!-- Toast Notification Element -->
+    <div class="toast-notification" id="toast">
+      <i class="fas fa-info-circle"></i> <span id="toast-msg">Message</span>
+    </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // 1. SCROLL ANIMATION LOGIC
@@ -853,7 +972,22 @@
           observer.observe(section);
         });
 
-        // 2. VIDEO MANAGEMENT
+        // 2. TOAST NOTIFICATION FUNCTION
+        const toast = document.getElementById("toast");
+        const toastMsg = document.getElementById("toast-msg");
+        let toastTimeout;
+
+        function showToast(message, duration = 3000) {
+          toastMsg.textContent = message;
+          toast.classList.add("show");
+
+          clearTimeout(toastTimeout);
+          toastTimeout = setTimeout(() => {
+            toast.classList.remove("show");
+          }, duration);
+        }
+
+        // 3. VIDEO MANAGEMENT
         const videoIds = [
           "video1",
           "video2",
@@ -861,37 +995,58 @@
           "video5",
           "video6",
           "video7",
+          "video9", // Added new video ID
           "video8",
         ];
 
-        // --- NEW FEATURE: PAUSE OTHER VIDEOS WHEN ONE STARTS ---
+        // --- FEATURE: PAUSE OTHER VIDEOS WHEN ONE STARTS ---
         function pauseOtherVideos(currentVideo) {
           videoIds.forEach((id) => {
             const video = document.getElementById(id);
-            // Check if video exists, is not the current one, and is playing
             if (video && video !== currentVideo && !video.paused) {
-              video.pause(); // Pause triggers the 'pause' event listener which resets overlay
+              video.pause();
             }
           });
         }
 
-        // --- NEW FEATURE: PAUSE VIDEO WHEN OUT OF VIEWPORT (SCROLL) ---
+        // --- FEATURE: EXIT FULLSCREEN ---
+        function exitFullscreen() {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+          }
+        }
+
+        // --- FEATURE: REQUEST FULLSCREEN ---
+        function requestFullscreen(video) {
+          if (video.requestFullscreen) {
+            video
+              .requestFullscreen()
+              .catch((err) => console.log("Fullscreen error:", err));
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen();
+          }
+        }
+
+        // --- VIDEO VISIBILITY OBSERVER ---
         const videoVisibilityObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               const video = entry.target;
-              // If the video leaves the viewport (is not intersecting)
               if (!entry.isIntersecting) {
                 if (!video.paused) {
                   video.pause();
+                  exitFullscreen();
                 }
               }
             });
           },
-          {
-            root: null,
-            threshold: 0.25, // Pause when less than 25% of the video is visible
-          }
+          { root: null, threshold: 0.25 }
         );
 
         videoIds.forEach((id) => {
@@ -899,14 +1054,16 @@
           const overlay = document.getElementById(
             id.replace("video", "overlay")
           );
+          const hint = document.getElementById("hint-" + id);
 
           if (!video || !overlay) return;
 
-          // Observe this video for scroll-away pausing
+          // Variable to hold the specific timer for this video
+          let hintTimeout;
+
           videoVisibilityObserver.observe(video);
 
           const startVideo = () => {
-            // 1. Pause all other videos first
             pauseOtherVideos(video);
 
             video.muted = false;
@@ -917,6 +1074,21 @@
                 .then(() => {
                   overlay.style.display = "none";
                   video.controls = true;
+                  requestFullscreen(video);
+
+                  // --- NEW LOGIC: SHOW HINT & SET TIMER ---
+                  if (hint) {
+                    // 1. Show hint immediately
+                    hint.classList.add("visible");
+
+                    // 2. Clear any previous timer (e.g. if user clicks replay)
+                    if (hintTimeout) clearTimeout(hintTimeout);
+
+                    // 3. Set timer to hide hint after 30 seconds
+                    hintTimeout = setTimeout(() => {
+                      hint.classList.remove("visible");
+                    }, 30000); // 30000 milliseconds = 30 seconds
+                  }
                 })
                 .catch((error) => {
                   console.log("Autoplay prevented, trying muted");
@@ -926,6 +1098,16 @@
                     .then(() => {
                       overlay.style.display = "none";
                       video.controls = true;
+                      requestFullscreen(video);
+
+                      // --- NEW LOGIC: APPLY TIMER TO MUTED FALLBACK TOO ---
+                      if (hint) {
+                        hint.classList.add("visible");
+                        if (hintTimeout) clearTimeout(hintTimeout);
+                        hintTimeout = setTimeout(() => {
+                          hint.classList.remove("visible");
+                        }, 30000);
+                      }
                     })
                     .catch((e) => console.error("Video play failed:", e));
                 });
@@ -938,11 +1120,26 @@
             overlay.style.display = "flex";
             video.currentTime = 0;
             video.controls = false;
+
+            if (hint) hint.classList.remove("visible");
+
+            // --- CLEAR TIMER IMMEDIATELY ON END ---
+            if (hintTimeout) clearTimeout(hintTimeout);
+
+            // --- AUTO EXIT FULLSCREEN ---
+            exitFullscreen();
+
+            // --- NOTIFICATION ---
+            showToast("Video Finished! Exiting Fullscreen...");
           });
 
           video.addEventListener("pause", () => {
             if (!video.ended) {
               overlay.style.display = "flex";
+              if (hint) hint.classList.remove("visible");
+
+              // --- CLEAR TIMER IMMEDIATELY ON PAUSE ---
+              if (hintTimeout) clearTimeout(hintTimeout);
             }
           });
 

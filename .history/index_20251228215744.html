@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Of The Year Award 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== BASE STYLES (UNCHANGED) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            background-color: #050505; 
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ===== HEADER BANNER (UNCHANGED) ===== */
+        .header-banner {
+            position: relative;
+            width: 100%;
+            z-index: 1;
+            background: #000;
+            border-bottom: 2px solid #d4b996;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        #headerImage {
+            width: 100%;
+            height: auto;    /* Keeps original image height logic */
+            display: block;
+            max-width: 100%;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
+            pointer-events: none;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main-container {
+            margin-top: -50px; 
+            position: relative;
+            z-index: 2;
+            padding: 0 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== AWARD CARD (NEW LAYOUT STRUCTURE) ===== */
+        .page-section {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .award-card {
+            background: rgba(20, 15, 10, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px; /* Slightly narrower to match sketch paper ratio */
+            min-height: 600px; /* Ensure height to match paper aspect */
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(212, 185, 150, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== TOP ROW: front page / Pic One ===== */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 40px; /* Space between top labels and main content */
+            padding: 0 10px;
+        }
+
+        .sketch-label {
+            font-size: 0.9rem;
+            color: #d4b996;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            border: 1px solid rgba(212, 185, 150, 0.3);
+            padding: 5px 10px;
+            background: rgba(212, 185, 150, 0.1);
+        }
+
+        /* ===== CENTER CONTENT: Title & Year ===== */
+        .card-center {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            color: #d4b996;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .award-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .model-text {
+            color: #d4b996;
+            display: inline-block;
+            background: linear-gradient(45deg, #d4b996, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .year {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #d4b996;
+            margin: 10px 0 40px 0; /* Large margin before button */
+            letter-spacing: 6px;
+            background: linear-gradient(45deg, #d4b996, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== BUTTON (Moved to Center-Bottom like sketch) ===== */
+        .watch-show-container {
+            margin-bottom: 20px;
+        }
+
+        .watch-show-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 50px;
+            background: linear-gradient(45deg, #d4b996, #ffd700);
+            color: #000000;
+            text-decoration: none;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 185, 150, 0.4);
+            cursor: pointer;
+        }
+
+        .watch-show-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 185, 150, 0.6);
+        }
+
+        .watch-show-btn i {
+            font-size: 1.3rem;
+        }
+
+        /* ===== BOTTOM FOOTER: Countdown Box ===== */
+        .card-footer {
+            width: 100%;
+            border-top: 1px solid rgba(212, 185, 150, 0.2);
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .countdown-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 185, 150, 0.4);
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .countdown-title {
+            font-size: 0.8rem;
+            color: #d4b996;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .countdown-timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* ===== NOTIFICATION ===== */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(20, 15, 10, 0.95);
+            color: #ffffff;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.4s ease;
+            z-index: 1000;
+            max-width: 400px;
+            border-left: 4px solid #d4b996;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== MEDIA QUERIES ===== */
+        @media (max-width: 768px) {
+            .main-container { margin-top: -30px; padding: 0 15px 40px 15px; }
+            .award-card { padding: 30px 20px; min-height: auto; }
+            .award-title { font-size: 2rem; }
+            .year { font-size: 3.5rem; }
+            .card-header { margin-bottom: 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .award-card { padding: 25px 15px; }
+            .award-title { font-size: 1.6rem; }
+            .year { font-size: 2.8rem; }
+            .sketch-label { font-size: 0.7rem; padding: 3px 6px; }
+            .watch-show-btn { padding: 15px 30px; font-size: 1rem; width: 100%; }
+            .countdown-box { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER BANNER -->
+    <div class="header-banner">
+        <img id="headerImage" src="" alt="Model Award Banner">
+        <div class="header-overlay"></div>
+    </div>
+
+    <div class="main-container">
+        <section class="page-section award-page">
+            <div class="award-card">
+                
+                <!-- TOP ROW: Matches Sketch "front page" (Left) and "Pic One" (Right) -->
+                <div class="card-header">
+                </div>
+
+                <!-- CENTER ROW: Matches Sketch Title, Year, Button -->
+                <div class="card-center">
+                    <div class="welcome-text">Welcome To</div>
+                    <h1 class="award-title">
+                        <span class="model-text">Model</span> Of The Year Award
+                    </h1>
+                    <div class="year">2025</div>
+                    
+                    <div class="watch-show-container">
+                        <a href="index2.html" class="watch-show-btn">
+                            <i class="fas fa-play-circle"></i> Watch Show
+                        </a>
+                    </div>
+                </div>
+
+                <!-- BOTTOM ROW: Matches Sketch Box (Countdown) -->
+                <div class="card-footer">
+                    <div class="countdown-box">
+                        <div class="countdown-title">Countdown to Jan 4th</div>
+                        <div class="countdown-timer" id="timerDisplay">
+                            48h 00m 00s
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    
+    <div class="notification" id="notification">
+        <p>Welcome to Model Of The Year Award 2025!</p>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // DOM Elements
+            const timerDisplay = document.getElementById("timerDisplay");
+            const notification = document.getElementById("notification");
+            const headerImage = document.getElementById("headerImage");
+
+            // Set 48-hour countdown from current time
+            let totalSeconds = 48 * 60 * 60; 
+
+            // Countdown function
+            function updateCountdown() {
+                if (totalSeconds <= 0) {
+                    timerDisplay.textContent = "SHOW STARTED";
+                    if (!window.countdownFinished) {
+                        showNotification("🎉 The show has started!");
+                        window.countdownFinished = true;
+                    }
+                    return;
+                }
+
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+
+                // Format: HHh MMm SSs to fit in the bottom box neatly
+                const hStr = hours.toString().padStart(2, '0');
+                const mStr = minutes.toString().padStart(2, '0');
+                const sStr = seconds.toString().padStart(2, '0');
+
+                timerDisplay.textContent = `${hStr}h ${mStr}m ${sStr}s`;
+                totalSeconds--;
+            }
+
+            // Show notification
+            function showNotification(message) {
+                notification.querySelector("p").textContent = message;
+                notification.classList.add("show");
+                setTimeout(() => {
+                    notification.classList.remove("show");
+                }, 3000);
+            }
+
+            // Set background image
+            function setBackgroundImage() {
+                const imageSources = [
+                    'images/award-image1.png',
+                    'images/first_pic.jpeg',
+                    'images/model-award.jpg',
+                    'images/award.jpg',
+                    'https://images.unsplash.com/photo-1596703923338-48f1c07e4f2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                ];
+                
+                let currentImage = 0;
+                
+                function tryNextImage() {
+                    if (currentImage >= imageSources.length) {
+                        headerImage.style.display = 'none';
+                        return;
+                    }
+                    
+                    const img = new Image();
+                    img.onload = function() {
+                        headerImage.src = imageSources[currentImage];
+                        headerImage.style.display = 'block';
+                    };
+                    img.onerror = function() {
+                        currentImage++;
+                        tryNextImage();
+                    };
+                    img.src = imageSources[currentImage];
+                }
+                tryNextImage();
+            }
+
+            // Initialize
+            function initialize() {
+                setBackgroundImage();
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+                setTimeout(() => {
+                    showNotification("48-hour countdown has started!");
+                }, 1000);
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
