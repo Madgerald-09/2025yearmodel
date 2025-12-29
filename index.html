@@ -4,56 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Model Of The Year Award 2025</title>
+    
+    <!-- External Assets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+
+    <!-- GOOGLE ANALYTICS 4 INTEGRATION -->
+    <!-- Asynchronous script for performance -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DF6NMBG2Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Configuration with your specific ID
+      gtag('config', 'G-3DF6NMBG2Z');
+    </script>
+
     <style>
-        /* ===== BASE STYLES (UNCHANGED) ===== */
+        /* =========================================
+           VARIABLES & RESET
+           ========================================= */
+        :root {
+            --bg-dark: #050505;
+            --bg-card: rgba(20, 15, 10, 0.95);
+            --primary-gold: #d4b996;
+            --secondary-gold: #a08c70;
+            --bronze: #5d4c3a;
+            --text-white: #ffffff;
+            --text-muted: #a08c70;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Montserrat', 'Segoe UI', sans-serif;
-            background-color: #050505; 
-            color: #ffffff;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
             overflow-x: hidden;
             min-height: 100vh;
-            position: relative;
         }
 
-        /* ===== HEADER BANNER (UNCHANGED) ===== */
+        /* =========================================
+           PAGE VIEWS (SPA LOGIC)
+           ========================================= */
+        .page-view {
+            display: block; /* Default to block, will toggle via JS */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================
+           HOME PAGE STYLES (index.html)
+           ========================================= */
         .header-banner {
             position: relative;
             width: 100%;
             z-index: 1;
             background: #000;
-            border-bottom: 2px solid #d4b996;
+            border-bottom: 2px solid var(--primary-gold);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
         }
 
         #headerImage {
             width: 100%;
-            height: auto;    /* Keeps original image height logic */
+            height: auto;
             display: block;
             max-width: 100%;
         }
 
         .header-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
             pointer-events: none;
         }
 
-        /* ===== MAIN CONTAINER ===== */
         .main-container {
-            margin-top: -50px; 
+            margin-top: -50px;
             position: relative;
             z-index: 2;
             padding: 0 20px 60px 20px;
@@ -62,7 +108,6 @@
             align-items: center;
         }
 
-        /* ===== AWARD CARD (NEW LAYOUT STRUCTURE) ===== */
         .page-section {
             width: 100%;
             max-width: 1200px;
@@ -73,12 +118,12 @@
         }
 
         .award-card {
-            background: rgba(20, 15, 10, 0.95);
+            background: var(--bg-card);
             border-radius: 20px;
             overflow: hidden;
             width: 100%;
-            max-width: 800px; /* Slightly narrower to match sketch paper ratio */
-            min-height: 600px; /* Ensure height to match paper aspect */
+            max-width: 800px;
+            min-height: 600px;
             padding: 40px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
             border: 1px solid rgba(212, 185, 150, 0.3);
@@ -88,19 +133,18 @@
             flex-direction: column;
         }
 
-        /* ===== TOP ROW: front page / Pic One ===== */
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            margin-bottom: 40px; /* Space between top labels and main content */
+            margin-bottom: 40px;
             padding: 0 10px;
         }
 
         .sketch-label {
             font-size: 0.9rem;
-            color: #d4b996;
+            color: var(--primary-gold);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
@@ -109,7 +153,6 @@
             background: rgba(212, 185, 150, 0.1);
         }
 
-        /* ===== CENTER CONTENT: Title & Year ===== */
         .card-center {
             flex-grow: 1;
             display: flex;
@@ -122,7 +165,7 @@
 
         .welcome-text {
             font-size: 1.2rem;
-            color: #d4b996;
+            color: var(--primary-gold);
             letter-spacing: 4px;
             margin-bottom: 10px;
             font-weight: 600;
@@ -140,9 +183,7 @@
         }
 
         .model-text {
-            color: #d4b996;
-            display: inline-block;
-            background: linear-gradient(45deg, #d4b996, #ffd700);
+            background: linear-gradient(45deg, var(--primary-gold), #ffd700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -151,18 +192,13 @@
         .year {
             font-size: 5rem;
             font-weight: 900;
-            color: #d4b996;
-            margin: 10px 0 40px 0; /* Large margin before button */
+            color: var(--primary-gold);
+            margin: 10px 0 40px 0;
             letter-spacing: 6px;
-            background: linear-gradient(45deg, #d4b996, #ffd700);
+            background: linear-gradient(45deg, var(--primary-gold), #ffd700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        /* ===== BUTTON (Moved to Center-Bottom like sketch) ===== */
-        .watch-show-container {
-            margin-bottom: 20px;
         }
 
         .watch-show-btn {
@@ -171,7 +207,7 @@
             justify-content: center;
             gap: 10px;
             padding: 18px 50px;
-            background: linear-gradient(45deg, #d4b996, #ffd700);
+            background: linear-gradient(45deg, var(--primary-gold), #ffd700);
             color: #000000;
             text-decoration: none;
             border: none;
@@ -188,11 +224,6 @@
             box-shadow: 0 8px 20px rgba(212, 185, 150, 0.6);
         }
 
-        .watch-show-btn i {
-            font-size: 1.3rem;
-        }
-
-        /* ===== BOTTOM FOOTER: Countdown Box ===== */
         .card-footer {
             width: 100%;
             border-top: 1px solid rgba(212, 185, 150, 0.2);
@@ -212,7 +243,7 @@
 
         .countdown-title {
             font-size: 0.8rem;
-            color: #d4b996;
+            color: var(--primary-gold);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -226,184 +257,768 @@
             letter-spacing: 2px;
         }
 
-        /* ===== NOTIFICATION ===== */
-        .notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(20, 15, 10, 0.95);
-            color: #ffffff;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        /* =========================================
+           SHOW PAGE STYLES (index2.html)
+           ========================================= */
+        .services-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a120b 0%, #0a0a0a 100%);
+        }
+
+        .services-page {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid rgba(93, 76, 58, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .services-card {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            position: relative;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--bronze);
+            pointer-events: auto;
+        }
+
+        .video-container-sm { height: 50vh; min-height: 300px; }
+        .video-container-md { height: 75vh; min-height: 500px; }
+        .video-container-lg { height: 100vh; width: 100%; border-radius: 0; border: none; }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: auto;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-overlay i {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .video-overlay:hover i { transform: scale(1.1); color: #fff; }
+
+        .exit-hint {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 105;
+            pointer-events: none;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.4s ease;
-            z-index: 1000;
-            max-width: 400px;
-            border-left: 4px solid #d4b996;
+            transition: opacity 0.5s ease;
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex; align-items: center; gap: 8px;
         }
 
-        .notification.show {
-            opacity: 1;
-            transform: translateY(0);
+        .exit-hint.visible { opacity: 1; }
+
+        .content-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        /* ===== MEDIA QUERIES ===== */
+        .services-header { text-align: center; margin-bottom: 20px; }
+        .services-title { color: var(--primary-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        
+        .services-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .service-item {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--bronze);
+            transition: var(--transition);
+        }
+
+        .service-item:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-3px);
+            background: rgba(42, 36, 31, 0.95);
+        }
+
+        .service-item i { font-size: 2rem; color: var(--primary-gold); margin-bottom: 10px; }
+
+        .dm-text {
+            color: #fff; font-weight: 700; text-transform: uppercase;
+            font-size: 1.2rem; margin: 15px 0; text-align: center;
+        }
+
+        .contact-display-img {
+            width: 100%; max-width: 350px; height: auto;
+            border-radius: 12px; border: 3px solid var(--bronze);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            display: block; margin: 0 auto 25px auto;
+        }
+
+        .whatsapp-button {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 10px; width: 100%; max-width: 350px; padding: 16px;
+            border-radius: 50px; font-weight: 700; text-decoration: none;
+            color: #fff; margin: 15px auto; transition: var(--transition);
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .facebook-button {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: linear-gradient(135deg, #1877f2, #1058a3);
+            color: #fff; padding: 18px 45px; border-radius: 12px;
+            text-decoration: none; font-weight: 800; text-transform: uppercase;
+            transition: var(--transition); box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
+        }
+        
+        .facebook-button:hover { transform: translateY(-4px); filter: brightness(1.1); }
+
+        .back-btn {
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+            color: #1a120b; text-decoration: none; padding: 16px 40px;
+            border-radius: 50px; display: inline-block; font-weight: 700;
+            text-transform: uppercase; border: 2px solid var(--primary-gold);
+        }
+        
+        .back-btn:hover {
+            background: transparent; color: var(--primary-gold);
+            box-shadow: 0 0 15px rgba(212, 185, 150, 0.5);
+        }
+
+        .text-content {
+            padding: 30px; background: rgba(26, 26, 26, 0.8);
+            border-radius: 15px; border: 1px solid var(--bronze); text-align: center;
+        }
+
+        .big-text {
+            font-size: 2.5rem; font-weight: 800; color: var(--primary-gold);
+            text-transform: uppercase; margin: 20px 0; line-height: 1.2;
+        }
+
+        .vid-seven-section {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: #000; border-radius: 25px; overflow: hidden;
+            border: 1px solid var(--bronze);
+        }
+
+        .vid-seven-label {
+            position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+            z-index: 20; color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase; letter-spacing: 3px; font-style: italic;
+        }
+
+        .vid-seven-title {
+            position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%);
+            color: #fff; font-size: 2rem; font-weight: 800;
+            text-transform: uppercase; text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+            z-index: 20;
+        }
+
+        .pics-nine-image {
+            width: 100%; height: 40vh; background: rgba(26, 26, 26, 0.8);
+            border-radius: 20px; border: 2px solid var(--bronze);
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* =========================================
+           UTILITIES & NOTIFICATIONS
+           ========================================= */
+        .notification {
+            position: fixed; bottom: 30px; right: 30px;
+            background: rgba(20, 15, 10, 0.95); color: #ffffff;
+            padding: 15px 25px; border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            opacity: 0; transform: translateY(30px);
+            transition: all 0.4s ease; z-index: 2000;
+            max-width: 400px; border-left: 4px solid var(--primary-gold);
+        }
+        .notification.show { opacity: 1; transform: translateY(0); }
+
+        .toast-notification {
+            position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(20, 15, 10, 0.95); color: var(--primary-gold);
+            padding: 15px 30px; border-radius: 50px;
+            border: 1px solid var(--primary-gold);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            font-weight: 600; font-size: 0.9rem; z-index: 2000;
+            opacity: 0; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            text-align: center; display: flex; align-items: center; gap: 10px;
+        }
+        .toast-notification.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        .fade-in-section {
+            opacity: 0; transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-in-section.visible { opacity: 1; transform: translateY(0); }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
         @media (max-width: 768px) {
             .main-container { margin-top: -30px; padding: 0 15px 40px 15px; }
             .award-card { padding: 30px 20px; min-height: auto; }
             .award-title { font-size: 2rem; }
             .year { font-size: 3.5rem; }
-            .card-header { margin-bottom: 30px; }
+            .services-card { flex-direction: column; }
+            .video-side { padding-right: 0; }
+            .big-text { font-size: 2rem; }
+            .vid-seven-title { font-size: 1.5rem; }
+            .services-list { grid-template-columns: 1fr; }
+        }
+        
+        @media (min-width: 769px) {
+            .services-card { flex-direction: row; align-items: stretch; }
+            .video-side { flex: 1.2; padding-right: 20px; }
+            .content-side { flex: 1; }
+            .services-list { grid-template-columns: repeat(2, 1fr); }
+            .big-text { font-size: 3.5rem; }
+            .vid-seven-title { font-size: 4rem; bottom: 15%; }
         }
 
-        @media (max-width: 480px) {
-            .award-card { padding: 25px 15px; }
-            .award-title { font-size: 1.6rem; }
-            .year { font-size: 2.8rem; }
-            .sketch-label { font-size: 0.7rem; padding: 3px 6px; }
-            .watch-show-btn { padding: 15px 30px; font-size: 1rem; width: 100%; }
-            .countdown-box { min-width: 100%; }
+        @media (min-width: 1025px) {
+            .services-list { grid-template-columns: repeat(3, 1fr); }
+            .big-text { font-size: 5rem; }
+            .vid-seven-title { font-size: 5rem; }
+            .services-title { font-size: 2.5rem; }
         }
+
     </style>
 </head>
 <body>
-    
-    <!-- HEADER BANNER -->
-    <div class="header-banner">
-        <img id="headerImage" src="" alt="Model Award Banner">
-        <div class="header-overlay"></div>
-    </div>
 
-    <div class="main-container">
-        <section class="page-section award-page">
-            <div class="award-card">
-                
-                <!-- TOP ROW: Matches Sketch "front page" (Left) and "Pic One" (Right) -->
-                <div class="card-header">
-                </div>
+    <!-- =======================
+         VIEW 1: HOME PAGE
+         ======================= -->
+    <div id="view-home" class="page-view">
+        <div class="header-banner">
+            <img id="headerImage" src="" alt="Model Award Banner">
+            <div class="header-overlay"></div>
+        </div>
 
-                <!-- CENTER ROW: Matches Sketch Title, Year, Button -->
-                <div class="card-center">
-                    <div class="welcome-text">Welcome To</div>
-                    <h1 class="award-title">
-                        <span class="model-text">Model</span> Of The Year Award
-                    </h1>
-                    <div class="year">2025</div>
-                    
-                    <div class="watch-show-container">
-                        <a href="index2.html" class="watch-show-btn">
-                            <i class="fas fa-play-circle"></i> Watch Show
-                        </a>
+        <div class="main-container">
+            <section class="page-section award-page">
+                <div class="award-card">
+                    <div class="card-header">
                     </div>
-                </div>
 
-                <!-- BOTTOM ROW: Matches Sketch Box (Countdown) -->
-                <div class="card-footer">
-                    <div class="countdown-box">
-                        <div class="countdown-title">Countdown to Jan 4th</div>
-                        <div class="countdown-timer" id="timerDisplay">
-                            48h 00m 00s
+                    <div class="card-center">
+                        <div class="welcome-text">Welcome To</div>
+                        <h1 class="award-title">
+                            <span class="model-text">Model</span> Of The Year Award
+                        </h1>
+                        <div class="year">2025</div>
+                        
+                        <div class="watch-show-container">
+                            <!-- Modified button to trigger SPA navigation -->
+                            <a href="javascript:void(0)" onclick="navigateTo('show')" class="watch-show-btn">
+                                <i class="fas fa-play-circle"></i> Watch Show
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="countdown-box">
+                            <div class="countdown-title">Countdown to Jan 4th</div>
+                            <div class="countdown-timer" id="timerDisplay">
+                                48h 00m 00s
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
+        
+        <div class="notification" id="notification">
+            <p>Welcome to Model Of The Year Award 2025!</p>
+        </div>
+    </div>
 
+    <!-- =======================
+         VIEW 2: SHOW PAGE
+         ======================= -->
+    <div id="view-show" class="page-view hidden">
+        <div class="services-container">
+          <section class="services-page">
+            
+            <!-- Services Section -->
+            <div class="content-card services-card fade-in-section">
+              <div class="video-side">
+                <div class="video-wrapper video-container-md">
+                  <video id="video1" preload="metadata" poster="">
+                    <source src="videos/First_video.mp4" type="video/mp4" />
+                  </video>
+                  <div class="exit-hint" id="hint-video1"><i class="fas fa-compress"></i> Tap to Exit</div>
+                  <div class="video-overlay" id="overlay1">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>Our Services</h3>
+                    <p>Click to play</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="content-side">
+                <div class="services-header">
+                  <h2 class="services-title">Our Services</h2>
+                  <p style="color: var(--text-muted)">Professional award events & production</p>
+                </div>
+
+                <div class="services-list">
+                  <div class="service-item"><i class="fas fa-trophy"></i><h3>Graphics Design</h3></div>
+                  <div class="service-item"><i class="fas fa-video"></i><h3>Video Editing</h3></div>
+                  <div class="service-item"><i class="fas fa-photo-video"></i><h3>Video Shooting</h3></div>
+                </div>
+
+                <div style="text-align: center">
+                  <p class="dm-text">Give us a Dm of any of our services</p>
+                  <img src="https://z-cdn-media.chatglm.cn/files/8bd1d41d-f0d8-43f5-9277-5045969c9503.jpg?auth_key=1866960160-61584742207d409a9eaa62d2f6b9234e-0-14912b8395edb024857b9eff387794a9" alt="Contact Us" class="contact-display-img" />
+                </div>
+              </div>
             </div>
-        </section>
+
+            <!-- Thank You Section -->
+            <div class="content-card fade-in-section">
+              <div class="video-wrapper video-container-md">
+                <video id="video2" preload="metadata">
+                  <source src="videos/Second_video.mp4" type="video/mp4" />
+                </video>
+                <div class="exit-hint" id="hint-video2"><i class="fas fa-compress"></i> Tap to Exit</div>
+                <div class="video-overlay" id="overlay2">
+                  <i class="fas fa-play-circle"></i>
+                  <h3>Thank You</h3>
+                  <p>Click to play</p>
+                </div>
+              </div>
+              <div class="text-content">
+                <p style="font-size: 1.2rem; color: var(--text-muted)">We couldn't have done this without</p>
+                <div class="big-text">YOU ALL!</div>
+                <p style="color: var(--text-muted)">A big shout out to y'all</p>
+                <p class="handwritten" style="margin-top: 20px; font-family:'Courier New', monospace; font-weight:700; font-size:2rem;">Thanks<K</p>
+              </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="content-card fade-in-section">
+              <div class="services-header">
+                <h2 class="services-title">Most Active Contestants</h2>
+              </div>
+              <div class="video-wrapper video-container-md" style="margin-bottom: 20px">
+                <video id="video3" preload="metadata">
+                  <source src="videos/Third_video.mp4" type="video/mp4" />
+                </video>
+                <div class="exit-hint" id="hint-video3"><i class="fas fa-compress"></i> Tap to Exit</div>
+                <div class="video-overlay" id="overlay3">
+                  <i class="fas fa-video"></i>
+                  <h3>Most Active Contestant</h3>
+                  <p>Click to play</p>
+                </div>
+              </div>
+              <div class="text-content">
+                <h3 style="color: var(--primary-gold); margin-bottom: 15px">Get In Touch</h3>
+                <p style="margin-bottom: 20px">Click link to Congratulate</p>
+                <a href="https://wa.me/2347077027579?text=Congratulations%20for%20being%20the%20most%20active%20contestant!" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
+                  <i class="fab fa-whatsapp"></i> Reach us on WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <!-- Vid Five Section -->
+            <div class="content-card fade-in-section">
+              <h2 class="services-title" style="text-align: center">Contestants Evicted</h2>
+              <div class="video-wrapper video-container-md">
+                <video id="video5" preload="metadata">
+                  <source src="videos/Fourth_video.mp4" type="video/mp4" />
+                </video>
+                <div class="exit-hint" id="hint-video5"><i class="fas fa-compress"></i> Tap to Exit</div>
+                <div class="video-overlay" id="overlay5">
+                  <i class="fas fa-play-circle"></i>
+                  <h3>Evicted Contestants</h3>
+                  <p>Click to play</p>
+                </div>
+              </div>
+              <div class="text-content">
+                <p style="font-size: 1.2rem">Thank you for your</p>
+                <p style="font-size: 1.2rem">active participation</p>
+                <div class="big-text" style="font-size: 1.8rem; margin: 10px 0">in show</div>
+              </div>
+            </div>
+
+            <!-- Vid Six Section -->
+            <div class="content-card fade-in-section">
+              <div style="text-align: center; margin-bottom: 20px">
+                <span style="display:inline-block; background:var(--primary-gold); color:#1a120b; padding:5px 15px; border-radius:50px; font-weight:800; font-size:0.9rem; margin-bottom:10px;">Award Presentation</span>
+                <h2 style="font-size:2rem; color:var(--primary-gold); font-weight:800; text-transform:uppercase;">SECOND RUNNER UP</h2>
+              </div>
+
+              <div class="video-wrapper video-container-md">
+                <video id="video6" preload="metadata">
+                  <source src="videos/firth_video.mp4" type="video/mp4" />
+                </video>
+                <div class="exit-hint" id="hint-video6"><i class="fas fa-compress"></i> Tap to Exit</div>
+                <div class="video-overlay" id="overlay6">
+                  <i class="fas fa-play-circle"></i>
+                  <h3>Second Runner up</h3>
+                  <p>Click to play</p>
+                </div>
+              </div>
+
+              <div class="text-content">
+                <p>Click Link to Congratulate</p>
+                <a href="https://wa.me/2347077027579?text=Congratulations%20on%20being%20the%20Second%20Runner%20Up!" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
+                  <i class="fab fa-whatsapp"></i> CLICK ME
+                </a>
+              </div>
+            </div>
+
+            <!-- Vid Seven Section (Full Screen) -->
+            <div class="vid-seven-section fade-in-section">
+              <div class="vid-seven-label">Short Interlude</div>
+
+              <div class="video-wrapper video-container-lg">
+                <video id="video7" preload="metadata">
+                  <source src="videos/sixth_video.mp4" type="video/mp4" />
+                </video>
+                <div class="exit-hint" id="hint-video7"><i class="fas fa-compress"></i> Tap to Exit</div>
+                <div class="video-overlay" id="overlay7">
+                  <i class="fas fa-play-circle" style="font-size: 4rem"></i>
+                  <h3>Short Interlude</h3>
+                  <p>Click to play</p>
+                </div>
+              </div>
+
+              <div class="vid-seven-title">Vid Seven</div>
+            </div>
+
+            <!-- Vid Nine Section (Second Runner Up) -->
+            <div class="content-card fade-in-section">
+              <div style="text-align: center; margin-bottom: 20px">
+                <span style="display:inline-block; background:var(--primary-gold); color:#1a120b; padding:5px 15px; border-radius:50px; font-weight:800; font-size:0.9rem; margin-bottom:10px;">Award Presentation</span>
+                <h2 style="font-size:2rem; color:var(--primary-gold); font-weight:800; text-transform:uppercase;">SECOND RUNNER UP</h2>
+              </div>
+
+              <div class="video-wrapper video-container-md">
+                <video id="video9" preload="metadata">
+                  <source src="videos/Seventh_video.mp4" type="video/mp4" />
+                </video>
+                <div class="exit-hint" id="hint-video9"><i class="fas fa-compress"></i> Tap to Exit</div>
+                <div class="video-overlay" id="overlay9">
+                  <i class="fas fa-play-circle"></i>
+                  <h3>Second Runner Up</h3>
+                  <p>Click to play</p>
+                </div>
+              </div>
+
+              <div class="text-content">
+                <p>Click Link to Congratulate</p>
+                <a href="https://wa.me/2347077027579?text=Congratulations%20on%20being%20the%20Second%20Runner%20Up!" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
+                  <i class="fab fa-whatsapp"></i> CLICK ME
+                </a>
+              </div>
+            </div>
+
+            <!-- Vid Eight Section -->
+            <div class="content-card fade-in-section" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+              <div style="text-align: center; margin-bottom: 15px">
+                <h3 style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px;">Award Presentation</h3>
+                <h2 class="services-title" style="margin: 0">Model Of The Year</h2>
+              </div>
+
+              <div class="video-wrapper" style="height: 80vh; margin-bottom: 20px">
+                <video id="video8" preload="metadata">
+                  <source src="videos/Eighth_video.mp4" type="video/mp4" />
+                </video>
+                <div class="exit-hint" id="hint-video8"><i class="fas fa-compress"></i> Tap to Exit</div>
+                <div class="video-overlay" id="overlay8">
+                  <i class="fas fa-play-circle"></i>
+                  <h3>Model Figure</h3>
+                  <p>Click to play</p>
+                </div>
+              </div>
+
+              <div class="pics-nine-image" style="height: 13vh">
+                <img src="images/pics-thre.jpeg" alt="Pics Three" class="responsive-img" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'" />
+              </div>
+            </div>
+
+            <!-- Pics Nine Section (Final) -->
+            <div class="content-card fade-in-section" style="background: transparent; border: none; box-shadow: none; padding: 0; text-align: center;">
+              <h2 class="services-title" style="margin-bottom: 20px">Thank you!!</h2>
+
+              <div class="pics-nine-image" style="height: 35vh">
+                <img src="images/pics-three.jpeg" alt="Pics Three" class="responsive-img" style="width: 100%; height: 100%; object-fit: contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'text-align:center; color:var(--text-muted);\'><i class=\'fas fa-images\'></i><h3>Pics Three</h3></div>'" />
+              </div>
+
+              <div class="facebook-section" style="margin-top:30px;">
+                <a href="https://www.facebook.com/profile.php?id=61585174856455" target="_blank" rel="noopener noreferrer" class="facebook-button">
+                  <i class="fab fa-facebook-f"></i> Facebook Link
+                </a>
+                <p style="color: var(--text-muted); margin-top: 10px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Follow FB Page</p>
+              </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="back-indicator" style="width:100%; text-align:center; padding:20px 0;">
+                <!-- Modified button to trigger SPA navigation -->
+              <a href="javascript:void(0)" onclick="navigateTo('home')" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Award Page
+              </a>
+            </div>
+          </section>
+        </div>
     </div>
-    
-    <div class="notification" id="notification">
-        <p>Welcome to Model Of The Year Award 2025!</p>
+
+    <!-- Toast Notification Element -->
+    <div class="toast-notification" id="toast">
+      <i class="fas fa-info-circle"></i> <span id="toast-msg">Message</span>
     </div>
-    
+
     <script>
+        // ============================================
+        // SPA NAVIGATION LOGIC
+        // ============================================
+        function navigateTo(viewName) {
+            const homeView = document.getElementById('view-home');
+            const showView = document.getElementById('view-show');
+
+            // Google Analytics Event Tracking for Navigation
+            if (viewName === 'show') {
+                gtag('event', 'click', {
+                    'event_category': 'navigation',
+                    'event_label': 'Watch Show Button',
+                    'value': 1
+                });
+                homeView.classList.add('hidden');
+                showView.classList.remove('hidden');
+                window.scrollTo(0, 0); // Reset scroll
+            } else {
+                gtag('event', 'click', {
+                    'event_category': 'navigation',
+                    'event_label': 'Back to Home',
+                    'value': 1
+                });
+                showView.classList.add('hidden');
+                homeView.classList.remove('hidden');
+                window.scrollTo(0, 0); // Reset scroll
+                
+                // Stop all videos when going back to home
+                document.querySelectorAll('video').forEach(v => {
+                    v.pause();
+                    v.currentTime = 0;
+                });
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
-            // DOM Elements
+            
+            // ============================================
+            // 1. HOME PAGE LOGIC
+            // ============================================
             const timerDisplay = document.getElementById("timerDisplay");
             const notification = document.getElementById("notification");
             const headerImage = document.getElementById("headerImage");
 
-            // Set 48-hour countdown from current time
+            // Set 48-hour countdown
             let totalSeconds = 48 * 60 * 60; 
 
-            // Countdown function
             function updateCountdown() {
                 if (totalSeconds <= 0) {
                     timerDisplay.textContent = "SHOW STARTED";
-                    if (!window.countdownFinished) {
-                        showNotification("🎉 The show has started!");
-                        window.countdownFinished = true;
-                    }
                     return;
                 }
-
                 const hours = Math.floor(totalSeconds / 3600);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
                 const seconds = totalSeconds % 60;
-
-                // Format: HHh MMm SSs to fit in the bottom box neatly
-                const hStr = hours.toString().padStart(2, '0');
-                const mStr = minutes.toString().padStart(2, '0');
-                const sStr = seconds.toString().padStart(2, '0');
-
-                timerDisplay.textContent = `${hStr}h ${mStr}m ${sStr}s`;
+                timerDisplay.textContent = `${hours.toString().padStart(2,'0')}h ${minutes.toString().padStart(2,'0')}m ${seconds.toString().padStart(2,'0')}s`;
                 totalSeconds--;
             }
+            setInterval(updateCountdown, 1000);
 
             // Show notification
-            function showNotification(message) {
-                notification.querySelector("p").textContent = message;
-                notification.classList.add("show");
-                setTimeout(() => {
-                    notification.classList.remove("show");
-                }, 3000);
+            notification.classList.add("show");
+            setTimeout(() => { notification.classList.remove("show"); }, 3000);
+
+            // Header Image Fallback
+            const imageSources = [
+                'images/award-image1.png',
+                'images/first_pic.jpeg',
+                'images/model-award.jpg',
+                'images/award.jpg',
+                'https://images.unsplash.com/photo-1596703923338-48f1c07e4f2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'
+            ];
+            let imgIndex = 0;
+            function tryLoadImage() {
+                if(imgIndex >= imageSources.length) return;
+                const img = new Image();
+                img.onload = () => { headerImage.src = imageSources[imgIndex]; };
+                img.onerror = () => { imgIndex++; tryLoadImage(); };
+                img.src = imageSources[imgIndex];
+            }
+            tryLoadImage();
+
+            // ============================================
+            // 2. SHOW PAGE LOGIC (Videos & Animations)
+            // ============================================
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toast-msg");
+            let toastTimeout;
+
+            function showToast(message) {
+                toastMsg.textContent = message;
+                toast.classList.add("show");
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => { toast.classList.remove("show"); }, 3000);
             }
 
-            // Set background image
-            function setBackgroundImage() {
-                const imageSources = [
-                    'images/award-image1.png',
-                    'images/first_pic.jpeg',
-                    'images/model-award.jpg',
-                    'images/award.jpg',
-                    'https://images.unsplash.com/photo-1596703923338-48f1c07e4f2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                ];
-                
-                let currentImage = 0;
-                
-                function tryNextImage() {
-                    if (currentImage >= imageSources.length) {
-                        headerImage.style.display = 'none';
-                        return;
+            // Scroll Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add("visible");
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll(".fade-in-section").forEach(el => observer.observe(el));
+
+            // Video Logic
+            const videoIds = ["video1", "video2", "video3", "video5", "video6", "video7", "video9", "video8"];
+            
+            // Video Pause Helper
+            function pauseOtherVideos(currentVideo) {
+                videoIds.forEach(id => {
+                    const v = document.getElementById(id);
+                    if (v && v !== currentVideo && !v.paused) {
+                        v.pause();
+                        const overlay = document.getElementById(id.replace("video", "overlay"));
+                        if(overlay) overlay.style.display = "flex";
                     }
-                    
-                    const img = new Image();
-                    img.onload = function() {
-                        headerImage.src = imageSources[currentImage];
-                        headerImage.style.display = 'block';
-                    };
-                    img.onerror = function() {
-                        currentImage++;
-                        tryNextImage();
-                    };
-                    img.src = imageSources[currentImage];
-                }
-                tryNextImage();
+                });
             }
 
-            // Initialize
-            function initialize() {
-                setBackgroundImage();
-                updateCountdown();
-                setInterval(updateCountdown, 1000);
-                setTimeout(() => {
-                    showNotification("48-hour countdown has started!");
-                }, 1000);
+            // Fullscreen Helpers
+            function exitFullscreen() {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+            function requestFullscreen(video) {
+                if (video.requestFullscreen) video.requestFullscreen().catch(e => console.log(e));
+                else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
             }
 
-            initialize();
+            // Video Visibility Observer
+            const videoVisObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting && !entry.target.paused) {
+                        entry.target.pause();
+                        exitFullscreen();
+                    }
+                });
+            }, { root: null, threshold: 0.25 });
+
+            videoIds.forEach(id => {
+                const video = document.getElementById(id);
+                const overlay = document.getElementById("overlay" + id.replace("video",""));
+                const hint = document.getElementById("hint-" + id);
+                if (!video) return;
+
+                videoVisObserver.observe(video);
+                let hintTimeout;
+
+                const startVideo = () => {
+                    pauseOtherVideos(video);
+                    video.play().then(() => {
+                        overlay.style.display = "none";
+                        video.controls = true;
+                        requestFullscreen(video);
+                        if(hint) {
+                            hint.classList.add("visible");
+                            clearTimeout(hintTimeout);
+                            hintTimeout = setTimeout(() => hint.classList.remove("visible"), 30000);
+                        }
+                        // Analytics: Video Play Event
+                        gtag('event', 'video_play', {
+                            'event_category': 'Video Engagement',
+                            'event_label': id
+                        });
+                    }).catch(err => {
+                        console.error("Play error:", err);
+                    });
+                };
+
+                overlay.addEventListener("click", startVideo);
+
+                video.addEventListener("ended", () => {
+                    overlay.style.display = "flex";
+                    video.currentTime = 0;
+                    video.controls = false;
+                    if(hint) hint.classList.remove("visible");
+                    clearTimeout(hintTimeout);
+                    exitFullscreen();
+                    showToast("Video Finished!");
+                });
+
+                video.addEventListener("pause", () => {
+                    if(!video.ended) {
+                        overlay.style.display = "flex";
+                        if(hint) hint.classList.remove("visible");
+                        clearTimeout(hintTimeout);
+                    }
+                });
+            });
         });
     </script>
 </body>
